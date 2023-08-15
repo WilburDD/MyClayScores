@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ScoringInfoView: View {
+struct InfoView: View {
     
     var body: some View {
         
@@ -54,9 +54,9 @@ struct ScoringInfoView: View {
 }
 
 
-struct ScoringInfoView_Previews: PreviewProvider {
+struct InfoView_Previews: PreviewProvider {
     static var previews: some View {
-        ScoringInfoView()
+        InfoView()
     }
 }
 

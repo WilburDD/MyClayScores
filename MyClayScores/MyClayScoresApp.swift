@@ -15,9 +15,12 @@ struct MyClayScoresApp: App {
     @Environment(\.scenePhase) var scenePhase
     
     var body: some Scene {
-        
         WindowGroup {
-            OpeningTabView()
+//            if $roundsData.defaultRange == "None" {
+//
+//            } else {
+                OpeningRoundsView()
+//            }
                 .environmentObject(roundsDataStack)
                 .environment(\.managedObjectContext,
                               roundsDataStack.managedObjectContext)

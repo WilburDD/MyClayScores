@@ -9,14 +9,14 @@ import SwiftUI
 import MediaPlayer
 import AVFoundation
 
-struct GetPositionView: View {
+struct GetRangeView: View {
     
     @EnvironmentObject var roundsData: RoundsDataStack
     
     var body: some View {
         VStack{
 //            Spacer()
-            RangeSelectionView()
+            SelectRange()
             ZStack {
                 Image("range")
                     .resizable()
@@ -71,21 +71,7 @@ struct GetPositionView: View {
                     .padding()
                 }
             }
-//            Divider()
-//                .frame(height: 3)
-//                .frame(width: 300)
-//                .overlay(.blue)
-//            Spacer()
-            ScoringSelectionView()
-            Spacer()
-//            Spacer()
-            Text("To start scoring, press Clicker remote once or press either volume button AFTER selecting Range & Position.")
-//                .fontWeight(.bold)
-                .italic()
-                .multilineTextAlignment(.center)
-                .font(.title3)
-                .navigationBarHidden(true)
-                .environmentObject(roundsData)
+            SelectRange()
             Spacer()
 
         }
@@ -97,7 +83,7 @@ struct GetPositionView: View {
             MPVolumeView.setVolume()
         }
         .navigationDestination(isPresented: $roundsData.posSelected, destination: {
-            NewRoundView()
+            AmericanTrapNRView()
         })
     }
 }
@@ -115,16 +101,17 @@ extension MPVolumeView {
 extension Button {
     func getPosButtonStyle() -> some View {
         self
-            .frame(width: 50, height: 50)
-            .foregroundColor(.black)
-            .background(Color(.green))
-            .clipShape(Circle())
+            .font(.headline)
+            .padding(10)
+            .background(Color.blue)
+            .foregroundColor(Color.white)
+            .clipShape(Capsule())
     }
 }
 
-struct GetPositionView_Previews: PreviewProvider {
+struct GetRangeView_Previews: PreviewProvider {
     static var previews: some View {
-        GetPositionView()
+        GetRangeView()
             .environmentObject(RoundsDataStack())
     }
 }

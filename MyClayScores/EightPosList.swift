@@ -1,13 +1,13 @@
 //
-//  RoundsList.swift
+//  EightPosList.swift
 //  MyClayScores
 //
-//  Created by Doxie Davis on 6/23/23.
+//  Created by Doxie Davis on 8/11/23.
 //
 
 import SwiftUI
 
-struct RoundsList: View {
+struct EightPosList: View {
     
     let item: RoundEntity
     
@@ -15,10 +15,10 @@ struct RoundsList: View {
         
         VStack {
             HStack {
-                HStack {
+//                HStack {
                     Text("\(item.pos1)")
                     Spacer()
-                }
+//                }
                 HStack {
                     Text("\(item.pos2)")
                     Spacer()
@@ -35,6 +35,19 @@ struct RoundsList: View {
                     Text("\(item.pos5)")
                     Spacer()
                 }
+                HStack {
+                Text("\(item.pos6)")
+                Spacer()
+            }
+            HStack {
+                Text("\(item.pos7)")
+                Spacer()
+            }
+            HStack {
+                Text("\(item.pos8)")
+                Spacer()
+            }
+
                 Text("\(item.total)")
                     .fontWeight(.bold)
             }
@@ -54,17 +67,8 @@ struct RoundsList: View {
     }
 }
 
-extension Date {
-    func formatDate() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.setLocalizedDateFormatFromTemplate("d MMM yyyy, HH:mm")
-        return dateFormatter.string(from: self)
-    }
-}
-
-//struct RoundsList_Previews: PreviewProvider {
+//struct EightPosList_Previews: PreviewProvider {
 //    static var previews: some View {
-//        RoundsList(item: RoundEntity())
-//    .environmentObject(RoundsDataStack())
+//        EightPosList()
 //    }
 //}

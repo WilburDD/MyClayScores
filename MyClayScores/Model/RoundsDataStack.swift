@@ -20,7 +20,9 @@ class RoundsDataStack: ObservableObject, Identifiable {
     @Published var amerOpactity = 1.0
     @Published var contOpactity = 0.5
     @Published var intlOpacity = 0.5
-    @Published var selectedRange = "American"
+    @Published var selectedRange = "American Skeet"
+    @Published var rangeSelected = false
+    @Published var defaultRange = "None"
     @Published var range = ""
     @Published var shotCount = 0
     @Published var totScore = 0

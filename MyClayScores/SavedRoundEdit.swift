@@ -25,7 +25,7 @@ struct SavedRoundEdit: View {
                 .underline()
                 .padding(5)
             
-            RangeSelectionView()
+            SelectRange()
                 .padding(10)
             VStack {
                 Text("Score?")
