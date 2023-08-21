@@ -1,13 +1,13 @@
 //
-//  RoundsList.swift
+//  EightPosList.swift
 //  MyClayScores
 //
-//  Created by Doxie Davis on 6/23/23.
+//  Created by Doxie Davis on 8/11/23.
 //
 
 import SwiftUI
 
-struct FivePosList: View {
+struct NinePosList: View {
     
     let item: RoundEntity
     
@@ -16,9 +16,8 @@ struct FivePosList: View {
         VStack {
             HStack {
                 HStack {
-                    Text("\(item.pos1)")
-                    Spacer()
-                }
+                Text("\(item.pos1)")
+                Spacer()
                 HStack {
                     Text("\(item.pos2)")
                     Spacer()
@@ -35,6 +34,23 @@ struct FivePosList: View {
                     Text("\(item.pos5)")
                     Spacer()
                 }
+            }
+                HStack {
+                    Text("\(item.pos6)")
+                    Spacer()
+                }
+                HStack {
+                    Text("\(item.pos7)")
+                    Spacer()
+                }
+                HStack {
+                    Text("\(item.pos8)")
+                    Spacer()
+                }
+                HStack {
+                    Text("\(item.pos9)")
+                    Spacer()
+                }
                 Text("\(item.total)")
                     .fontWeight(.bold)
             }
@@ -49,21 +65,13 @@ struct FivePosList: View {
                 Text("\(item.comment!)")
             }
             .font(.caption.italic())
+            
         }
     }
 }
 
-extension Date {
-    func formatDate() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.setLocalizedDateFormatFromTemplate("d MMM yyyy, HH:mm")
-        return dateFormatter.string(from: self)
-    }
-}
-
-//struct RoundsList_Previews: PreviewProvider {
+//struct NinePosList_Previews: PreviewProvider {
 //    static var previews: some View {
-//        RoundsList(item: RoundEntity())
-//    .environmentObject(RoundsDataStack())
+//        NinePosList()
 //    }
 //}

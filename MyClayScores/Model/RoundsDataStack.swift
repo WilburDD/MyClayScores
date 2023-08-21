@@ -13,42 +13,37 @@ import MediaPlayer
 
 class RoundsDataStack: ObservableObject, Identifiable {
     
+    @AppStorage ("storedRange") var storedRange = String("")
+    
     @Published var roundsData: [RoundEntity] = []
     
     @Published var editedIndex = 0
-            
-    @Published var amerOpactity = 1.0
-    @Published var contOpactity = 0.5
-    @Published var intlOpacity = 0.5
-    @Published var selectedRange = "American Skeet"
-    @Published var rangeSelected = false
-    @Published var defaultRange = "None"
-    @Published var range = ""
-    @Published var shotCount = 0
+    
+    @Published var positions = 0
+    @Published var selectedRange = String("")
+    @Published var range = String()
     @Published var totScore = 0
     @Published var comment = ""
-    @Published var hitScore = false
-    @Published var posCount = [0, 0, 0, 0, 0]
+    @Published var posCount = [0, 0, 0, 0, 0, 0, 0, 0, 0]
     @Published var roundTotal = 0
-    @Published var posLoc = 0
-    @Published var posSelected = false
-    @Published var posNotSelected = true
-    @Published var resetVolume = false
-    @Published var scoringStarted = false
-    @Published var viewSet = false
-    @Published var clickerConfirm = false
     @Published var showInfo = false
     @Published var roundDate = Date()
     @Published var roundID = UUID()
     @Published var editDone = false
     @Published var roundComplete = false
     @Published var exitNewRound = false
-    @Published var seePos = [0.3, 0.3, 0.3, 0.3, 0.3]
-    @Published var clickerOpacity = 1.0
-    @Published var phoneOpacity = 0.3
-    @Published var phoneScoring = false
-    @Published var selection = 0
+    @Published var selection = Int()
     @Published var path = NavigationPath()
+    
+    @Published var pos1Hit = false
+    @Published var pos2Hit = false
+    @Published var pos3Hit = false
+    @Published var pos4Hit = false
+    @Published var pos5Hit = false
+    @Published var pos6Hit = false
+    @Published var pos7Hit = false
+    @Published var pos8Hit = false
+    @Published var pos9Hit = false
     
     @Published var pos1Avg = Double (0.0)
     @Published var pos2Avg = Double (0.0)
@@ -64,12 +59,7 @@ class RoundsDataStack: ObservableObject, Identifiable {
     @Published var pos4Pct = Double (0.0)
     @Published var pos5Pct = Double (0.0)
     @Published var totalPct = Double (0.0)
-
-    private var outputVolumeObserve: NSKeyValueObservation?
-    private var audioSession = AVAudioSession.sharedInstance()
-    private var priorVolume = 0.5
-    private var newVolume = 0.0
-    private var clickCount = 0
+    
     
     struct PersistenceController {
         static let shared = PersistenceController()
@@ -111,26 +101,14 @@ class RoundsDataStack: ObservableObject, Identifiable {
     }
     
     init() {
-        self.fetchRounds()
-        self.calcAvgs()
+//        self.selectedRange = storedRange
+//        self.fetchRounds()
+//        self.calcAvgs()
     }
     
     func fetchRounds() {
         let request = NSFetchRequest<RoundEntity>(entityName: "RoundEntity")
         let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
-        let predicate = NSPredicate(format: "range == %@", selectedRange)
-        request.predicate = predicate
-        request.sortDescriptors = [sortDescriptor]
-        do {
-            roundsData = try managedObjectContext.fetch(request)
-        } catch let error {
-            print ("Error fetching. \(error)")
-        }
-    }
-    
-    func fetchGraphs() {
-        let request = NSFetchRequest<RoundEntity>(entityName: "RoundEntity")
-        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
         let predicate = NSPredicate(format: "range == %@", selectedRange)
         request.predicate = predicate
         request.sortDescriptors = [sortDescriptor]
@@ -198,29 +176,6 @@ class RoundsDataStack: ObservableObject, Identifiable {
         calcAvgs()
     }
     
-    func countShot () {
-        if hitScore == true {
-            roundTotal += 1
-            posCount[posLoc] += 1
-        }
-        shotCount += 1
-        if shotCount == 25 {
-            scoringStarted = false
-            roundComplete = true
-            UIApplication.shared.isIdleTimerDisabled = false
-        }
-        if shotCount == 5 || shotCount == 10 || shotCount == 15 ||  shotCount == 20 {
-            posLoc += 1
-        }
-        if posLoc < 5 {
-            seePos[posLoc] = 1.0
-        }
-        if posLoc == 5 {
-            posLoc = 0
-        }
-        hitScore = false
-    }
-    
     func calcAvgs () {
         for _ in 0...roundsData.count {
             pos1Avg = Double(roundsData.reduce(0, {$0 + $1.pos1}))/Double(roundsData.count)
@@ -249,78 +204,17 @@ class RoundsDataStack: ObservableObject, Identifiable {
     }
     
     func clearData () {
-        
-        shotCount = 0
+        posCount = [0, 0, 0, 0, 0, 0, 0, 0, 0]
         totScore = 0
         comment = ""
-        hitScore = false
-        posCount = [0, 0, 0, 0, 0]
         roundTotal = 0
-        posLoc = 0
-        posSelected = false
-        resetVolume = false
-        viewSet = false
-        clickerConfirm = false
         roundComplete = false
-        scoringStarted = false
         showInfo = false
-        seePos = [0.3, 0.3, 0.3, 0.3, 0.3]
         editDone = false
         exitNewRound = false
     }
     
-    func setData (pos: Int) {
-        clickerConfirm = true
-        posLoc = pos
-        seePos = [0.3, 0.3, 0.3, 0.3, 0.3]
-        seePos[pos] = 1.0
-        checkClicker()
+    func addupScore () {
+            roundTotal = posCount[0] + posCount[1] + posCount[2] + posCount[3] + posCount[4] + posCount[5] + posCount[6] + posCount[7] + posCount[8]
     }
-    
-    func observeVolume () {
-        outputVolumeObserve = audioSession.observe(\.outputVolume) { [self] (session, value) in
-            if self.viewSet == false {
-                self.clickCount += 1
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.5) {
-                    if self.clickCount == 1 {
-                        self.hitScore = true
-                        self.countShot()
-                    }
-                    if self.clickCount == 2 {
-                        self.hitScore = false
-                        self.countShot()
-                    }
-                    self.clickCount = 0
-                    self.resetVolume.toggle()
-                }
-            }
-        }
-    }
-    
-    func checkClicker () {
-        if self.clickerConfirm == true && self.scoringStarted == false {
-            outputVolumeObserve = audioSession.observe(\.outputVolume) { (audioSession, changes) in
-                self.clickerConfirm = false
-                //                self.turnOffClicker()
-                self.viewSet = false
-                //                self.resetVolume.toggle()
-                self.scoringStarted = true
-                self.posSelected = true
-            }
-        }
-    }
-    
-    func turnOnClicker() {
-        do {
-            try audioSession.setActive(true)
-        } catch {}
-    }
-    
-    func turnOffClicker() {
-        self.outputVolumeObserve?.invalidate()
-        do {
-            try audioSession.setActive(false)
-        } catch {}
-    }
-    
 }

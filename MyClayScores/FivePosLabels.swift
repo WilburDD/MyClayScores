@@ -12,14 +12,14 @@ struct FivePosLabels: View {
         VStack{
             Text("Position")
                 .font(.title3)
-                .fontWeight(.bold)
+//                .fontWeight(.bold)
             HStack{
                 ZStack{
                     Image(systemName: "square")
                         .font(.title)
                     Text("1")
                         .font(.title3)
-                        .fontWeight(.bold)
+//                        .fontWeight(.bold)
                         .padding()
                 }
                 Spacer()
@@ -28,7 +28,7 @@ struct FivePosLabels: View {
                         .font(.title)
                     Text("2")
                         .font(.title3)
-                        .fontWeight(.bold)
+//                        .fontWeight(.bold)
                         .padding()
                 }
                 Spacer()
@@ -37,7 +37,7 @@ struct FivePosLabels: View {
                         .font(.title)
                     Text("3")
                         .font(.title3)
-                        .fontWeight(.bold)
+//                        .fontWeight(.bold)
                         .padding()
                 }
                 Spacer()
@@ -46,7 +46,7 @@ struct FivePosLabels: View {
                         .font(.title)
                     Text("4")
                         .font(.title3)
-                        .fontWeight(.bold)
+//                        .fontWeight(.bold)
                         .padding()
                 }
                 Spacer()
@@ -55,7 +55,7 @@ struct FivePosLabels: View {
                         .font(.title)
                     Text("5")
                         .font(.title3)
-                        .fontWeight(.bold)
+//                        .fontWeight(.bold)
                         .padding()
                 }
             }
