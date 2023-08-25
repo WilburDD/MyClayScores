@@ -72,6 +72,6 @@ struct NinePosList: View {
 
 //struct NinePosList_Previews: PreviewProvider {
 //    static var previews: some View {
-//        NinePosList()
+//        NinePosList(item: RoundEntity)
 //    }
 //}

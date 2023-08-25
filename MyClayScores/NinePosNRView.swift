@@ -1,16 +1,13 @@
 //
-//  ContentView.swift
+//  NinePosNRView.swift
 //  MyClayScores
 //
-//  Created by Doxie Davis on 6/23/23.
+//  Created by Doxie Davis on 8/23/23.
 //
 
 import SwiftUI
-import CoreData
-import MediaPlayer
-import AVFoundation
 
-struct FivePosNRView: View {
+struct NinePosNRView: View {
     
     @EnvironmentObject var roundsData: RoundsDataStack
     @State private var showAlert: Bool = false
@@ -18,7 +15,7 @@ struct FivePosNRView: View {
     
     @State private var eightPos: Bool = false
     @State private var ninePos: Bool = false
-
+    
     
     @State private var keyboardHeight: CGFloat = 0
     
@@ -107,7 +104,6 @@ struct FivePosNRView: View {
                                     Text("2").tag(2)
                                     Text("3").tag(3)
                                     Text("4").tag(4)
-                                    Text("5").tag(5)
                                 }
                                 .onChange(of: roundsData.posCount[0], perform: { (value) in
                                     roundsData.addupScore()
@@ -125,7 +121,6 @@ struct FivePosNRView: View {
                                     Text("2").tag(2)
                                     Text("3").tag(3)
                                     Text("4").tag(4)
-                                    Text("5").tag(5)
                                 }
                                 .onChange(of: roundsData.posCount[1], perform: { (value) in
                                     roundsData.addupScore()
@@ -143,7 +138,6 @@ struct FivePosNRView: View {
                                     Text("2").tag(2)
                                     Text("3").tag(3)
                                     Text("4").tag(4)
-                                    Text("5").tag(5)
                                 }
                                 .onChange(of: roundsData.posCount[2], perform: { (value) in
                                     roundsData.addupScore()
@@ -161,7 +155,6 @@ struct FivePosNRView: View {
                                     Text("2").tag(2)
                                     Text("3").tag(3)
                                     Text("4").tag(4)
-                                    Text("5").tag(5)
                                 }
                                 .onChange(of: roundsData.posCount[3], perform: { (value) in
                                     roundsData.addupScore()
@@ -179,7 +172,6 @@ struct FivePosNRView: View {
                                     Text("2").tag(2)
                                     Text("3").tag(3)
                                     Text("4").tag(4)
-                                    Text("5").tag(5)
                                 }
                                 .onChange(of: roundsData.posCount[4], perform: { (value) in
                                     roundsData.addupScore()
@@ -188,6 +180,79 @@ struct FivePosNRView: View {
                                 .opacity(0.1)
                             }
                         }
+                        FourPosLabels()
+                        HStack {
+                            Spacer()
+                            ZStack {
+                                Text ("\(roundsData.posCount[5])")
+                                    .font(.largeTitle).underline().fontWeight(.bold)
+                                Picker("", selection: $roundsData.posCount[5]) {
+                                    Text("0").tag(0)
+                                    Text("1").tag(1)
+                                    Text("2").tag(2)
+                                    Text("3").tag(3)
+                                    Text("4").tag(4)
+                                }
+                                .onChange(of: roundsData.posCount[5], perform: { (value) in
+                                    roundsData.addupScore()
+                                })
+                                .pickerStyle(MenuPickerStyle())
+                                .opacity(0.1)
+                            }
+                            Spacer()
+                            ZStack {
+                                Text ("\(roundsData.posCount[6])")
+                                    .font(.largeTitle).underline().fontWeight(.bold)
+                                Picker("", selection: $roundsData.posCount[6]) {
+                                    Text("0").tag(0)
+                                    Text("1").tag(1)
+                                    Text("2").tag(2)
+                                    Text("3").tag(3)
+                                    Text("4").tag(4)
+                                }
+                                .onChange(of: roundsData.posCount[6], perform: { (value) in
+                                    roundsData.addupScore()
+                                })
+                                .pickerStyle(MenuPickerStyle())
+                                .opacity(0.1)
+                            }
+                            Spacer()
+                            ZStack {
+                                Text ("\(roundsData.posCount[7])")
+                                    .font(.largeTitle).underline().fontWeight(.bold)
+                                Picker("", selection: $roundsData.posCount[7]) {
+                                    Text("0").tag(0)
+                                    Text("1").tag(1)
+                                    Text("2").tag(2)
+                                    Text("3").tag(3)
+                                    Text("4").tag(4)
+                                }
+                                .onChange(of: roundsData.posCount[7], perform: { (value) in
+                                    roundsData.addupScore()
+                                })
+                                .pickerStyle(MenuPickerStyle())
+                                .opacity(0.1)
+                            }
+                            Spacer()
+                            ZStack {
+                                Text ("\(roundsData.posCount[8])")
+                                    .font(.largeTitle).underline().fontWeight(.bold)
+                                Picker("", selection: $roundsData.posCount[8]) {
+                                    Text("0").tag(0)
+                                    Text("1").tag(1)
+                                    Text("2").tag(2)
+                                    Text("3").tag(3)
+                                    Text("4").tag(4)
+                                }
+                                .onChange(of: roundsData.posCount[8], perform: { (value) in
+                                    roundsData.addupScore()
+                                })
+                                .pickerStyle(MenuPickerStyle())
+                                .opacity(0.1)
+                            }
+                            Spacer()
+                        }
+                        Spacer()
                         Spacer()
                         Spacer()
                         Text("Total Score:  \(roundsData.roundTotal)")
@@ -213,7 +278,7 @@ struct FivePosNRView: View {
                                 .multilineTextAlignment(.center)
                                 .padding()
                         })
-                        .padding()
+//                        .padding()
                         Text ("Tap on the '0' for a Position to enter score.")
                             .font(.title3)
                             .italic()
@@ -222,38 +287,24 @@ struct FivePosNRView: View {
                             .toolbar(.hidden, for: .tabBar)
                     }
                 }
-                .onTapGesture {
-                    isFocused = false
-                }
-                .padding()
             }
-        }
-        .onAppear{
-            if roundsData.selectedRange == "American Skeet" {
-                // go to EightPosNRView
-            } else if roundsData.selectedRange == "ISSF/Olympic Skeet" {
-                // go to NinePosNRView
+            .onTapGesture {
+                isFocused = false
             }
-            else if roundsData.selectedRange == "Double Trap" {
-                // go to DoubleTNRView
-            }
+            .padding()
         }
     }
+//        .onAppear{
+//            if roundsData.selectedRange == "American Skeet" {
+//                self.eightPos = true
+//            } else if roundsData.selectedRange == "ISSF/Olympic Skeet" {
+//                self.ninePos = true
+//            }
+//        }
 }
 
-struct FivePosNRView_Previews: PreviewProvider {
+struct NinePosNRView_Previews: PreviewProvider {
     static var previews: some View {
-        FivePosNRView()
-            .environmentObject(RoundsDataStack())
+        NinePosNRView()
     }
 }
-
-
-extension View {
-    func endTextEditing() {
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder),
-                                        to: nil, from: nil, for: nil)
-    }
-}
-
-

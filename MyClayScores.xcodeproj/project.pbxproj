@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E07D3682A988B0C00B3FB8B /* DoubleTNRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E07D3672A988B0B00B3FB8B /* DoubleTNRView.swift */; };
 		3E1777F3287B5D2B00A9CE48 /* SelectRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1777F2287B5D2B00A9CE48 /* SelectRange.swift */; };
 		3E1E973628C832DC002AED4F /* OpeningTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E973528C832DC002AED4F /* OpeningTabView.swift */; };
+		3E29270A2A9873E300C68561 /* ThreePosLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2927092A9873E200C68561 /* ThreePosLabels.swift */; };
 		3E42D281283483F5004DDEA9 /* RoundsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42D280283483F5004DDEA9 /* RoundsView.swift */; };
 		3E5109A427FEE03900C3C8DD /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5109A327FEE03900C3C8DD /* InfoView.swift */; };
 		3E555BB627CDEC8700F316B5 /* MyClayScoresApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E555BB527CDEC8700F316B5 /* MyClayScoresApp.swift */; };
@@ -16,12 +18,18 @@
 		3E555BBD27CDEC8900F316B5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E555BBC27CDEC8900F316B5 /* Preview Assets.xcassets */; };
 		3E555BBF27CDEC8900F316B5 /* RoundsDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E555BBE27CDEC8900F316B5 /* RoundsDataStack.swift */; };
 		3E555BC227CDEC8900F316B5 /* MyClayScoresModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3E555BC027CDEC8900F316B5 /* MyClayScoresModel.xcdatamodeld */; };
+		3E6027D72A936FF600A26B5F /* FivePosButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6027D62A936FF600A26B5F /* FivePosButtons.swift */; };
+		3E6027D92A94374400A26B5F /* CompakScoringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6027D82A94374400A26B5F /* CompakScoringView.swift */; };
+		3E6027DB2A9484FE00A26B5F /* FivePosLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6027DA2A9484FE00A26B5F /* FivePosLabels.swift */; };
+		3E6027DD2A96147100A26B5F /* EightPosNRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6027DC2A96147100A26B5F /* EightPosNRView.swift */; };
+		3E6027DF2A9614CE00A26B5F /* NinePosNRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6027DE2A9614CE00A26B5F /* NinePosNRView.swift */; };
 		3E6841942A863041003A6507 /* EightPosList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6841932A863041003A6507 /* EightPosList.swift */; };
 		3E6CB71A2A8CB78900ECB206 /* NinePosList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6CB7192A8CB78900ECB206 /* NinePosList.swift */; };
 		3E97E0242A05AD17005AAE51 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E0DBF1128449D5B00DB1BEE /* CloudKit.framework */; };
 		3E9A615927FAB4BF0054EE30 /* FivePosNRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9A615827FAB4BF0054EE30 /* FivePosNRView.swift */; };
+		3EA29D682A987E2800AF2FE5 /* FourPosLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA29D672A987E2800AF2FE5 /* FourPosLabels.swift */; };
 		3EA7218B27FD3975004F67FF /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7218A27FD3974004F67FF /* EditView.swift */; };
-		3EAA178D2884C0EF001576F7 /* FivePosLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAA178C2884C0EF001576F7 /* FivePosLabels.swift */; };
+		3EB226FD2A9316B00036E18E /* CompakNRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB226FC2A9316B00036E18E /* CompakNRView.swift */; };
 		3EF5EDAF2817A0EB0087042D /* FivePosList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF5EDAE2817A0EB0087042D /* FivePosList.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,10 +47,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3E07D3672A988B0B00B3FB8B /* DoubleTNRView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleTNRView.swift; sourceTree = "<group>"; };
 		3E0DBF1128449D5B00DB1BEE /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		3E0DBF132844A4FD00DB1BEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3E1777F2287B5D2B00A9CE48 /* SelectRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRange.swift; sourceTree = "<group>"; };
 		3E1E973528C832DC002AED4F /* OpeningTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningTabView.swift; sourceTree = "<group>"; };
+		3E2927092A9873E200C68561 /* ThreePosLabels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreePosLabels.swift; sourceTree = "<group>"; };
 		3E42D280283483F5004DDEA9 /* RoundsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundsView.swift; sourceTree = "<group>"; };
 		3E5109A327FEE03900C3C8DD /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		3E555BB227CDEC8700F316B5 /* MyClayScores.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyClayScores.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,11 +61,17 @@
 		3E555BBC27CDEC8900F316B5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3E555BBE27CDEC8900F316B5 /* RoundsDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundsDataStack.swift; sourceTree = "<group>"; };
 		3E555BC127CDEC8900F316B5 /* MyClayScoresModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyClayScoresModel.xcdatamodel; sourceTree = "<group>"; };
+		3E6027D62A936FF600A26B5F /* FivePosButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FivePosButtons.swift; sourceTree = "<group>"; };
+		3E6027D82A94374400A26B5F /* CompakScoringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompakScoringView.swift; sourceTree = "<group>"; };
+		3E6027DA2A9484FE00A26B5F /* FivePosLabels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FivePosLabels.swift; sourceTree = "<group>"; };
+		3E6027DC2A96147100A26B5F /* EightPosNRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EightPosNRView.swift; sourceTree = "<group>"; };
+		3E6027DE2A9614CE00A26B5F /* NinePosNRView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NinePosNRView.swift; sourceTree = "<group>"; };
 		3E6841932A863041003A6507 /* EightPosList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EightPosList.swift; sourceTree = "<group>"; };
 		3E6CB7192A8CB78900ECB206 /* NinePosList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NinePosList.swift; sourceTree = "<group>"; };
 		3E9A615827FAB4BF0054EE30 /* FivePosNRView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FivePosNRView.swift; sourceTree = "<group>"; };
+		3EA29D672A987E2800AF2FE5 /* FourPosLabels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourPosLabels.swift; sourceTree = "<group>"; };
 		3EA7218A27FD3974004F67FF /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
-		3EAA178C2884C0EF001576F7 /* FivePosLabels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FivePosLabels.swift; sourceTree = "<group>"; };
+		3EB226FC2A9316B00036E18E /* CompakNRView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompakNRView.swift; sourceTree = "<group>"; };
 		3EF5EDAE2817A0EB0087042D /* FivePosList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FivePosList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,7 +121,15 @@
 				3E1E973528C832DC002AED4F /* OpeningTabView.swift */,
 				3E42D280283483F5004DDEA9 /* RoundsView.swift */,
 				3E9A615827FAB4BF0054EE30 /* FivePosNRView.swift */,
-				3EAA178C2884C0EF001576F7 /* FivePosLabels.swift */,
+				3E6027DC2A96147100A26B5F /* EightPosNRView.swift */,
+				3E6027DE2A9614CE00A26B5F /* NinePosNRView.swift */,
+				3EB226FC2A9316B00036E18E /* CompakNRView.swift */,
+				3E07D3672A988B0B00B3FB8B /* DoubleTNRView.swift */,
+				3E6027D62A936FF600A26B5F /* FivePosButtons.swift */,
+				3E6027DA2A9484FE00A26B5F /* FivePosLabels.swift */,
+				3E2927092A9873E200C68561 /* ThreePosLabels.swift */,
+				3EA29D672A987E2800AF2FE5 /* FourPosLabels.swift */,
+				3E6027D82A94374400A26B5F /* CompakScoringView.swift */,
 				3EA7218A27FD3974004F67FF /* EditView.swift */,
 				3EF5EDAE2817A0EB0087042D /* FivePosList.swift */,
 				3E6841932A863041003A6507 /* EightPosList.swift */,
@@ -214,12 +238,20 @@
 				3E1777F3287B5D2B00A9CE48 /* SelectRange.swift in Sources */,
 				3E5109A427FEE03900C3C8DD /* InfoView.swift in Sources */,
 				3E6CB71A2A8CB78900ECB206 /* NinePosList.swift in Sources */,
-				3EAA178D2884C0EF001576F7 /* FivePosLabels.swift in Sources */,
 				3E6841942A863041003A6507 /* EightPosList.swift in Sources */,
+				3E6027D72A936FF600A26B5F /* FivePosButtons.swift in Sources */,
+				3E07D3682A988B0C00B3FB8B /* DoubleTNRView.swift in Sources */,
+				3E6027DF2A9614CE00A26B5F /* NinePosNRView.swift in Sources */,
 				3E9A615927FAB4BF0054EE30 /* FivePosNRView.swift in Sources */,
+				3E6027D92A94374400A26B5F /* CompakScoringView.swift in Sources */,
 				3EA7218B27FD3975004F67FF /* EditView.swift in Sources */,
 				3E1E973628C832DC002AED4F /* OpeningTabView.swift in Sources */,
+				3E6027DB2A9484FE00A26B5F /* FivePosLabels.swift in Sources */,
+				3EA29D682A987E2800AF2FE5 /* FourPosLabels.swift in Sources */,
+				3E6027DD2A96147100A26B5F /* EightPosNRView.swift in Sources */,
 				3E555BB627CDEC8700F316B5 /* MyClayScoresApp.swift in Sources */,
+				3E29270A2A9873E300C68561 /* ThreePosLabels.swift in Sources */,
+				3EB226FD2A9316B00036E18E /* CompakNRView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,7 +394,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -401,7 +433,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

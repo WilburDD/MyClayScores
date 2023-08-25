@@ -10,7 +10,7 @@ import CoreData
 import MediaPlayer
 import AVFoundation
 
-struct FivePosNRView: View {
+struct DoubleTNRView: View {
     
     @EnvironmentObject var roundsData: RoundsDataStack
     @State private var showAlert: Bool = false
@@ -18,7 +18,7 @@ struct FivePosNRView: View {
     
     @State private var eightPos: Bool = false
     @State private var ninePos: Bool = false
-
+    
     
     @State private var keyboardHeight: CGFloat = 0
     
@@ -101,91 +101,81 @@ struct FivePosNRView: View {
                             ZStack {
                                 Text ("\(roundsData.posCount[0])")
                                     .font(.largeTitle).underline().fontWeight(.bold)
-                                Picker("", selection: $roundsData.posCount[0]) {
-                                    Text("0").tag(0)
-                                    Text("1").tag(1)
-                                    Text("2").tag(2)
-                                    Text("3").tag(3)
-                                    Text("4").tag(4)
-                                    Text("5").tag(5)
+                                Picker("", selection:
+                                        $roundsData.posCount[0]) {
+                                    ForEach(1..<11) { count in
+                                        Text("\(count)").tag(count)
+                                    }
                                 }
-                                .onChange(of: roundsData.posCount[0], perform: { (value) in
-                                    roundsData.addupScore()
-                                })
-                                .pickerStyle(MenuPickerStyle())
-                                .opacity(0.1)
+                                        .onChange(of: roundsData.posCount[0], perform: { (value) in
+                                            roundsData.addupScore()
+                                        })
+                                        .pickerStyle(MenuPickerStyle())
+                                        .opacity(0.1)
                             }
                             Spacer()
                             ZStack {
                                 Text ("\(roundsData.posCount[1])")
                                     .font(.largeTitle).underline().fontWeight(.bold)
-                                Picker("", selection: $roundsData.posCount[1]) {
-                                    Text("0").tag(0)
-                                    Text("1").tag(1)
-                                    Text("2").tag(2)
-                                    Text("3").tag(3)
-                                    Text("4").tag(4)
-                                    Text("5").tag(5)
+                                Picker("", selection:
+                                        $roundsData.posCount[1]) {
+                                    ForEach(1..<11) { count in
+                                        Text("\(count)").tag(count)
+                                    }
                                 }
-                                .onChange(of: roundsData.posCount[1], perform: { (value) in
-                                    roundsData.addupScore()
-                                })
-                                .pickerStyle(MenuPickerStyle())
-                                .opacity(0.1)
+                                        .onChange(of: roundsData.posCount[1], perform: { (value) in
+                                            roundsData.addupScore()
+                                        })
+                                        .pickerStyle(MenuPickerStyle())
+                                        .opacity(0.1)
                             }
                             Spacer()
                             ZStack {
                                 Text ("\(roundsData.posCount[2])")
                                     .font(.largeTitle).underline().fontWeight(.bold)
-                                Picker("", selection: $roundsData.posCount[2]) {
-                                    Text("0").tag(0)
-                                    Text("1").tag(1)
-                                    Text("2").tag(2)
-                                    Text("3").tag(3)
-                                    Text("4").tag(4)
-                                    Text("5").tag(5)
+                                Picker("", selection:
+                                        $roundsData.posCount[2]) {
+                                    ForEach(1..<11) { count in
+                                        Text("\(count)").tag(count)
+                                    }
                                 }
-                                .onChange(of: roundsData.posCount[2], perform: { (value) in
-                                    roundsData.addupScore()
-                                })
-                                .pickerStyle(MenuPickerStyle())
-                                .opacity(0.1)
+                                        .onChange(of: roundsData.posCount[2], perform: { (value) in
+                                            roundsData.addupScore()
+                                        })
+                                        .pickerStyle(MenuPickerStyle())
+                                        .opacity(0.1)
                             }
                             Spacer()
                             ZStack {
                                 Text ("\(roundsData.posCount[3])")
                                     .font(.largeTitle).underline().fontWeight(.bold)
-                                Picker("", selection: $roundsData.posCount[3]) {
-                                    Text("0").tag(0)
-                                    Text("1").tag(1)
-                                    Text("2").tag(2)
-                                    Text("3").tag(3)
-                                    Text("4").tag(4)
-                                    Text("5").tag(5)
+                                Picker("", selection:
+                                        $roundsData.posCount[3]) {
+                                    ForEach(1..<11) { count in
+                                        Text("\(count)").tag(count)
+                                    }
                                 }
-                                .onChange(of: roundsData.posCount[3], perform: { (value) in
-                                    roundsData.addupScore()
-                                })
-                                .pickerStyle(MenuPickerStyle())
-                                .opacity(0.1)
+                                        .onChange(of: roundsData.posCount[3], perform: { (value) in
+                                            roundsData.addupScore()
+                                        })
+                                        .pickerStyle(MenuPickerStyle())
+                                        .opacity(0.1)
                             }
                             Spacer()
                             ZStack {
                                 Text ("\(roundsData.posCount[4])")
                                     .font(.largeTitle).underline().fontWeight(.bold)
-                                Picker("", selection: $roundsData.posCount[4]) {
-                                    Text("0").tag(0)
-                                    Text("1").tag(1)
-                                    Text("2").tag(2)
-                                    Text("3").tag(3)
-                                    Text("4").tag(4)
-                                    Text("5").tag(5)
+                                Picker("", selection:
+                                        $roundsData.posCount[4]) {
+                                    ForEach(1..<11) { count in
+                                        Text("\(count)").tag(count)
+                                    }
                                 }
-                                .onChange(of: roundsData.posCount[4], perform: { (value) in
-                                    roundsData.addupScore()
-                                })
-                                .pickerStyle(MenuPickerStyle())
-                                .opacity(0.1)
+                                        .onChange(of: roundsData.posCount[4], perform: { (value) in
+                                            roundsData.addupScore()
+                                        })
+                                        .pickerStyle(MenuPickerStyle())
+                                        .opacity(0.1)
                             }
                         }
                         Spacer()
@@ -228,32 +218,15 @@ struct FivePosNRView: View {
                 .padding()
             }
         }
-        .onAppear{
-            if roundsData.selectedRange == "American Skeet" {
-                // go to EightPosNRView
-            } else if roundsData.selectedRange == "ISSF/Olympic Skeet" {
-                // go to NinePosNRView
-            }
-            else if roundsData.selectedRange == "Double Trap" {
-                // go to DoubleTNRView
-            }
-        }
     }
 }
 
-struct FivePosNRView_Previews: PreviewProvider {
+struct DoubleTNRView_Previews: PreviewProvider {
     static var previews: some View {
-        FivePosNRView()
+        DoubleTNRView()
             .environmentObject(RoundsDataStack())
     }
 }
 
-
-extension View {
-    func endTextEditing() {
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder),
-                                        to: nil, from: nil, for: nil)
-    }
-}
 
 

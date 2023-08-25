@@ -7,19 +7,18 @@
 
 import SwiftUI
 
-struct FivePosLabels: View {
+struct FourPosLabels: View {
     
     @EnvironmentObject var roundsData: RoundsDataStack
     
     var body: some View {
         VStack (spacing: 0) {
-            Text("Position")
-                .font(.title3)
             HStack {
+                Spacer()
                 ZStack{
                     Image(systemName: "square")
                         .font(.title)
-                    Text("1")
+                    Text("6")
                         .font(.title3)
                         .padding()
                 }
@@ -27,7 +26,7 @@ struct FivePosLabels: View {
                 ZStack{
                     Image(systemName: "square")
                         .font(.title)
-                    Text("2")
+                    Text("7")
                         .font(.title3)
                         .padding()
                 }
@@ -35,7 +34,7 @@ struct FivePosLabels: View {
                 ZStack{
                     Image(systemName: "square")
                         .font(.title)
-                    Text("3")
+                    Text("8")
                         .font(.title3)
                         .padding()
                 }
@@ -43,18 +42,11 @@ struct FivePosLabels: View {
                 ZStack{
                     Image(systemName: "square")
                         .font(.title)
-                    Text("4")
+                    Text("9")
                         .font(.title3)
                         .padding()
                 }
                 Spacer()
-                ZStack{
-                    Image(systemName: "square")
-                        .font(.title)
-                    Text("5")
-                        .font(.title3)
-                        .padding()
-                }
             }
             .padding(.leading)
             .padding(.trailing)
@@ -62,9 +54,9 @@ struct FivePosLabels: View {
     }
     
     
-    struct FivePosLabels_Previews: PreviewProvider {
+    struct FourPosLabels_Previews: PreviewProvider {
         static var previews: some View {
-            FivePosLabels()
+            FourPosLabels()
                 .environmentObject(RoundsDataStack())
         }
     }

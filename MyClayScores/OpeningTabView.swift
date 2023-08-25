@@ -36,7 +36,7 @@ struct OpeningTabView: View {
                         Text("New Round")
                     }
                     .tag(2)
-                RoundsView()
+                Text("Stats View")
                     .tabItem{
                         Image(systemName: "chart.dots.scatter")
                         Text("Stats")

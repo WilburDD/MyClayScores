@@ -70,6 +70,7 @@ struct SelectRange: View {
                         Spacer()
                         Button(action: {
                             roundsData.selectedRange = "Double Trap"
+                            storedRange = roundsData.selectedRange
                             roundsData.positions = 5
                             roundsData.fetchRounds()
                             roundsData.calcAvgs()
@@ -91,9 +92,11 @@ struct SelectRange: View {
                         Spacer()
                         Button(action: {
                             roundsData.selectedRange = "American Skeet"
-                            roundsData.positions = 8
-                            roundsData.selection = 0
+                            storedRange = roundsData.selectedRange
+                            roundsData.positions = 5
                             roundsData.fetchRounds()
+                            roundsData.calcAvgs()
+                            roundsData.selection = 0
                         }, label: {
                             Text("American").font(.title)
                         })
@@ -101,9 +104,11 @@ struct SelectRange: View {
                         Spacer()
                         Button(action: {
                             roundsData.selectedRange = "ISSF/Olympic Skeet"
-                            roundsData.positions = 9
-                            roundsData.selection = 0
+                            storedRange = roundsData.selectedRange
+                            roundsData.positions = 5
                             roundsData.fetchRounds()
+                            roundsData.calcAvgs()
+                            roundsData.selection = 0
                         }, label: {
                             Text("ISSF/Olympic").font(.title)
                         })
@@ -119,9 +124,11 @@ struct SelectRange: View {
                         .fontWeight(.bold)
                     Button(action: {
                         roundsData.selectedRange = "Compak/5-Stand"
+                        storedRange = roundsData.selectedRange
                         roundsData.positions = 5
-                        roundsData.selection = 0
                         roundsData.fetchRounds()
+                        roundsData.calcAvgs()
+                        roundsData.selection = 0
                     }, label: {
                         Text("Compak/5-Stand").font(.title)
                     })

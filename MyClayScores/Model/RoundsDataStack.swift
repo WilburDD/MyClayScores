@@ -20,12 +20,17 @@ class RoundsDataStack: ObservableObject, Identifiable {
     @Published var editedIndex = 0
     
     @Published var positions = 0
+    @Published var eightPos = false
+    @Published var ninePos = false
+    @Published var scoringPos = Int()
+    @Published var showScoring = false
     @Published var selectedRange = String("")
     @Published var range = String()
     @Published var totScore = 0
     @Published var comment = ""
     @Published var posCount = [0, 0, 0, 0, 0, 0, 0, 0, 0]
     @Published var roundTotal = 0
+    @Published var scoringType = String()
     @Published var showInfo = false
     @Published var roundDate = Date()
     @Published var roundID = UUID()
@@ -101,9 +106,9 @@ class RoundsDataStack: ObservableObject, Identifiable {
     }
     
     init() {
-//        self.selectedRange = storedRange
-//        self.fetchRounds()
-//        self.calcAvgs()
+        //        self.selectedRange = storedRange
+        //        self.fetchRounds()
+        //        self.calcAvgs()
     }
     
     func fetchRounds() {
@@ -215,6 +220,29 @@ class RoundsDataStack: ObservableObject, Identifiable {
     }
     
     func addupScore () {
-            roundTotal = posCount[0] + posCount[1] + posCount[2] + posCount[3] + posCount[4] + posCount[5] + posCount[6] + posCount[7] + posCount[8]
+        roundTotal = posCount[0] + posCount[1] + posCount[2] + posCount[3] + posCount[4] + posCount[5] + posCount[6] + posCount[7] + posCount[8]
+    }
+    
+    enum Topic:String, Hashable, CaseIterable, Identifiable, View {
+        case view1 = "FivePos"
+        case view2 = "EightPos"
+        case view3 = "NinePos"
+        case view4 = "DoubleT"
+        
+        var id: String {
+            self.rawValue
+        }
+        
+        var body: some View {
+            switch self {
+            case .view1:
+                FivePosNRView()
+            case .view2:
+                EightPosNRView()
+            case .view3:
+                NinePosNRView()
+            case .view4:
+                DoubleTNRView()            }
+        }
     }
 }
