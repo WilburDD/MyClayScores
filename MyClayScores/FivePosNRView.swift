@@ -16,9 +16,9 @@ struct FivePosNRView: View {
     @State private var showAlert: Bool = false
     @FocusState private var isFocused: Bool
     
-    @State private var eightPos: Bool = false
-    @State private var ninePos: Bool = false
-
+    //    @State private var eightPos: Bool = false
+    //    @State private var ninePos: Bool = false
+    
     
     @State private var keyboardHeight: CGFloat = 0
     
@@ -31,10 +31,9 @@ struct FivePosNRView: View {
                         Button(action: {
                             if roundsData.roundTotal == 0 {
                                 roundsData.clearData()
-                                roundsData.selection = 0
-                            } else {
-                                showAlert = true
-                            }
+                                roundsData.path.removeLast(roundsData.path.count)                            } else {
+                                    showAlert = true
+                                }
                         }, label: {
                             HStack {
                                 Image(systemName: "arrow.left").font(.title2)
@@ -48,7 +47,7 @@ struct FivePosNRView: View {
                                 primaryButton: .cancel(Text("Continue Scoring")),
                                 secondaryButton: .destructive(Text("Discard Data"), action: {
                                     roundsData.clearData()
-                                    roundsData.selection = 0
+                                    roundsData.path.removeLast(roundsData.path.count)
                                 }))
                         })
                         Spacer()
@@ -62,13 +61,17 @@ struct FivePosNRView: View {
                                 pos3: Int64(roundsData.posCount[2]),
                                 pos4: Int64(roundsData.posCount[3]),
                                 pos5: Int64(roundsData.posCount[4]),
+                                pos6: Int64(roundsData.posCount[5]),
+                                pos7: Int64(roundsData.posCount[6]),
+                                pos8: Int64(roundsData.posCount[7]),
+                                pos9: Int64(roundsData.posCount[8]),
                                 total: Int64(roundsData.roundTotal))
                             roundsData.saveRounds()
                             roundsData.fetchRounds()
                             roundsData.calcAvgs()
                             roundsData.clearData()
                             roundsData.editDone = true
-                            roundsData.selection = 0
+                            roundsData.path.removeLast(roundsData.path.count) 
                         }, label: {
                             Text("SAVE ROUND")
                         })
@@ -79,6 +82,7 @@ struct FivePosNRView: View {
                         .foregroundColor(.white)
                         .clipShape(Capsule())
                     }
+                    .padding()
                     .id(0)
                     Spacer()
                     Spacer()
@@ -190,6 +194,7 @@ struct FivePosNRView: View {
                         }
                         Spacer()
                         Spacer()
+                        Spacer()
                         Text("Total Score:  \(roundsData.roundTotal)")
                             .font(.title.italic())
                             .fontWeight(.bold)
@@ -214,29 +219,35 @@ struct FivePosNRView: View {
                                 .padding()
                         })
                         .padding()
-                        Text ("Tap on the '0' for a Position to enter score.")
-                            .font(.title3)
-                            .italic()
-                            .multilineTextAlignment(.center)
-                            .padding()
-                            .toolbar(.hidden, for: .tabBar)
+                        HStack {
+                            Text ("Tap on the  ")
+                            + Text("'0'").underline()
+                            + Text("  for a Position to enter score.")
+                        }
+                        .font(.title3)
+                        .italic()
+                        .multilineTextAlignment(.center)
+                        .padding()
                     }
+                    .toolbar(.hidden, for: .tabBar)
+                    .onTapGesture {
+                        isFocused = false
+                    }
+                    .padding()
                 }
-                .onTapGesture {
-                    isFocused = false
-                }
-                .padding()
             }
-        }
-        .onAppear{
-            if roundsData.selectedRange == "American Skeet" {
-                // go to EightPosNRView
-            } else if roundsData.selectedRange == "ISSF/Olympic Skeet" {
-                // go to NinePosNRView
-            }
-            else if roundsData.selectedRange == "Double Trap" {
-                // go to DoubleTNRView
-            }
+            .navigationBarHidden(true)
+            .navigationBarBackButtonHidden(true)
+            //        .onAppear{
+            //            if roundsData.selectedRange == "American Skeet" {
+            //                // go to EightPosNRView
+            //            } else if roundsData.selectedRange == "ISSF/Olympic Skeet" {
+            //                // go to NinePosNRView
+            //            }
+            //            else if roundsData.selectedRange == "Double Trap" {
+            //                // go to DoubleTNRView
+            //            }
+            //        }
         }
     }
 }

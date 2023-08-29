@@ -13,9 +13,10 @@ import MediaPlayer
 struct RoundsView: View {
     
     @EnvironmentObject var roundsData: RoundsDataStack
-        
+    
     var body: some View {
-                VStack{
+        NavigationStack (path: $roundsData.path) {
+            VStack{
                 HStack (alignment: .bottom){
                     Text("\(roundsData.selectedRange)")
                         .font(.title)
@@ -50,20 +51,94 @@ struct RoundsView: View {
                         roundsData.calcAvgs()
                     })
                 }
+                RoundedRectangle(cornerRadius: 1)
+                    .frame(height: 2)
+                HStack (alignment: .bottom) {
+                    Spacer()
+                    
+                    NavigationLink {
+                        SelectRange()
+                    } label: {
+                        VStack {
+                            Image(systemName: "figure.hunting")
+                            Text("Range")
+                        }
+                        .font(.title3)
+                    }
+                    Spacer()
+                    
+                    NavigationLink(value: roundsData.positions) {
+                        VStack {
+                            Image(systemName: "plus.square.fill")
+                                .font(.title)
+                            Text("New Round")
+                        }
+                        .font(.title3)
+                    }
+                    .navigationDestination(for: Int.self) {_ in
+                        if roundsData.positions == 5 {
+                            FivePosNRView()
+                        } else if roundsData.positions == 8 {
+                            EightPosNRView()
+                        } else if roundsData.positions == 9 {
+                            NinePosNRView()
+                        } else if roundsData.positions == 10 {
+                            DoubleTNRView()
+                        }
+                    }
+                    //                    Button (action:  {
+                    //
+                    //                    }, label: {
+                    //                        VStack {
+                    //                            Image(systemName: "plus.square.fill")
+                    //                            Text("New Round")
+                    //                        }
+                    //                        .font(.title3)
+                    //                    })
+                    Spacer()
+                    
+                    NavigationLink {
+                        StatsView()
+                    } label: {
+                        VStack {
+                            Image(systemName: "chart.dots.scatter")
+                            Text("Stats")
+                        }
+                        .font(.title3)
+                    }
+                    //                    Button (action:  {
+                    //
+                    //                    }, label: {
+                    //                        VStack {
+                    //                            Image(systemName: "chart.dots.scatter")
+                    //                            Text("Stats")
+                    //                        }
+                    //                        .font(.title3)
+                    //                    })
+                    Spacer()
+                }
+                .padding(.top)
             }
             .padding()
             .listStyle(.plain)
             .onAppear{
                 roundsData.selectedRange = roundsData.storedRange
+                if roundsData.selectedRange == "American Skeet" {
+                    roundsData.positions = 8
+                } else if roundsData.selectedRange == "ISSF/Olympic Skeet" {
+                    roundsData.positions = 9
+                } else if roundsData.selectedRange == "Double Trap" {
+                    roundsData.positions = 10
+                } else {
+                    roundsData.positions = 5
+                }
                 roundsData.fetchRounds()
                 roundsData.calcAvgs()
-                if roundsData.selectedRange == "" {
-                    roundsData.selection = 1
-                }
             }
             .navigationBarHidden(true)
-        .navigationBarBackButtonHidden(true)
-
+            .navigationBarBackButtonHidden(true)
+        }
+        
     }
 }
 

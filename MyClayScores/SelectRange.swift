@@ -11,11 +11,14 @@ struct SelectRange: View {
     
     @EnvironmentObject var roundsData: RoundsDataStack
     
+    @Environment(\.dismiss) var dismiss
+    
     @AppStorage ("storedRange") var storedRange = String()
-        
+    
     var body: some View {
         VStack {
             VStack {
+                Spacer()
                 Text("Select Range")
                     .font(.title)
                     .fontWeight(.bold)
@@ -35,7 +38,7 @@ struct SelectRange: View {
                             roundsData.positions = 5
                             roundsData.fetchRounds()
                             roundsData.calcAvgs()
-                            roundsData.selection = 0
+                            dismiss()
                         }, label: {
                             Text("American").font(.title)
                         })
@@ -47,7 +50,7 @@ struct SelectRange: View {
                             roundsData.positions = 5
                             roundsData.fetchRounds()
                             roundsData.calcAvgs()
-                            roundsData.selection = 0
+                            dismiss()
                         }, label: {
                             Text("Continental").font(.title)
                         })
@@ -62,7 +65,7 @@ struct SelectRange: View {
                             roundsData.positions = 5
                             roundsData.fetchRounds()
                             roundsData.calcAvgs()
-                            roundsData.selection = 0
+                            dismiss()
                         }, label: {
                             Text("ISSF/Olympic").font(.title)
                         })
@@ -71,10 +74,10 @@ struct SelectRange: View {
                         Button(action: {
                             roundsData.selectedRange = "Double Trap"
                             storedRange = roundsData.selectedRange
-                            roundsData.positions = 5
+                            roundsData.positions = 10
                             roundsData.fetchRounds()
                             roundsData.calcAvgs()
-                            roundsData.selection = 0
+                            dismiss()
                         }, label: {
                             Text("Double").font(.title)
                         })
@@ -93,10 +96,10 @@ struct SelectRange: View {
                         Button(action: {
                             roundsData.selectedRange = "American Skeet"
                             storedRange = roundsData.selectedRange
-                            roundsData.positions = 5
+                            roundsData.positions = 8
                             roundsData.fetchRounds()
                             roundsData.calcAvgs()
-                            roundsData.selection = 0
+                            dismiss()
                         }, label: {
                             Text("American").font(.title)
                         })
@@ -105,10 +108,10 @@ struct SelectRange: View {
                         Button(action: {
                             roundsData.selectedRange = "ISSF/Olympic Skeet"
                             storedRange = roundsData.selectedRange
-                            roundsData.positions = 5
+                            roundsData.positions = 9
                             roundsData.fetchRounds()
                             roundsData.calcAvgs()
-                            roundsData.selection = 0
+                            dismiss()
                         }, label: {
                             Text("ISSF/Olympic").font(.title)
                         })
@@ -128,45 +131,15 @@ struct SelectRange: View {
                         roundsData.positions = 5
                         roundsData.fetchRounds()
                         roundsData.calcAvgs()
-                        roundsData.selection = 0
+                        dismiss()
                     }, label: {
                         Text("Compak/5-Stand").font(.title)
                     })
                     .getRangeButtonStyle()
                 }
                 .padding()
-                //            CustomDivider()
-                //            VStack {
-                //                Text("Tap to set Preferred Range:")
-                //                    .font(.title2)
-                //                    .fontWeight(.bold)
-                //                    .italic()
-                //                Menu {
-                //                    Picker("", selection: $roundsData.defaultRange) {
-                //                        Text("None").tag("None")
-                //                        Text("American Trap").tag("American Trap")
-                //                        Text("Continental Trap").tag("Continental Trap")
-                //                        Text("ISSF/Olympic Trap").tag("ISSF/Olympic Trap")
-                //                        Text("Doubles Trap").tag("Doubles Trap")
-                //                        Text("American Skeet").tag("American Skeet")
-                //                        Text("ISSF/Olympic Skeet").tag("ISSF/Olympic Skeet")
-                //                        Text("Compak/5-Stand").tag("Compak/5-Stand")
-                //                    }
-                //                    .onChange(of: roundsData.defaultRange) { newValue in
-                //                        roundsData.selectedRange = newValue
-                //                        roundsData.selection = 1
-                //                    }
-                //                }
-                //            label: {
-                //                Text(roundsData.defaultRange)
-                //                .font(.title2)            }
-                //            }
                 Spacer()
             }
-
-            
-            Spacer()
-            Spacer()
         }
     }
 }

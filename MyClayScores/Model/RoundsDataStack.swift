@@ -8,8 +8,6 @@
 import CoreData
 import SwiftUI
 import CloudKit
-import AVFoundation
-import MediaPlayer
 
 class RoundsDataStack: ObservableObject, Identifiable {
     
@@ -20,8 +18,8 @@ class RoundsDataStack: ObservableObject, Identifiable {
     @Published var editedIndex = 0
     
     @Published var positions = 0
-    @Published var eightPos = false
-    @Published var ninePos = false
+//    @Published var eightPos = false
+//    @Published var ninePos = false
     @Published var scoringPos = Int()
     @Published var showScoring = false
     @Published var selectedRange = String("")
@@ -134,7 +132,7 @@ class RoundsDataStack: ObservableObject, Identifiable {
         }
     }
     
-    func addRound(range: String, comment: String, date: Date, pos1: Int64, pos2: Int64, pos3: Int64, pos4: Int64, pos5: Int64, total: Int64 ) {
+    func addRound(range: String, comment: String, date: Date, pos1: Int64, pos2: Int64, pos3: Int64, pos4: Int64, pos5: Int64, pos6: Int64, pos7: Int64, pos8: Int64, pos9: Int64, total: Int64 ) {
         let newRound = RoundEntity(context: managedObjectContext)
         newRound.range = range
         newRound.comment = comment
@@ -145,6 +143,10 @@ class RoundsDataStack: ObservableObject, Identifiable {
         newRound.pos3 = pos3
         newRound.pos4 = pos4
         newRound.pos5 = pos5
+        newRound.pos6 = pos6
+        newRound.pos7 = pos7
+        newRound.pos8 = pos8
+        newRound.pos9 = pos9
         newRound.total = total
         saveRounds()
         calcAvgs()
@@ -223,15 +225,15 @@ class RoundsDataStack: ObservableObject, Identifiable {
         roundTotal = posCount[0] + posCount[1] + posCount[2] + posCount[3] + posCount[4] + posCount[5] + posCount[6] + posCount[7] + posCount[8]
     }
     
-    enum Topic:String, Hashable, CaseIterable, Identifiable, View {
-        case view1 = "FivePos"
-        case view2 = "EightPos"
-        case view3 = "NinePos"
-        case view4 = "DoubleT"
+    enum NRView: Int, Hashable, View {
+        case view1 = 5
+        case view2 = 8
+        case view3 = 9
+        case view4 = 10
         
-        var id: String {
-            self.rawValue
-        }
+//        var id: String {
+//            self.rawValue
+//        }
         
         var body: some View {
             switch self {
@@ -242,7 +244,8 @@ class RoundsDataStack: ObservableObject, Identifiable {
             case .view3:
                 NinePosNRView()
             case .view4:
-                DoubleTNRView()            }
+                DoubleTNRView()
+            }
         }
     }
 }

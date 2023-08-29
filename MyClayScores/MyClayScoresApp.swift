@@ -16,7 +16,7 @@ struct MyClayScoresApp: App {
     
     var body: some Scene {
         WindowGroup {
-                OpeningTabView()
+                RoundsView()
                 .environmentObject(roundsDataStack)
                 .environment(\.managedObjectContext,
                               roundsDataStack.managedObjectContext)

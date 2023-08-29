@@ -16,41 +16,27 @@ struct NinePosList: View {
         VStack {
             HStack {
                 HStack {
-                Text("\(item.pos1)")
-                Spacer()
-                HStack {
+                    Text("\(item.pos1)")
+                    Spacer()
                     Text("\(item.pos2)")
                     Spacer()
-                }
-                HStack {
                     Text("\(item.pos3)")
                     Spacer()
-                }
-                HStack {
                     Text("\(item.pos4)")
                     Spacer()
                 }
                 HStack {
                     Text("\(item.pos5)")
                     Spacer()
-                }
-            }
-                HStack {
                     Text("\(item.pos6)")
                     Spacer()
-                }
-                HStack {
                     Text("\(item.pos7)")
                     Spacer()
-                }
-                HStack {
                     Text("\(item.pos8)")
                     Spacer()
-                }
-                HStack {
                     Text("\(item.pos9)")
-                    Spacer()
                 }
+                .padding(.trailing)
                 Text("\(item.total)")
                     .fontWeight(.bold)
             }
@@ -65,10 +51,10 @@ struct NinePosList: View {
                 Text("\(item.comment!)")
             }
             .font(.caption.italic())
-            
         }
     }
 }
+
 
 //struct NinePosList_Previews: PreviewProvider {
 //    static var previews: some View {

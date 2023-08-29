@@ -15,43 +15,30 @@ struct EightPosList: View {
         
         VStack {
             HStack {
-//                HStack {
+                HStack {
                     Text("\(item.pos1)")
                     Spacer()
-//                }
-                HStack {
                     Text("\(item.pos2)")
                     Spacer()
-                }
-                HStack {
                     Text("\(item.pos3)")
                     Spacer()
-                }
-                HStack {
                     Text("\(item.pos4)")
                     Spacer()
                 }
                 HStack {
                     Text("\(item.pos5)")
                     Spacer()
+                    Text("\(item.pos6)")
+                    Spacer()
+                    Text("\(item.pos7)")
+                    Spacer()
+                    Text("\(item.pos8)")
                 }
-                HStack {
-                Text("\(item.pos6)")
-                Spacer()
-            }
-            HStack {
-                Text("\(item.pos7)")
-                Spacer()
-            }
-            HStack {
-                Text("\(item.pos8)")
-                Spacer()
-            }
-
+                .padding(.trailing)
                 Text("\(item.total)")
                     .fontWeight(.bold)
             }
-            .font(.title2)
+            .font(.title3)
             .frame(
                 minWidth: 0,
                 maxWidth: .infinity,
@@ -70,5 +57,6 @@ struct EightPosList: View {
 //struct EightPosList_Previews: PreviewProvider {
 //    static var previews: some View {
 //        EightPosList()
+//            .environmentObject(RoundsDataStack())
 //    }
 //}

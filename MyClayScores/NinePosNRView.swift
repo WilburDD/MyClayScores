@@ -28,7 +28,7 @@ struct NinePosNRView: View {
                         Button(action: {
                             if roundsData.roundTotal == 0 {
                                 roundsData.clearData()
-                                roundsData.selection = 0
+                                roundsData.path.removeLast(roundsData.path.count)
                             } else {
                                 showAlert = true
                             }
@@ -45,7 +45,7 @@ struct NinePosNRView: View {
                                 primaryButton: .cancel(Text("Continue Scoring")),
                                 secondaryButton: .destructive(Text("Discard Data"), action: {
                                     roundsData.clearData()
-                                    roundsData.selection = 0
+                                    roundsData.path.removeLast(roundsData.path.count)
                                 }))
                         })
                         Spacer()
@@ -59,13 +59,17 @@ struct NinePosNRView: View {
                                 pos3: Int64(roundsData.posCount[2]),
                                 pos4: Int64(roundsData.posCount[3]),
                                 pos5: Int64(roundsData.posCount[4]),
+                                pos6: Int64(roundsData.posCount[5]),
+                                pos7: Int64(roundsData.posCount[6]),
+                                pos8: Int64(roundsData.posCount[7]),
+                                pos9: Int64(roundsData.posCount[8]),
                                 total: Int64(roundsData.roundTotal))
                             roundsData.saveRounds()
                             roundsData.fetchRounds()
                             roundsData.calcAvgs()
                             roundsData.clearData()
                             roundsData.editDone = true
-                            roundsData.selection = 0
+                            roundsData.path.removeLast(roundsData.path.count) 
                         }, label: {
                             Text("SAVE ROUND")
                         })
@@ -293,18 +297,14 @@ struct NinePosNRView: View {
             }
             .padding()
         }
+        .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
     }
-//        .onAppear{
-//            if roundsData.selectedRange == "American Skeet" {
-//                self.eightPos = true
-//            } else if roundsData.selectedRange == "ISSF/Olympic Skeet" {
-//                self.ninePos = true
-//            }
-//        }
 }
 
 struct NinePosNRView_Previews: PreviewProvider {
     static var previews: some View {
         NinePosNRView()
+            .environmentObject(RoundsDataStack())
     }
 }
