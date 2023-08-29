@@ -93,8 +93,6 @@ struct EightPosNRView: View {
                             .font(.title2.italic())
                             .fontWeight(.bold)
                     }
-                    //                    Spacer()
-                    //                }
                     .padding()
                     VStack {
                         FivePosLabels()
@@ -265,8 +263,11 @@ struct EightPosNRView: View {
                                 .multilineTextAlignment(.center)
                                 .padding()
                         })
-//                        .padding()
-                        Text ("Tap on the '0' for a Position to enter score.")
+                        HStack {
+                            Text ("Tap on the  ")
+                            + Text("'0'").underline()
+                            + Text("  for a Position to enter score.")
+                        }
                             .font(.title3)
                             .italic()
                             .multilineTextAlignment(.center)
@@ -283,13 +284,6 @@ struct EightPosNRView: View {
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
     }
-//        .onAppear{
-//            if roundsData.selectedRange == "American Skeet" {
-//                self.eightPos = true
-//            } else if roundsData.selectedRange == "ISSF/Olympic Skeet" {
-//                self.ninePos = true
-//            }
-//        }
 }
 
 struct EightPosNRView_Previews: PreviewProvider {

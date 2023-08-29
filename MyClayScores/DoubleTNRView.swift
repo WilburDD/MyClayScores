@@ -208,7 +208,11 @@ struct DoubleTNRView: View {
                                 .padding()
                         })
                         .padding()
-                        Text ("Tap on the '0' for a Position to enter score.")
+                        HStack {
+                            Text ("Tap on the  ")
+                            + Text("'0'").underline()
+                            + Text("  for a Position to enter score.")
+                        }
                             .font(.title3)
                             .italic()
                             .multilineTextAlignment(.center)

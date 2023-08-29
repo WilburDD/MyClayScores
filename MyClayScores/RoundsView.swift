@@ -86,15 +86,6 @@ struct RoundsView: View {
                             DoubleTNRView()
                         }
                     }
-                    //                    Button (action:  {
-                    //
-                    //                    }, label: {
-                    //                        VStack {
-                    //                            Image(systemName: "plus.square.fill")
-                    //                            Text("New Round")
-                    //                        }
-                    //                        .font(.title3)
-                    //                    })
                     Spacer()
                     
                     NavigationLink {
@@ -106,15 +97,6 @@ struct RoundsView: View {
                         }
                         .font(.title3)
                     }
-                    //                    Button (action:  {
-                    //
-                    //                    }, label: {
-                    //                        VStack {
-                    //                            Image(systemName: "chart.dots.scatter")
-                    //                            Text("Stats")
-                    //                        }
-                    //                        .font(.title3)
-                    //                    })
                     Spacer()
                 }
                 .padding(.top)

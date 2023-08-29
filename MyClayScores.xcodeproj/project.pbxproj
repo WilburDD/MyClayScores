@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3E07D3682A988B0C00B3FB8B /* DoubleTNRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E07D3672A988B0B00B3FB8B /* DoubleTNRView.swift */; };
 		3E1777F3287B5D2B00A9CE48 /* SelectRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1777F2287B5D2B00A9CE48 /* SelectRange.swift */; };
-		3E1E973628C832DC002AED4F /* OpeningTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E973528C832DC002AED4F /* OpeningTabView.swift */; };
 		3E29270A2A9873E300C68561 /* ThreePosLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2927092A9873E200C68561 /* ThreePosLabels.swift */; };
 		3E42D281283483F5004DDEA9 /* RoundsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42D280283483F5004DDEA9 /* RoundsView.swift */; };
 		3E5109A427FEE03900C3C8DD /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5109A327FEE03900C3C8DD /* StatsView.swift */; };
@@ -48,7 +47,6 @@
 		3E0DBF1128449D5B00DB1BEE /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		3E0DBF132844A4FD00DB1BEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		3E1777F2287B5D2B00A9CE48 /* SelectRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRange.swift; sourceTree = "<group>"; };
-		3E1E973528C832DC002AED4F /* OpeningTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpeningTabView.swift; sourceTree = "<group>"; };
 		3E2927092A9873E200C68561 /* ThreePosLabels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreePosLabels.swift; sourceTree = "<group>"; };
 		3E42D280283483F5004DDEA9 /* RoundsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundsView.swift; sourceTree = "<group>"; };
 		3E5109A327FEE03900C3C8DD /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
@@ -112,7 +110,6 @@
 				3E0DBF132844A4FD00DB1BEE /* Info.plist */,
 				3E555BC827CDEE9900F316B5 /* Model */,
 				3E555BB527CDEC8700F316B5 /* MyClayScoresApp.swift */,
-				3E1E973528C832DC002AED4F /* OpeningTabView.swift */,
 				3E42D280283483F5004DDEA9 /* RoundsView.swift */,
 				3E9A615827FAB4BF0054EE30 /* FivePosNRView.swift */,
 				3E6027DC2A96147100A26B5F /* EightPosNRView.swift */,
@@ -234,7 +231,6 @@
 				3E6027DF2A9614CE00A26B5F /* NinePosNRView.swift in Sources */,
 				3E9A615927FAB4BF0054EE30 /* FivePosNRView.swift in Sources */,
 				3EA7218B27FD3975004F67FF /* EditView.swift in Sources */,
-				3E1E973628C832DC002AED4F /* OpeningTabView.swift in Sources */,
 				3E6027DB2A9484FE00A26B5F /* FivePosLabels.swift in Sources */,
 				3EA29D682A987E2800AF2FE5 /* FourPosLabels.swift in Sources */,
 				3E6027DD2A96147100A26B5F /* EightPosNRView.swift in Sources */,

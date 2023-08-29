@@ -16,10 +16,6 @@ struct FivePosNRView: View {
     @State private var showAlert: Bool = false
     @FocusState private var isFocused: Bool
     
-    //    @State private var eightPos: Bool = false
-    //    @State private var ninePos: Bool = false
-    
-    
     @State private var keyboardHeight: CGFloat = 0
     
     var body: some View {
@@ -238,16 +234,6 @@ struct FivePosNRView: View {
             }
             .navigationBarHidden(true)
             .navigationBarBackButtonHidden(true)
-            //        .onAppear{
-            //            if roundsData.selectedRange == "American Skeet" {
-            //                // go to EightPosNRView
-            //            } else if roundsData.selectedRange == "ISSF/Olympic Skeet" {
-            //                // go to NinePosNRView
-            //            }
-            //            else if roundsData.selectedRange == "Double Trap" {
-            //                // go to DoubleTNRView
-            //            }
-            //        }
         }
     }
 }

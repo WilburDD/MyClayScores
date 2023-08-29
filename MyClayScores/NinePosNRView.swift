@@ -93,8 +93,6 @@ struct NinePosNRView: View {
                             .font(.title2.italic())
                             .fontWeight(.bold)
                     }
-                    //                    Spacer()
-                    //                }
                     .padding()
                     VStack {
                         FivePosLabels()
@@ -282,8 +280,11 @@ struct NinePosNRView: View {
                                 .multilineTextAlignment(.center)
                                 .padding()
                         })
-//                        .padding()
-                        Text ("Tap on the '0' for a Position to enter score.")
+                        HStack {
+                            Text ("Tap on the  ")
+                            + Text("'0'").underline()
+                            + Text("  for a Position to enter score.")
+                        }
                             .font(.title3)
                             .italic()
                             .multilineTextAlignment(.center)

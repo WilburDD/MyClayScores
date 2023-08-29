@@ -53,6 +53,10 @@ class RoundsDataStack: ObservableObject, Identifiable {
     @Published var pos3Avg = Double (0.0)
     @Published var pos4Avg = Double (0.0)
     @Published var pos5Avg = Double (0.0)
+    @Published var pos6Avg = Double (0.0)
+    @Published var pos7Avg = Double (0.0)
+    @Published var pos8Avg = Double (0.0)
+    @Published var pos9Avg = Double (0.0)
     @Published var totalAvg = Double (0.0)
     @Published var totalRnds = 0
     
@@ -61,6 +65,10 @@ class RoundsDataStack: ObservableObject, Identifiable {
     @Published var pos3Pct = Double (0.0)
     @Published var pos4Pct = Double (0.0)
     @Published var pos5Pct = Double (0.0)
+    @Published var pos6Pct = Double (0.0)
+    @Published var pos7Pct = Double (0.0)
+    @Published var pos8Pct = Double (0.0)
+    @Published var pos9Pct = Double (0.0)
     @Published var totalPct = Double (0.0)
     
     
@@ -190,6 +198,10 @@ class RoundsDataStack: ObservableObject, Identifiable {
             pos3Avg = Double(roundsData.reduce(0, {$0 + $1.pos3}))/Double(roundsData.count)
             pos4Avg = Double(roundsData.reduce(0, {$0 + $1.pos4}))/Double(roundsData.count)
             pos5Avg = Double(roundsData.reduce(0, {$0 + $1.pos5}))/Double(roundsData.count)
+            pos6Avg = Double(roundsData.reduce(0, {$0 + $1.pos6}))/Double(roundsData.count)
+            pos7Avg = Double(roundsData.reduce(0, {$0 + $1.pos7}))/Double(roundsData.count)
+            pos8Avg = Double(roundsData.reduce(0, {$0 + $1.pos8}))/Double(roundsData.count)
+            pos9Avg = Double(roundsData.reduce(0, {$0 + $1.pos9}))/Double(roundsData.count)
             totalAvg = Double(roundsData.reduce(0, {$0 + $1.total}))/Double(roundsData.count)
             
             pos1Pct = pos1Avg / 5.0
