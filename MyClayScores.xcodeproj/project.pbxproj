@@ -25,7 +25,6 @@
 		3E97E0242A05AD17005AAE51 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E0DBF1128449D5B00DB1BEE /* CloudKit.framework */; };
 		3E9A615927FAB4BF0054EE30 /* FivePosNRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9A615827FAB4BF0054EE30 /* FivePosNRView.swift */; };
 		3EA29D682A987E2800AF2FE5 /* FourPosLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA29D672A987E2800AF2FE5 /* FourPosLabels.swift */; };
-		3EA7218B27FD3975004F67FF /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7218A27FD3974004F67FF /* EditView.swift */; };
 		3EF5EDAF2817A0EB0087042D /* FivePosList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF5EDAE2817A0EB0087042D /* FivePosList.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,7 +62,6 @@
 		3E6CB7192A8CB78900ECB206 /* NinePosList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NinePosList.swift; sourceTree = "<group>"; };
 		3E9A615827FAB4BF0054EE30 /* FivePosNRView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FivePosNRView.swift; sourceTree = "<group>"; };
 		3EA29D672A987E2800AF2FE5 /* FourPosLabels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourPosLabels.swift; sourceTree = "<group>"; };
-		3EA7218A27FD3974004F67FF /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 		3EF5EDAE2817A0EB0087042D /* FivePosList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FivePosList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -118,7 +116,6 @@
 				3E6027DA2A9484FE00A26B5F /* FivePosLabels.swift */,
 				3E2927092A9873E200C68561 /* ThreePosLabels.swift */,
 				3EA29D672A987E2800AF2FE5 /* FourPosLabels.swift */,
-				3EA7218A27FD3974004F67FF /* EditView.swift */,
 				3EF5EDAE2817A0EB0087042D /* FivePosList.swift */,
 				3E6841932A863041003A6507 /* EightPosList.swift */,
 				3E6CB7192A8CB78900ECB206 /* NinePosList.swift */,
@@ -230,7 +227,6 @@
 				3E07D3682A988B0C00B3FB8B /* DoubleTNRView.swift in Sources */,
 				3E6027DF2A9614CE00A26B5F /* NinePosNRView.swift in Sources */,
 				3E9A615927FAB4BF0054EE30 /* FivePosNRView.swift in Sources */,
-				3EA7218B27FD3975004F67FF /* EditView.swift in Sources */,
 				3E6027DB2A9484FE00A26B5F /* FivePosLabels.swift in Sources */,
 				3EA29D682A987E2800AF2FE5 /* FourPosLabels.swift in Sources */,
 				3E6027DD2A96147100A26B5F /* EightPosNRView.swift in Sources */,

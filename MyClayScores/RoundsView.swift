@@ -114,6 +114,7 @@ struct RoundsView: View {
                 } else {
                     roundsData.positions = 5
                 }
+                roundsData.clearData()
                 roundsData.fetchRounds()
                 roundsData.calcAvgs()
             }

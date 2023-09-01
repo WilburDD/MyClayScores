@@ -37,6 +37,8 @@ struct SelectRange: View {
                                 roundsData.selectedRange = "American Trap"
                                 storedRange = roundsData.selectedRange
                                 roundsData.positions = 5
+                                roundsData.posMax = [5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 25.0]
+                                roundsData.clearData()
                                 roundsData.fetchRounds()
                                 roundsData.calcAvgs()
                                 dismiss()
@@ -49,6 +51,8 @@ struct SelectRange: View {
                                 roundsData.selectedRange = "Continental Trap"
                                 storedRange = roundsData.selectedRange
                                 roundsData.positions = 5
+                                roundsData.posMax = [5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 25.0]
+                                roundsData.clearData()
                                 roundsData.fetchRounds()
                                 roundsData.calcAvgs()
                                 dismiss()
@@ -64,6 +68,8 @@ struct SelectRange: View {
                                 roundsData.selectedRange = "ISSF/Olympic Trap"
                                 storedRange = roundsData.selectedRange
                                 roundsData.positions = 5
+                                roundsData.posMax = [5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 25.0]
+                                roundsData.clearData()
                                 roundsData.fetchRounds()
                                 roundsData.calcAvgs()
                                 dismiss()
@@ -75,7 +81,9 @@ struct SelectRange: View {
                             Button(action: {
                                 roundsData.selectedRange = "Double Trap"
                                 storedRange = roundsData.selectedRange
-                                roundsData.positions = 10
+                                roundsData.positions = 5
+                                roundsData.posMax = [10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 50.0]
+                                roundsData.clearData()
                                 roundsData.fetchRounds()
                                 roundsData.calcAvgs()
                                 dismiss()
@@ -98,6 +106,8 @@ struct SelectRange: View {
                                 roundsData.selectedRange = "American Skeet"
                                 storedRange = roundsData.selectedRange
                                 roundsData.positions = 8
+                                roundsData.posMax = [4.0, 4.0, 2.0, 2.0, 2.0, 4.0, 4.0, 3.0, 1.0, 25.0]
+                                roundsData.clearData()
                                 roundsData.fetchRounds()
                                 roundsData.calcAvgs()
                                 dismiss()
@@ -110,6 +120,8 @@ struct SelectRange: View {
                                 roundsData.selectedRange = "ISSF/Olympic Skeet"
                                 storedRange = roundsData.selectedRange
                                 roundsData.positions = 9
+                                roundsData.posMax = [3.0, 3.0, 3.0, 2.0, 3.0, 3.0, 2.0, 4.0, 2.0, 25.0]
+                                roundsData.clearData()
                                 roundsData.fetchRounds()
                                 roundsData.calcAvgs()
                                 dismiss()
@@ -130,6 +142,8 @@ struct SelectRange: View {
                             roundsData.selectedRange = "Compak/5-Stand"
                             storedRange = roundsData.selectedRange
                             roundsData.positions = 5
+                            roundsData.posMax = [5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 25.0]
+                            roundsData.clearData()
                             roundsData.fetchRounds()
                             roundsData.calcAvgs()
                             dismiss()
@@ -145,41 +159,41 @@ struct SelectRange: View {
         }
     }
 }
+
+struct CustomDivider: View {
+    let color: Color
+    let height: CGFloat
     
-    struct CustomDivider: View {
-        let color: Color
-        let height: CGFloat
-        
-        init(color: Color = .blue.opacity(1.0),
-             height: CGFloat = 2.0) {
-            self.color = color
-            self.height = height
-        }
-        
-        var body: some View {
-            Rectangle()
-                .fill(color)
-                .frame(height: height)
-                .edgesIgnoringSafeArea(.horizontal)
-        }
+    init(color: Color = .blue.opacity(1.0),
+         height: CGFloat = 2.0) {
+        self.color = color
+        self.height = height
     }
     
-    extension Button {
-        func getRangeButtonStyle() -> some View {
-            self
-                .font(.headline)
-                .padding(10)
-                .background(Color.blue)
-                .foregroundColor(Color.white)
-                .clipShape(Capsule())
-        }
+    var body: some View {
+        Rectangle()
+            .fill(color)
+            .frame(height: height)
+            .edgesIgnoringSafeArea(.horizontal)
     }
-    
-    struct RangeSelectionView_Previews: PreviewProvider {
-        static var previews: some View {
-            SelectRange()
-                .environmentObject(RoundsDataStack())
-        }
+}
+
+extension Button {
+    func getRangeButtonStyle() -> some View {
+        self
+            .font(.headline)
+            .padding(10)
+            .background(Color.blue)
+            .foregroundColor(Color.white)
+            .clipShape(Capsule())
     }
-    
+}
+
+struct RangeSelectionView_Previews: PreviewProvider {
+    static var previews: some View {
+        SelectRange()
+            .environmentObject(RoundsDataStack())
+    }
+}
+
 

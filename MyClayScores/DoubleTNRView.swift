@@ -71,7 +71,6 @@ struct DoubleTNRView: View {
                             roundsData.fetchRounds()
                             roundsData.calcAvgs()
                             roundsData.clearData()
-                            roundsData.editDone = true
                             roundsData.path.removeLast(roundsData.path.count) 
                         }, label: {
                             Text("SAVE ROUND")
@@ -107,7 +106,7 @@ struct DoubleTNRView: View {
                                     .font(.largeTitle).underline().fontWeight(.bold)
                                 Picker("", selection:
                                         $roundsData.posCount[0]) {
-                                    ForEach(1..<11) { count in
+                                    ForEach(0..<11) { count in
                                         Text("\(count)").tag(count)
                                     }
                                 }
@@ -123,7 +122,7 @@ struct DoubleTNRView: View {
                                     .font(.largeTitle).underline().fontWeight(.bold)
                                 Picker("", selection:
                                         $roundsData.posCount[1]) {
-                                    ForEach(1..<11) { count in
+                                    ForEach(0..<11) { count in
                                         Text("\(count)").tag(count)
                                     }
                                 }
@@ -139,7 +138,7 @@ struct DoubleTNRView: View {
                                     .font(.largeTitle).underline().fontWeight(.bold)
                                 Picker("", selection:
                                         $roundsData.posCount[2]) {
-                                    ForEach(1..<11) { count in
+                                    ForEach(0..<11) { count in
                                         Text("\(count)").tag(count)
                                     }
                                 }
@@ -155,7 +154,7 @@ struct DoubleTNRView: View {
                                     .font(.largeTitle).underline().fontWeight(.bold)
                                 Picker("", selection:
                                         $roundsData.posCount[3]) {
-                                    ForEach(1..<11) { count in
+                                    ForEach(0..<11) { count in
                                         Text("\(count)").tag(count)
                                     }
                                 }
@@ -171,7 +170,7 @@ struct DoubleTNRView: View {
                                     .font(.largeTitle).underline().fontWeight(.bold)
                                 Picker("", selection:
                                         $roundsData.posCount[4]) {
-                                    ForEach(1..<11) { count in
+                                    ForEach(0..<11) { count in
                                         Text("\(count)").tag(count)
                                     }
                                 }

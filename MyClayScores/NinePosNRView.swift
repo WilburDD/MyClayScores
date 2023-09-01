@@ -68,7 +68,6 @@ struct NinePosNRView: View {
                             roundsData.fetchRounds()
                             roundsData.calcAvgs()
                             roundsData.clearData()
-                            roundsData.editDone = true
                             roundsData.path.removeLast(roundsData.path.count) 
                         }, label: {
                             Text("SAVE ROUND")
@@ -105,7 +104,6 @@ struct NinePosNRView: View {
                                     Text("1").tag(1)
                                     Text("2").tag(2)
                                     Text("3").tag(3)
-                                    Text("4").tag(4)
                                 }
                                 .onChange(of: roundsData.posCount[0], perform: { (value) in
                                     roundsData.addupScore()
@@ -122,7 +120,6 @@ struct NinePosNRView: View {
                                     Text("1").tag(1)
                                     Text("2").tag(2)
                                     Text("3").tag(3)
-                                    Text("4").tag(4)
                                 }
                                 .onChange(of: roundsData.posCount[1], perform: { (value) in
                                     roundsData.addupScore()
@@ -139,7 +136,6 @@ struct NinePosNRView: View {
                                     Text("1").tag(1)
                                     Text("2").tag(2)
                                     Text("3").tag(3)
-                                    Text("4").tag(4)
                                 }
                                 .onChange(of: roundsData.posCount[2], perform: { (value) in
                                     roundsData.addupScore()
@@ -155,8 +151,6 @@ struct NinePosNRView: View {
                                     Text("0").tag(0)
                                     Text("1").tag(1)
                                     Text("2").tag(2)
-                                    Text("3").tag(3)
-                                    Text("4").tag(4)
                                 }
                                 .onChange(of: roundsData.posCount[3], perform: { (value) in
                                     roundsData.addupScore()
@@ -173,7 +167,6 @@ struct NinePosNRView: View {
                                     Text("1").tag(1)
                                     Text("2").tag(2)
                                     Text("3").tag(3)
-                                    Text("4").tag(4)
                                 }
                                 .onChange(of: roundsData.posCount[4], perform: { (value) in
                                     roundsData.addupScore()
@@ -193,7 +186,6 @@ struct NinePosNRView: View {
                                     Text("1").tag(1)
                                     Text("2").tag(2)
                                     Text("3").tag(3)
-                                    Text("4").tag(4)
                                 }
                                 .onChange(of: roundsData.posCount[5], perform: { (value) in
                                     roundsData.addupScore()
@@ -209,8 +201,6 @@ struct NinePosNRView: View {
                                     Text("0").tag(0)
                                     Text("1").tag(1)
                                     Text("2").tag(2)
-                                    Text("3").tag(3)
-                                    Text("4").tag(4)
                                 }
                                 .onChange(of: roundsData.posCount[6], perform: { (value) in
                                     roundsData.addupScore()
@@ -243,8 +233,6 @@ struct NinePosNRView: View {
                                     Text("0").tag(0)
                                     Text("1").tag(1)
                                     Text("2").tag(2)
-                                    Text("3").tag(3)
-                                    Text("4").tag(4)
                                 }
                                 .onChange(of: roundsData.posCount[8], perform: { (value) in
                                     roundsData.addupScore()
