@@ -149,21 +149,25 @@ class RoundsDataStack: ObservableObject, Identifiable {
         calcAvgs()
     }
     
-    //    func saveEdit(range: String, comment: String, date: Date, id: UUID, pos1: Int64, pos2: Int64, pos3: Int64, pos4: Int64, pos5: Int64, total: Int64 ) {
-    //        let editedRound = RoundEntity(context: managedObjectContext)
-    //        editedRound.range = range
-    //        editedRound.comment = comment
-    //        editedRound.date = date
-    //        editedRound.id = id
-    //        editedRound.pos1 = pos1
-    //        editedRound.pos2 = pos2
-    //        editedRound.pos3 = pos3
-    //        editedRound.pos4 = pos4
-    //        editedRound.pos5 = pos5
-    //        editedRound.total = total
-    //        saveRounds()
-    //        calcAvgs()
-    //    }
+        func saveEdit(range: String, comment: String, date: Date, id: UUID, pos1: Int64, pos2: Int64, pos3: Int64, pos4: Int64, pos5: Int64, pos6: Int64, pos7: Int64, pos8: Int64, pos9: Int64,total: Int64 ) {
+            let editedRound = RoundEntity(context: managedObjectContext)
+            editedRound.range = range
+            editedRound.comment = comment
+            editedRound.date = date
+            editedRound.id = id
+            editedRound.pos1 = pos1
+            editedRound.pos2 = pos2
+            editedRound.pos3 = pos3
+            editedRound.pos4 = pos4
+            editedRound.pos5 = pos5
+            editedRound.pos6 = pos6
+            editedRound.pos7 = pos7
+            editedRound.pos8 = pos8
+            editedRound.pos9 = pos9
+            editedRound.total = total
+            saveRounds()
+            calcAvgs()
+        }
     
     func deleteRound(indexSet: IndexSet) {
         guard let index = indexSet.first else { return }

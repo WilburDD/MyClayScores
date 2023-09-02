@@ -7,9 +7,12 @@
 
 import SwiftUI
 
-struct NinePosNRView: View {
-        
+struct NinePosEditView: View {
+    
+    let item: RoundEntity
+    
     @EnvironmentObject var roundsData: RoundsDataStack
+    @Environment(\.dismiss) var dismiss
     @State private var showAlert: Bool = false
     @FocusState private var isFocused: Bool
     
@@ -26,34 +29,25 @@ struct NinePosNRView: View {
                 VStack{
                     HStack {
                         Button(action: {
-                            if roundsData.roundTotal == 0 {
-                                roundsData.clearData()
-                                roundsData.path.removeLast(roundsData.path.count)
-                            } else {
-                                showAlert = true
-                            }
+                            roundsData.clearData()
+                            roundsData.fetchRounds()
+                            roundsData.calcAvgs()
+                            dismiss()
                         }, label: {
                             HStack {
                                 Image(systemName: "arrow.left").font(.title2)
                                 Text("Back").font(.title2)
                             }
                         })
-                        .alert(isPresented: $showAlert, content: {
-                            Alert(
-                                title: Text("WARNING"),
-                                message: Text("Exiting without saving round  will discard any scoring input."),
-                                primaryButton: .cancel(Text("Continue Scoring")),
-                                secondaryButton: .destructive(Text("Discard Data"), action: {
-                                    roundsData.clearData()
-                                    roundsData.path.removeLast(roundsData.path.count)
-                                }))
-                        })
                         Spacer()
                         Button(action: {
-                            roundsData.addRound(
+                            roundsData.deleteEditedRound(index: roundsData.editedIndex)
+
+                            roundsData.saveEdit(
                                 range: roundsData.selectedRange,
                                 comment: roundsData.comment,
-                                date: Date.now,
+                                date: roundsData.roundDate,
+                                id: roundsData.roundID,
                                 pos1: Int64(roundsData.posCount[0]),
                                 pos2: Int64(roundsData.posCount[1]),
                                 pos3: Int64(roundsData.posCount[2]),
@@ -68,9 +62,10 @@ struct NinePosNRView: View {
                             roundsData.fetchRounds()
                             roundsData.calcAvgs()
                             roundsData.clearData()
-                            roundsData.path.removeLast(roundsData.path.count) 
+                            roundsData.path.removeLast(roundsData.path.count)
+                            dismiss()
                         }, label: {
-                            Text("SAVE ROUND")
+                            Text("SAVE CHANGES")
                         })
                         .padding(.all)
                         .font(.title3.bold())
@@ -88,7 +83,7 @@ struct NinePosNRView: View {
                             .underline()
                             .fontWeight(.bold)
                         Spacer()
-                        Text("New Round")
+                        Text("Saved Round Edit")
                             .font(.title2.italic())
                             .fontWeight(.bold)
                     }
@@ -281,19 +276,35 @@ struct NinePosNRView: View {
                     }
                 }
             }
-            .onTapGesture {
-                isFocused = false
-            }
-            .padding()
+        }
+        .onTapGesture {
+            isFocused = false
         }
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
+        .onAppear {
+            roundsData.editedIndex = roundsData.roundsData.firstIndex(of: item) ?? 0
+            roundsData.selectedRange = item.range!
+            roundsData.comment = item.comment!
+            roundsData.roundDate = item.date!
+            roundsData.roundID = item.id ?? UUID()
+            roundsData.posCount[0] = Int(item.pos1)
+            roundsData.posCount[1] = Int(item.pos2)
+            roundsData.posCount[2] = Int(item.pos3)
+            roundsData.posCount[3] = Int(item.pos4)
+            roundsData.posCount[4] = Int(item.pos5)
+            roundsData.posCount[5] = Int(item.pos6)
+            roundsData.posCount[6] = Int(item.pos7)
+            roundsData.posCount[7] = Int(item.pos8)
+            roundsData.posCount[8] = Int(item.pos9)
+            roundsData.roundTotal = Int(item.total)
+        }
     }
 }
 
-struct NinePosNRView_Previews: PreviewProvider {
-    static var previews: some View {
-        NinePosNRView()
-            .environmentObject(RoundsDataStack())
-    }
-}
+//struct NinePosEditView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NinePosEditView(item: item)
+//            .environmentObject(RoundsDataStack())
+//    }
+//}

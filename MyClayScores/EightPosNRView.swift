@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EightPosNRView: View {
-    
+        
     @EnvironmentObject var roundsData: RoundsDataStack
     @State private var showAlert: Bool = false
     @FocusState private var isFocused: Bool

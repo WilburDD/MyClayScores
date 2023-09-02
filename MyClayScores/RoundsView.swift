@@ -34,14 +34,36 @@ struct RoundsView: View {
                     .frame(height: 2)
                 List {
                     ForEach(roundsData.roundsData, id: \.self) { item in
-                        if roundsData.selectedRange == "American Trap" || roundsData.selectedRange == "Continental Trap" || roundsData.selectedRange == "ISSF/Olympic Trap" || roundsData.selectedRange == "Double Trap" || roundsData.selectedRange == "Compak/5-Stand" {
-                            FivePosList(item: item)
-                        } else if
-                            roundsData.selectedRange == "American Skeet" {
-                            EightPosList(item: item)
-                        } else if
-                            roundsData.selectedRange == "ISSF/Olympic Skeet" {
-                            NinePosList(item: item)
+                        if roundsData.selectedRange == "American Trap" || roundsData.selectedRange == "Continental Trap" || roundsData.selectedRange == "ISSF/Olympic Trap" || roundsData.selectedRange == "Compak/5-Stand" {
+                            NavigationLink {
+                                FivePosEditView(item: item)
+                            } label: {
+                                FivePosList(item: item)
+                            }
+                        } else {
+                            if roundsData.selectedRange == "American Skeet" {
+                                NavigationLink {
+                                    EightPosEditView (item: item)
+                                } label: {
+                                    EightPosList(item: item)
+                                }
+                            } else {
+                                if roundsData.selectedRange == "ISSF/Olympic Skeet" {
+                                    NavigationLink {
+                                        NinePosEditView (item: item)
+                                    } label: {
+                                        NinePosList(item: item)
+                                    }
+                                } else {
+                                    if roundsData.selectedRange == "Double Trap" {
+                                        NavigationLink {
+                                            DoubleTEditView (item: item)
+                                        } label: {
+                                            FivePosList(item: item)
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                     .onDelete(perform: { indexSet in
@@ -51,79 +73,81 @@ struct RoundsView: View {
                         roundsData.calcAvgs()
                     })
                 }
-                RoundedRectangle(cornerRadius: 1)
-                    .frame(height: 2)
-                HStack (alignment: .bottom) {
-                    Spacer()
-                    
-                    NavigationLink {
-                        SelectRange()
-                    } label: {
-                        VStack {
-                            Image(systemName: "figure.hunting")
-                            Text("Range")
-                        }
-                        .font(.title3)
-                    }
-                    Spacer()
-                    
-                    NavigationLink(value: roundsData.positions) {
-                        VStack {
-                            Image(systemName: "plus.square.fill")
-                                .font(.title)
-                            Text("New Round")
-                        }
-                        .font(.title3)
-                    }
-                    .navigationDestination(for: Int.self) {_ in
-                        if roundsData.positions == 5 {
-                            FivePosNRView()
-                        } else if roundsData.positions == 8 {
-                            EightPosNRView()
-                        } else if roundsData.positions == 9 {
-                            NinePosNRView()
-                        } else if roundsData.positions == 10 {
-                            DoubleTNRView()
-                        }
-                    }
-                    Spacer()
-                    
-                    NavigationLink {
-                        StatsView()
-                    } label: {
-                        VStack {
-                            Image(systemName: "chart.dots.scatter")
-                            Text("Stats")
-                        }
-                        .font(.title3)
-                    }
-                    Spacer()
-                }
-                .padding(.top)
             }
-            .padding()
-            .listStyle(.plain)
-            .onAppear{
-                roundsData.selectedRange = roundsData.storedRange
-                if roundsData.selectedRange == "American Skeet" {
-                    roundsData.positions = 8
-                } else if roundsData.selectedRange == "ISSF/Olympic Skeet" {
-                    roundsData.positions = 9
-                } else if roundsData.selectedRange == "Double Trap" {
-                    roundsData.positions = 10
-                } else {
-                    roundsData.positions = 5
+            RoundedRectangle(cornerRadius: 1)
+                .frame(height: 2)
+            HStack (alignment: .bottom) {
+                Spacer()
+                
+                NavigationLink {
+                    SelectRange()
+                } label: {
+                    VStack {
+                        Image(systemName: "figure.hunting")
+                        Text("Range")
+                    }
+                    .font(.title3)
                 }
-                roundsData.clearData()
-                roundsData.fetchRounds()
-                roundsData.calcAvgs()
+                Spacer()
+                
+                NavigationLink(value: roundsData.positions) {
+                    VStack {
+                        Image(systemName: "plus.square.fill")
+                            .font(.title)
+                        Text("New Round")
+                    }
+                    .font(.title3)
+                }
+                .navigationDestination(for: Int.self) {_ in
+                    if roundsData.positions == 5 {
+                        FivePosNRView()
+                    } else if roundsData.positions == 8 {
+                        EightPosNRView()
+                    } else if roundsData.positions == 9 {
+                        NinePosNRView()
+                    } else if roundsData.positions == 10 {
+                        DoubleTNRView()
+                    }
+                }
+                Spacer()
+                
+                NavigationLink {
+                    StatsView()
+                } label: {
+                    VStack {
+                        Image(systemName: "chart.dots.scatter")
+                        Text("Stats")
+                    }
+                    .font(.title3)
+                }
+                Spacer()
             }
-            .navigationBarHidden(true)
-            .navigationBarBackButtonHidden(true)
+            .padding(.top)
         }
-        
+        .padding()
+        .listStyle(.plain)
+        .onAppear{
+            roundsData.selectedRange = roundsData.storedRange
+            if roundsData.selectedRange == "American Skeet" {
+                roundsData.positions = 8
+            } else if roundsData.selectedRange == "ISSF/Olympic Skeet" {
+                roundsData.positions = 9
+            } else if roundsData.selectedRange == "Double Trap" {
+                roundsData.positions = 10
+            } else {
+                roundsData.positions = 5
+            }
+            roundsData.clearData()
+            roundsData.fetchRounds()
+            roundsData.calcAvgs()
+        }
+        .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
     }
 }
+
+
+
 
 struct RoundsView_Previews: PreviewProvider {
     static var previews: some View {

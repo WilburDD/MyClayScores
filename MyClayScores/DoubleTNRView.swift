@@ -11,7 +11,7 @@ import MediaPlayer
 import AVFoundation
 
 struct DoubleTNRView: View {
-    
+        
     @EnvironmentObject var roundsData: RoundsDataStack
     @State private var showAlert: Bool = false
     @FocusState private var isFocused: Bool
@@ -31,6 +31,8 @@ struct DoubleTNRView: View {
                         Button(action: {
                             if roundsData.roundTotal == 0 {
                                 roundsData.clearData()
+                                roundsData.fetchRounds()
+                                roundsData.calcAvgs()
                                 roundsData.path.removeLast(roundsData.path.count)
                             } else {
                                 showAlert = true
@@ -95,8 +97,6 @@ struct DoubleTNRView: View {
                             .font(.title2.italic())
                             .fontWeight(.bold)
                     }
-                    //                    Spacer()
-                    //                }
                     .padding()
                     VStack {
                         FivePosLabels()
@@ -222,7 +222,6 @@ struct DoubleTNRView: View {
                 .onTapGesture {
                     isFocused = false
                 }
-                .padding()
             }
         }
         .navigationBarHidden(true)
