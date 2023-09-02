@@ -207,7 +207,7 @@ class RoundsDataStack: ObservableObject, Identifiable {
         totalPct = posAvgs[9]/posMax[9]
         totalRnds = roundsData.count
         
-        print(avgs)
+//        print(avgs)
         
         if totalRnds == 0 {
             pos1Avg = 0

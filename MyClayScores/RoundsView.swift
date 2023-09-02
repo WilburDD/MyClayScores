@@ -99,13 +99,13 @@ struct RoundsView: View {
                     .font(.title3)
                 }
                 .navigationDestination(for: Int.self) {_ in
-                    if roundsData.positions == 5 {
+                    if roundsData.selectedRange == "American Trap" || roundsData.selectedRange == "Continental Trap" || roundsData.selectedRange == "ISSF/Olympic Trap" || roundsData.selectedRange == "Compak/5-Stand" {
                         FivePosNRView()
-                    } else if roundsData.positions == 8 {
+                    } else if roundsData.selectedRange == "American Skeet" {
                         EightPosNRView()
-                    } else if roundsData.positions == 9 {
+                    } else if roundsData.selectedRange == "ISSF/Olympic Skeet" {
                         NinePosNRView()
-                    } else if roundsData.positions == 10 {
+                    } else if roundsData.selectedRange == "Double Trap" {
                         DoubleTNRView()
                     }
                 }
@@ -132,8 +132,6 @@ struct RoundsView: View {
                 roundsData.positions = 8
             } else if roundsData.selectedRange == "ISSF/Olympic Skeet" {
                 roundsData.positions = 9
-            } else if roundsData.selectedRange == "Double Trap" {
-                roundsData.positions = 10
             } else {
                 roundsData.positions = 5
             }
