@@ -42,7 +42,7 @@ struct NinePosEditView: View {
                         Spacer()
                         Button(action: {
                             roundsData.deleteEditedRound(index: roundsData.editedIndex)
-
+                            
                             roundsData.saveEdit(
                                 range: roundsData.selectedRange,
                                 comment: roundsData.comment,
@@ -60,8 +60,8 @@ struct NinePosEditView: View {
                                 total: Int64(roundsData.roundTotal))
                             roundsData.saveRounds()
                             roundsData.fetchRounds()
-                            roundsData.calcAvgs()
                             roundsData.clearData()
+                            roundsData.calcAvgs()
                             roundsData.path.removeLast(roundsData.path.count)
                             dismiss()
                         }, label: {
@@ -268,11 +268,11 @@ struct NinePosEditView: View {
                             + Text("'0'").underline()
                             + Text("  for a Position to enter score.")
                         }
-                            .font(.title3)
-                            .italic()
-                            .multilineTextAlignment(.center)
-                            .padding()
-                            .toolbar(.hidden, for: .tabBar)
+                        .font(.title3)
+                        .italic()
+                        .multilineTextAlignment(.center)
+                        .padding()
+                        .toolbar(.hidden, for: .tabBar)
                     }
                 }
             }

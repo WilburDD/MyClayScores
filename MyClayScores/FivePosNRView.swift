@@ -64,9 +64,9 @@ struct FivePosNRView: View {
                                 total: Int64(roundsData.roundTotal))
                             roundsData.saveRounds()
                             roundsData.fetchRounds()
-                            roundsData.calcAvgs()
                             roundsData.clearData()
-                            roundsData.path.removeLast(roundsData.path.count) 
+                            roundsData.calcAvgs()
+                            roundsData.path.removeLast(roundsData.path.count)
                         }, label: {
                             Text("SAVE ROUND")
                         })

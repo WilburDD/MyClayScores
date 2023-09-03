@@ -41,7 +41,7 @@ struct FivePosEditView: View {
                         Spacer()
                         Button(action: {
                             roundsData.deleteEditedRound(index: roundsData.editedIndex)
-
+                            
                             roundsData.saveEdit(
                                 range: roundsData.selectedRange,
                                 comment: roundsData.comment,
@@ -59,8 +59,8 @@ struct FivePosEditView: View {
                                 total: Int64(roundsData.roundTotal))
                             roundsData.saveRounds()
                             roundsData.fetchRounds()
-                            roundsData.calcAvgs()
                             roundsData.clearData()
+                            roundsData.calcAvgs()
                             roundsData.path.removeLast(roundsData.path.count)
                             dismiss()
                         }, label: {

@@ -63,8 +63,8 @@ struct DoubleTEditView: View {
                                 total: Int64(roundsData.roundTotal))
                             roundsData.saveRounds()
                             roundsData.fetchRounds()
-                            roundsData.calcAvgs()
                             roundsData.clearData()
+                            roundsData.calcAvgs()
                             dismiss()
                         }, label: {
                             Text("SAVE CHANGES")

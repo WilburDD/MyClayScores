@@ -11,7 +11,7 @@ import MediaPlayer
 import AVFoundation
 
 struct DoubleTNRView: View {
-        
+    
     @EnvironmentObject var roundsData: RoundsDataStack
     @State private var showAlert: Bool = false
     @FocusState private var isFocused: Bool
@@ -50,7 +50,7 @@ struct DoubleTNRView: View {
                                 primaryButton: .cancel(Text("Continue Scoring")),
                                 secondaryButton: .destructive(Text("Discard Data"), action: {
                                     roundsData.clearData()
-                                    roundsData.path.removeLast(roundsData.path.count) 
+                                    roundsData.path.removeLast(roundsData.path.count)
                                 }))
                         })
                         Spacer()
@@ -71,9 +71,9 @@ struct DoubleTNRView: View {
                                 total: Int64(roundsData.roundTotal))
                             roundsData.saveRounds()
                             roundsData.fetchRounds()
-                            roundsData.calcAvgs()
                             roundsData.clearData()
-                            roundsData.path.removeLast(roundsData.path.count) 
+                            roundsData.calcAvgs()
+                            roundsData.path.removeLast(roundsData.path.count)
                         }, label: {
                             Text("SAVE ROUND")
                         })
@@ -212,11 +212,11 @@ struct DoubleTNRView: View {
                             + Text("'0'").underline()
                             + Text("  for a Position to enter score.")
                         }
-                            .font(.title3)
-                            .italic()
-                            .multilineTextAlignment(.center)
-                            .padding()
-                            .toolbar(.hidden, for: .tabBar)
+                        .font(.title3)
+                        .italic()
+                        .multilineTextAlignment(.center)
+                        .padding()
+                        .toolbar(.hidden, for: .tabBar)
                     }
                 }
                 .onTapGesture {

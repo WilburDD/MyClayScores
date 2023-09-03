@@ -60,8 +60,8 @@ struct EightPosEditView: View {
                                 total: Int64(roundsData.roundTotal))
                             roundsData.saveRounds()
                             roundsData.fetchRounds()
-                            roundsData.calcAvgs()
                             roundsData.clearData()
+                            roundsData.calcAvgs()
                             roundsData.path.removeLast(roundsData.path.count)
                             dismiss()
                         }, label: {
