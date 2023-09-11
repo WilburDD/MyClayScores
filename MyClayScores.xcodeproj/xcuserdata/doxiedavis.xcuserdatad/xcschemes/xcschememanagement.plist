@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>MCS Watch App.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
+		<key>MCS_AW Watch App.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
 		<key>MyClayScores.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -34,6 +44,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>3E555BB127CDEC8700F316B5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3E6522172AA6D56A00787581</key>
 		<dict>
 			<key>primary</key>
 			<true/>

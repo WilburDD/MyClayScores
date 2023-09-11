@@ -10,9 +10,9 @@ import SwiftUI
 @main
 struct MyClayScoresApp: App {
     
-    @StateObject var roundsDataStack = RoundsDataStack()
+    @EnvironmentObject var roundsDataStack: RoundsDataStack
     
-    @Environment(\.scenePhase) var scenePhase
+//    @Environment(\.scenePhase) var scenePhase
     
     var body: some Scene {
         WindowGroup {
@@ -20,9 +20,9 @@ struct MyClayScoresApp: App {
                 .environmentObject(roundsDataStack)
                 .environment(\.managedObjectContext,
                               roundsDataStack.managedObjectContext)
-                .onChange(of: scenePhase) { _ in
-                    roundsDataStack.saveRounds()
-                }
+//                .onChange(of: scenePhase) { _ in
+//                    roundsDataStack.saveRounds()
+//                }
         }
     }
 }

@@ -100,12 +100,6 @@ class RoundsDataStack: ObservableObject, Identifiable {
         return PersistenceController.shared.container.viewContext
     }
     
-    init() {
-        //        self.selectedRange = storedRange
-        //        self.fetchRounds()
-        //        self.calcAvgs()
-    }
-    
     func fetchRounds() {
         let request = NSFetchRequest<RoundEntity>(entityName: "RoundEntity")
         let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)

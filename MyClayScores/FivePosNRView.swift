@@ -27,7 +27,8 @@ struct FivePosNRView: View {
                         Button(action: {
                             if roundsData.roundTotal == 0 {
                                 roundsData.clearData()
-                                roundsData.path.removeLast(roundsData.path.count)                            } else {
+                                roundsData.path.removeLast(roundsData.path.count)
+                            } else {
                                     showAlert = true
                                 }
                         }, label: {
