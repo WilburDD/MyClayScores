@@ -13,8 +13,6 @@
 		3E0BA95F2AA1F2F000AF63A6 /* NinePosEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0BA95E2AA1F2F000AF63A6 /* NinePosEditView.swift */; };
 		3E0BA9632AA1F36E00AF63A6 /* DoubleTEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0BA9622AA1F36E00AF63A6 /* DoubleTEditView.swift */; };
 		3E133BE82AABF8AC001C4ABA /* MyClayScoresModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3E555BC027CDEC8900F316B5 /* MyClayScoresModel.xcdatamodeld */; };
-		3E133BEC2AAEDBD2001C4ABA /* WatchConnectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E133BEB2AAEDBD2001C4ABA /* WatchConnectivity.swift */; };
-		3E133BED2AAEDBD3001C4ABA /* WatchConnectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E133BEB2AAEDBD2001C4ABA /* WatchConnectivity.swift */; };
 		3E1777F3287B5D2B00A9CE48 /* SelectRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1777F2287B5D2B00A9CE48 /* SelectRange.swift */; };
 		3E29270A2A9873E300C68561 /* ThreePosLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E2927092A9873E200C68561 /* ThreePosLabels.swift */; };
 		3E42D281283483F5004DDEA9 /* RoundsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42D280283483F5004DDEA9 /* RoundsView.swift */; };
@@ -42,6 +40,7 @@
 		3E97E0242A05AD17005AAE51 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E0DBF1128449D5B00DB1BEE /* CloudKit.framework */; };
 		3E9A615927FAB4BF0054EE30 /* FivePosNRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9A615827FAB4BF0054EE30 /* FivePosNRView.swift */; };
 		3EA29D682A987E2800AF2FE5 /* FourPosLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA29D672A987E2800AF2FE5 /* FourPosLabels.swift */; };
+		3EA808552AB2F44300B1977D /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA808542AB2F44300B1977D /* CloudKit.framework */; };
 		3EF5EDAF2817A0EB0087042D /* FivePosList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF5EDAE2817A0EB0087042D /* FivePosList.swift */; };
 /* End PBXBuildFile section */
 
@@ -77,7 +76,6 @@
 		3E0BA9622AA1F36E00AF63A6 /* DoubleTEditView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DoubleTEditView.swift; path = "MyClayScores/Edit Views/DoubleTEditView.swift"; sourceTree = SOURCE_ROOT; };
 		3E0DBF1128449D5B00DB1BEE /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		3E0DBF132844A4FD00DB1BEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		3E133BEB2AAEDBD2001C4ABA /* WatchConnectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchConnectivity.swift; sourceTree = "<group>"; };
 		3E1777F2287B5D2B00A9CE48 /* SelectRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRange.swift; sourceTree = "<group>"; };
 		3E2927092A9873E200C68561 /* ThreePosLabels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ThreePosLabels.swift; path = ../../ThreePosLabels.swift; sourceTree = "<group>"; };
 		3E42D280283483F5004DDEA9 /* RoundsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundsView.swift; sourceTree = "<group>"; };
@@ -104,6 +102,8 @@
 		3E891A372AB2969100BB0604 /* EnterComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterComment.swift; sourceTree = "<group>"; };
 		3E9A615827FAB4BF0054EE30 /* FivePosNRView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FivePosNRView.swift; path = ../FivePosNRView.swift; sourceTree = "<group>"; };
 		3EA29D672A987E2800AF2FE5 /* FourPosLabels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FourPosLabels.swift; path = ../../FourPosLabels.swift; sourceTree = "<group>"; };
+		3EA808542AB2F44300B1977D /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS9.4.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
+		3EA808562AB3020300B1977D /* MCS Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "MCS Watch App.entitlements"; sourceTree = "<group>"; };
 		3EF5EDAE2817A0EB0087042D /* FivePosList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FivePosList.swift; path = ../../FivePosList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,6 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EA808552AB2F44300B1977D /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +152,7 @@
 		3E0DBF1028449D5B00DB1BEE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3EA808542AB2F44300B1977D /* CloudKit.framework */,
 				3E0DBF1128449D5B00DB1BEE /* CloudKit.framework */,
 			);
 			name = Frameworks;
@@ -168,15 +170,6 @@
 			);
 			name = "Position Labels & Lists";
 			path = "Edit Views/Position Labels & Lists";
-			sourceTree = "<group>";
-		};
-		3E133BEA2AAEDB59001C4ABA /* Watch Connectivity */ = {
-			isa = PBXGroup;
-			children = (
-				3E133BEB2AAEDBD2001C4ABA /* WatchConnectivity.swift */,
-			);
-			name = "Watch Connectivity";
-			path = "Model/Watch Connectivity";
 			sourceTree = "<group>";
 		};
 		3E555BA927CDEC8700F316B5 = {
@@ -202,7 +195,6 @@
 			isa = PBXGroup;
 			children = (
 				3E0DBF132844A4FD00DB1BEE /* Info.plist */,
-				3E133BEA2AAEDB59001C4ABA /* Watch Connectivity */,
 				3E555BC827CDEE9900F316B5 /* Model */,
 				3E555BB527CDEC8700F316B5 /* MyClayScoresApp.swift */,
 				3E42D280283483F5004DDEA9 /* RoundsView.swift */,
@@ -238,6 +230,7 @@
 		3E6522342AA6D7BE00787581 /* MCS Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				3EA808562AB3020300B1977D /* MCS Watch App.entitlements */,
 				3E6522452AA6DCDF00787581 /* WatchData.swift */,
 				3E6522352AA6D7BE00787581 /* MCSWatchApp.swift */,
 				3E6522372AA6D7BE00787581 /* ChooseRange.swift */,
@@ -378,7 +371,6 @@
 				3E0BA95F2AA1F2F000AF63A6 /* NinePosEditView.swift in Sources */,
 				3E0BA9632AA1F36E00AF63A6 /* DoubleTEditView.swift in Sources */,
 				3E6027DD2A96147100A26B5F /* EightPosNRView.swift in Sources */,
-				3E133BEC2AAEDBD2001C4ABA /* WatchConnectivity.swift in Sources */,
 				3E555BB627CDEC8700F316B5 /* MyClayScoresApp.swift in Sources */,
 				3E29270A2A9873E300C68561 /* ThreePosLabels.swift in Sources */,
 			);
@@ -388,7 +380,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E133BED2AAEDBD3001C4ABA /* WatchConnectivity.swift in Sources */,
 				3E133BE82AABF8AC001C4ABA /* MyClayScoresModel.xcdatamodeld in Sources */,
 				3E6522382AA6D7BE00787581 /* ChooseRange.swift in Sources */,
 				3E891A362AB0669C00BB0604 /* RoundsDataStack.swift in Sources */,
@@ -535,7 +526,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = MyClayScores/MyClayScores.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MyClayScores/Preview Content\"";
 				DEVELOPMENT_TEAM = CM53CRQF5E;
 				ENABLE_PREVIEWS = YES;
@@ -555,7 +546,7 @@
 				);
 				LOCALIZATION_EXPORT_SUPPORTED = YES;
 				LOCALIZED_STRING_SWIFTUI_SUPPORT = YES;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.doxiedavis.MyClayScores;
 				PRODUCT_NAME = MyClayScores;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -575,7 +566,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = MyClayScores/MyClayScores.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MyClayScores/Preview Content\"";
 				DEVELOPMENT_TEAM = CM53CRQF5E;
 				ENABLE_PREVIEWS = YES;
@@ -595,7 +586,7 @@
 				);
 				LOCALIZATION_EXPORT_SUPPORTED = YES;
 				LOCALIZED_STRING_SWIFTUI_SUPPORT = YES;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.doxiedavis.MyClayScores;
 				PRODUCT_NAME = MyClayScores;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -614,6 +605,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = "MCS Watch App/MCS Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MCS Watch App/Preview Content\"";
@@ -646,6 +638,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = "MCS Watch App/MCS Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MCS Watch App/Preview Content\"";

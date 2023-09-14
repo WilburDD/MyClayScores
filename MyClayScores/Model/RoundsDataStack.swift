@@ -15,9 +15,7 @@ class RoundsDataStack: ObservableObject, Identifiable {
     @AppStorage ("storedRange") var storedRange = String("")
     
     @Published var roundsData: [RoundEntity] = []
-    
-    @Published var connectivityManager = WatchConnectivityManager.shared
-    
+        
     @Published var editedIndex = 0
     
     @Published var positions = 0
@@ -236,28 +234,4 @@ class RoundsDataStack: ObservableObject, Identifiable {
         public var avg = Double()
         public var pct = Double()
     }
-    
-    //    enum NRView: Int, Hashable, View {
-    //        case view1 = 5
-    //        case view2 = 8
-    //        case view3 = 9
-    //        case view4 = 10
-    //
-    ////        var id: String {
-    ////            self.rawValue
-    ////        }
-    //
-    //        var body: some View {
-    //            switch self {
-    //            case .view1:
-    //                FivePosNRView()
-    //            case .view2:
-    //                EightPosNRView()
-    //            case .view3:
-    //                NinePosNRView()
-    //            case .view4:
-    //                DoubleTNRView()
-    //            }
-    //        }
-    //    }
 }

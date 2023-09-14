@@ -55,8 +55,24 @@ struct ScoringView: View {
                 })
                 Spacer()
                 Button(action: {
-                    // Action to send data to cloud.
-                    
+                    roundData.addRound(
+                        range: roundData.range,
+                        comment: roundData.comment,
+                        date: Date.now,
+                        pos1: Int64(roundData.posCount[0]),
+                        pos2: Int64(roundData.posCount[1]),
+                        pos3: Int64(roundData.posCount[2]),
+                        pos4: Int64(roundData.posCount[3]),
+                        pos5: Int64(roundData.posCount[4]),
+                        pos6: Int64(roundData.posCount[5]),
+                        pos7: Int64(roundData.posCount[6]),
+                        pos8: Int64(roundData.posCount[7]),
+                        pos9: Int64(roundData.posCount[8]),
+                        total: Int64(roundData.roundTotal))
+                    roundData.saveRounds()
+                    roundData.fetchRounds()
+                    roundData.clearData()
+                    dismiss()
                 }, label: {
                     Text("Save")
                         .padding(0)
@@ -123,9 +139,9 @@ struct ScoringView: View {
 }
 
 
-    struct ScoringView_Previews: PreviewProvider {
-        static var previews: some View {
-            ScoringView(item: 1)
-                .environmentObject(WatchData())
-        }
+struct ScoringView_Previews: PreviewProvider {
+    static var previews: some View {
+        ScoringView(item: 1)
+            .environmentObject(WatchData())
     }
+}

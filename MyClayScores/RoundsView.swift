@@ -139,12 +139,6 @@ struct RoundsView: View {
             roundsData.fetchRounds()
             roundsData.calcAvgs()
         }
-        
-        .alert(item: $roundsData.connectivityManager.notificationMessage) { message in
-             Alert(title: Text(message.text),
-                   dismissButton: .default(Text("Dismiss")))
-        }
-        
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
         

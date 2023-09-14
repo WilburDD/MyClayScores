@@ -47,7 +47,7 @@ struct EnterScore: View {
 
 struct EnterScore_Previews: PreviewProvider {
     static var previews: some View {
-        EnterScore(item: 1)
+        EnterScore(item: 2)
             .environmentObject(WatchData())
     }
 }
