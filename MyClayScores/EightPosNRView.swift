@@ -275,6 +275,8 @@ struct EightPosNRView: View {
         }
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
+        .environmentObject(roundsData)
+
     }
 }
 

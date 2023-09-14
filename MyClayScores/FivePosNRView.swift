@@ -234,6 +234,7 @@ struct FivePosNRView: View {
             }
             .navigationBarHidden(true)
             .navigationBarBackButtonHidden(true)
+            .environmentObject(roundsData)
         }
     }
 }

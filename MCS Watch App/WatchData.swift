@@ -6,10 +6,14 @@
 //
 
 
+import Foundation
 import SwiftUI
 import WatchKit
+import ClockKit
 
 class WatchData: ObservableObject, Identifiable {
+    
+    @Published var connectivityManager = WatchConnectivityManager.shared
 
     @Published var positions = 0
     @Published var pos = Int()
@@ -22,7 +26,6 @@ class WatchData: ObservableObject, Identifiable {
     @Published var roundDate = Date()
     @Published var comment = ""
     @Published var path = NavigationPath()
-//    @Published var posMax = [5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 25.0]
     
     func clearData () {
         pos = 1
@@ -32,6 +35,12 @@ class WatchData: ObservableObject, Identifiable {
     
     func addupScore () {
         roundTotal = posCount[0] + posCount[1] + posCount[2] + posCount[3] + posCount[4] + posCount[5] + posCount[6] + posCount[7] + posCount[8]
+    }
+}
+
+class ComplicationController: NSObject, CLKComplicationDataSource {
+    func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void) {
+        // TODO: Finish implementing this required method.
     }
 }
 

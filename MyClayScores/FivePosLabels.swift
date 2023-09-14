@@ -58,6 +58,7 @@ struct FivePosLabels: View {
             }
             .padding(.leading)
             .padding(.trailing)
+            .environmentObject(roundsData)
         }
     }
     

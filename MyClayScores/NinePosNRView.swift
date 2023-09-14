@@ -288,6 +288,8 @@ struct NinePosNRView: View {
         }
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
+        .environmentObject(roundsData)
+
     }
 }
 

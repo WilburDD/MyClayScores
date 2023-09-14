@@ -226,6 +226,8 @@ struct DoubleTNRView: View {
         }
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
+        .environmentObject(roundsData)
+
     }
 }
 

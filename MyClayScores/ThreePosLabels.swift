@@ -42,6 +42,7 @@ struct ThreePosLabels: View {
             }
             .padding(.leading)
             .padding(.trailing)
+            .environmentObject(roundsData)
         }
     }
     

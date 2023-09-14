@@ -18,45 +18,6 @@ struct ScoringView: View {
     
     var body: some View {
         VStack {
-            //
-            //            HStack {
-            //                Button(action: {
-            //                    if roundData.roundTotal == 0 {
-            //                        roundData.clearData()
-            //                        dismiss()
-            //                    } else {
-            //                        showAlert = true
-            //                    }
-            //                }, label: {
-            //                    HStack {
-            //                        Text("<")
-            //                            .font(.title)
-            //                            .foregroundColor(.white)
-            //                    }
-            //                })
-            //                .alert("WARNING", isPresented: $showAlert) {
-            //                    Button("DISCARD", role: .destructive) {
-            //                        roundData.clearData()
-            //                        dismiss()
-            //                    }
-            //                    Button("Continue Scoring", role: .cancel) {
-            //                        showAlert = false
-            //                    }
-            //                } message: {
-            //                    Text("Exiting without saving round will discard any scoring input.")
-            //                }
-            //                Spacer()
-            //                Button(action: {
-            //                    // Action to send data to phone here... with acknowledgement button?
-            //                }, label: {
-            //                    Text("SAVE")
-            //                })
-            //                .font(.headline.bold())
-            //                .background(.blue)
-            //                .foregroundColor(.white)
-            //                .clipShape(Capsule())
-            //            }
-            
             VStack {
                 Text("\(roundData.range)")
                     .fontWeight(.bold)
@@ -83,20 +44,28 @@ struct ScoringView: View {
                             Spacer()
                             Image(systemName: "chevron.right")
                         }
-                        
                     }
                 }
             }
-            Button(action: {
-                // Action to send data to phone here... with acknowledgement button?
-            }, label: {
-                Text("Save")
-            })
-            .font(.title3)
-            .foregroundColor(.white)
-            .background(.blue, in: Capsule())
-            .frame(width: 70)
-//            .clipShape(Capsule())
+            HStack {
+                NavigationLink(destination: EnterComment(),
+                               label: {
+                    Text("Comment")
+                        .padding(0)
+                })
+                Spacer()
+                Button(action: {
+                    // Action to send data to cloud.
+                    
+                }, label: {
+                    Text("Save")
+                        .padding(0)
+                })
+                .font(.title3)
+                .foregroundColor(.white)
+                .background(.blue, in: Capsule())
+                .frame(width: 70)
+            }
         }
         .listStyle(CarouselListStyle())
         .ignoresSafeArea(edges: .bottom)
@@ -129,17 +98,6 @@ struct ScoringView: View {
                     Text("Exiting without saving round will discard any scoring input.")
                 }
                 Spacer()
-//                Button(action: {
-//                    // Action to send data to phone here... with acknowledgement button?
-//                }, label: {
-//                    Text("Save")
-//                })
-//                .font(.title3)
-//                .background(.blue)
-//                .foregroundColor(.white)
-//                .clipShape(Capsule())
-//                .padding()
-                //                Spacer()
             }
             .padding(.trailing)
         }
@@ -163,11 +121,11 @@ struct ScoringView: View {
         }
     }
 }
-//
-//
-//    struct ScoringView_Previews: PreviewProvider {
-//        static var previews: some View {
-//            ScoringView()
-//                .environmentObject(WatchData())
-//        }
-//    }
+
+
+    struct ScoringView_Previews: PreviewProvider {
+        static var previews: some View {
+            ScoringView(item: 1)
+                .environmentObject(WatchData())
+        }
+    }

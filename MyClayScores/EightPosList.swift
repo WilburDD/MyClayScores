@@ -49,7 +49,6 @@ struct EightPosList: View {
                 Text("\(item.comment!)")
             }
             .font(.caption.italic())
-            
         }
     }
 }

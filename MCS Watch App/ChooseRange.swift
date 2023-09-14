@@ -46,6 +46,6 @@ struct ChooseRange: View {
 struct ChooseRange_Previews: PreviewProvider {
     static var previews: some View {
         ChooseRange()
-            .environmentObject(RoundsDataStack())
+            .environmentObject(WatchData())
     }
 }

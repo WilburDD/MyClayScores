@@ -157,6 +157,7 @@ struct SelectRange: View {
                 }
             }
         }
+        .environmentObject(roundsData)
     }
 }
 

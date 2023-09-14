@@ -299,6 +299,8 @@ struct NinePosEditView: View {
             roundsData.posCount[8] = Int(item.pos9)
             roundsData.roundTotal = Int(item.total)
         }
+        .environmentObject(roundsData)
+
     }
 }
 

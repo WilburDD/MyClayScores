@@ -60,6 +60,8 @@ struct StatsView: View {
         .font(.title2)
         .fontWeight(.bold)
         Spacer()
+        .environmentObject(roundsData)
+
     }
 }
 

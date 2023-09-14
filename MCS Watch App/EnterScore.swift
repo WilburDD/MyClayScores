@@ -41,7 +41,7 @@ struct EnterScore: View {
             }
         }
         .environmentObject(roundData)
-        .navigationBarBackButtonHidden(true)
+//        .navigationBarBackButtonHidden(true)
     }
 }
 

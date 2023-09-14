@@ -16,6 +16,8 @@ class RoundsDataStack: ObservableObject, Identifiable {
     
     @Published var roundsData: [RoundEntity] = []
     
+    @Published var connectivityManager = WatchConnectivityManager.shared
+    
     @Published var editedIndex = 0
     
     @Published var positions = 0

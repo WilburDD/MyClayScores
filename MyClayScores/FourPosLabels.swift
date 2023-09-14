@@ -50,6 +50,7 @@ struct FourPosLabels: View {
             }
             .padding(.leading)
             .padding(.trailing)
+            .environmentObject(roundsData)
         }
     }
     
