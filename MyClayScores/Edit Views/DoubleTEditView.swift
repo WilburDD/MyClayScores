@@ -187,7 +187,7 @@ struct DoubleTEditView: View {
                                 .textFieldStyle(.roundedBorder)
                                 .onChange(of: self.roundsData.comment, perform : { value in
                                     if value.count > 10 {
-                                        self.roundsData.comment = String(value.prefix(28))
+                                        self.roundsData.comment = String(value.prefix(18))
                                     }
                                 })
                                 .onSubmit {

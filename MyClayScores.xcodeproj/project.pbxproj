@@ -35,6 +35,7 @@
 		3E6841942A863041003A6507 /* EightPosList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6841932A863041003A6507 /* EightPosList.swift */; };
 		3E6CB71A2A8CB78900ECB206 /* NinePosList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6CB7192A8CB78900ECB206 /* NinePosList.swift */; };
 		3E7BEB812AA969A300A9E901 /* EnterScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BEB802AA969A300A9E901 /* EnterScore.swift */; };
+		3E8470CD2AB587450099EA74 /* AvgChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8470CC2AB587450099EA74 /* AvgChart.swift */; };
 		3E891A362AB0669C00BB0604 /* RoundsDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E555BBE27CDEC8900F316B5 /* RoundsDataStack.swift */; };
 		3E891A382AB2969100BB0604 /* EnterComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E891A372AB2969100BB0604 /* EnterComment.swift */; };
 		3E97E0242A05AD17005AAE51 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E0DBF1128449D5B00DB1BEE /* CloudKit.framework */; };
@@ -99,6 +100,7 @@
 		3E6841932A863041003A6507 /* EightPosList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EightPosList.swift; path = ../../EightPosList.swift; sourceTree = "<group>"; };
 		3E6CB7192A8CB78900ECB206 /* NinePosList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NinePosList.swift; path = ../../NinePosList.swift; sourceTree = "<group>"; };
 		3E7BEB802AA969A300A9E901 /* EnterScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterScore.swift; sourceTree = "<group>"; };
+		3E8470CC2AB587450099EA74 /* AvgChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvgChart.swift; sourceTree = "<group>"; };
 		3E891A372AB2969100BB0604 /* EnterComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterComment.swift; sourceTree = "<group>"; };
 		3E9A615827FAB4BF0054EE30 /* FivePosNRView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FivePosNRView.swift; path = ../FivePosNRView.swift; sourceTree = "<group>"; };
 		3EA29D672A987E2800AF2FE5 /* FourPosLabels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FourPosLabels.swift; path = ../../FourPosLabels.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				3E133BE92AAEDAEC001C4ABA /* Position Labels & Lists */,
 				3E1777F2287B5D2B00A9CE48 /* SelectRange.swift */,
 				3E5109A327FEE03900C3C8DD /* StatsView.swift */,
+				3E8470CC2AB587450099EA74 /* AvgChart.swift */,
 				3E555BB927CDEC8900F316B5 /* Assets.xcassets */,
 				3E555BBB27CDEC8900F316B5 /* Preview Content */,
 			);
@@ -357,6 +360,7 @@
 				3E42D281283483F5004DDEA9 /* RoundsView.swift in Sources */,
 				3EF5EDAF2817A0EB0087042D /* FivePosList.swift in Sources */,
 				3E555BC227CDEC8900F316B5 /* MyClayScoresModel.xcdatamodeld in Sources */,
+				3E8470CD2AB587450099EA74 /* AvgChart.swift in Sources */,
 				3E1777F3287B5D2B00A9CE48 /* SelectRange.swift in Sources */,
 				3E5109A427FEE03900C3C8DD /* StatsView.swift in Sources */,
 				3E6CB71A2A8CB78900ECB206 /* NinePosList.swift in Sources */,

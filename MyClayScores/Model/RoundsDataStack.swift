@@ -15,7 +15,7 @@ class RoundsDataStack: ObservableObject, Identifiable {
     @AppStorage ("storedRange") var storedRange = String("")
     
     @Published var roundsData: [RoundEntity] = []
-        
+    
     @Published var editedIndex = 0
     
     @Published var positions = 0
@@ -57,9 +57,23 @@ class RoundsDataStack: ObservableObject, Identifiable {
     @Published var posMax = [5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 25.0]
     @Published var posAvgs = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
     @Published var posPcts = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-    
+    @Published var graphMax = Double (25.0)
+    @Published var minTotal = Int()
     @Published var avgs: [AvgData] = []
+    @Published var graphData: [GraphData] = []
     
+    struct AvgData: Identifiable, Hashable {
+        public var id = UUID()
+        public var pos = Int()
+        public var avg = Double()
+        public var pct = Double()
+    }
+    struct GraphData: Hashable {
+        public var seq = ""
+        public var date = ""
+        public var score = Int()
+        public var comment = String()
+    }
     
     struct PersistenceController {
         static let shared = PersistenceController()
@@ -113,6 +127,28 @@ class RoundsDataStack: ObservableObject, Identifiable {
         }
     }
     
+    func fetchGraphs() {
+        let request = NSFetchRequest<RoundEntity>(entityName: "RoundEntity")
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
+        let predicate = NSPredicate(format: "range == %@", selectedRange)
+        request.predicate = predicate
+        request.sortDescriptors = [sortDescriptor]
+        do {
+            roundsData = try managedObjectContext.fetch(request)
+        } catch let error {
+            print ("Error fetching. \(error)")
+        }
+        for x in 0...roundsData.count - 1 {
+            //            let dateFormatter = DateFormatter()
+            //            dateFormatter.dateFormat = "M/dd/yyyy, h:mm a"
+            let seq = String(x)
+            let date = roundsData[x].date?.formatted(date: .numeric, time: .standard) ?? "Date error"
+            let score = Int(roundsData[x].total)
+            let comment = roundsData[x].comment ?? "no comment"
+            graphData.append(GraphData(seq: seq, date: date, score: score, comment: comment))
+        }
+    }
+    
     func saveRounds() {
         guard managedObjectContext.hasChanges else { return }
         do {
@@ -143,25 +179,25 @@ class RoundsDataStack: ObservableObject, Identifiable {
         calcAvgs()
     }
     
-        func saveEdit(range: String, comment: String, date: Date, id: UUID, pos1: Int64, pos2: Int64, pos3: Int64, pos4: Int64, pos5: Int64, pos6: Int64, pos7: Int64, pos8: Int64, pos9: Int64,total: Int64 ) {
-            let editedRound = RoundEntity(context: managedObjectContext)
-            editedRound.range = range
-            editedRound.comment = comment
-            editedRound.date = date
-            editedRound.id = id
-            editedRound.pos1 = pos1
-            editedRound.pos2 = pos2
-            editedRound.pos3 = pos3
-            editedRound.pos4 = pos4
-            editedRound.pos5 = pos5
-            editedRound.pos6 = pos6
-            editedRound.pos7 = pos7
-            editedRound.pos8 = pos8
-            editedRound.pos9 = pos9
-            editedRound.total = total
-            saveRounds()
-            calcAvgs()
-        }
+    func saveEdit(range: String, comment: String, date: Date, id: UUID, pos1: Int64, pos2: Int64, pos3: Int64, pos4: Int64, pos5: Int64, pos6: Int64, pos7: Int64, pos8: Int64, pos9: Int64,total: Int64 ) {
+        let editedRound = RoundEntity(context: managedObjectContext)
+        editedRound.range = range
+        editedRound.comment = comment
+        editedRound.date = date
+        editedRound.id = id
+        editedRound.pos1 = pos1
+        editedRound.pos2 = pos2
+        editedRound.pos3 = pos3
+        editedRound.pos4 = pos4
+        editedRound.pos5 = pos5
+        editedRound.pos6 = pos6
+        editedRound.pos7 = pos7
+        editedRound.pos8 = pos8
+        editedRound.pos9 = pos9
+        editedRound.total = total
+        saveRounds()
+        calcAvgs()
+    }
     
     func deleteRound(indexSet: IndexSet) {
         guard let index = indexSet.first else { return }
@@ -200,8 +236,12 @@ class RoundsDataStack: ObservableObject, Identifiable {
         
         totalPct = posAvgs[9]/posMax[9]
         totalRnds = roundsData.count
-        
-//        print(avgs)
+        graphMax = posMax[9] + 1
+        let allTotals = roundsData.compactMap({ $0.total })
+        minTotal = Int(Int64(allTotals.min() ?? 0))
+        let minRounded = minTotal / 5
+        let minRoundedInt = floor(Double(minRounded))
+        minTotal = Int(minRoundedInt * 5)
         
         if totalRnds == 0 {
             pos1Avg = 0
@@ -219,6 +259,7 @@ class RoundsDataStack: ObservableObject, Identifiable {
     
     func clearData () {
         avgs.removeAll()
+        graphData.removeAll()
         posCount = [0, 0, 0, 0, 0, 0, 0, 0, 0]
         comment = ""
         roundTotal = 0
@@ -226,12 +267,5 @@ class RoundsDataStack: ObservableObject, Identifiable {
     
     func addupScore () {
         roundTotal = posCount[0] + posCount[1] + posCount[2] + posCount[3] + posCount[4] + posCount[5] + posCount[6] + posCount[7] + posCount[8]
-    }
-    
-    struct AvgData: Identifiable, Hashable {
-        public var id = UUID()
-        public var pos = Int()
-        public var avg = Double()
-        public var pct = Double()
     }
 }
