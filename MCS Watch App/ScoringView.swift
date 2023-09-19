@@ -51,9 +51,14 @@ struct ScoringView: View {
                 NavigationLink(destination: EnterComment(),
                                label: {
                     Text("Comment")
-                        .padding(0)
+                        .frame(height: 30)
+                        .foregroundColor(.white)
+//                        .background(.blue, in: Capsule())
+
+//                        .frame(width: 60, height: 60)
+//                        .padding(0)
                 })
-                Spacer()
+//                Spacer()
                 Button(action: {
                     roundData.addRound(
                         range: roundData.range,
@@ -77,11 +82,13 @@ struct ScoringView: View {
                     Text("Save")
                         .padding(0)
                 })
-                .font(.title3)
+//                .font(.title3)
+                .frame(width: 60, height: 50)
                 .foregroundColor(.white)
                 .background(.blue, in: Capsule())
-                .frame(width: 70)
+
             }
+            .padding()
         }
         .listStyle(CarouselListStyle())
         .ignoresSafeArea(edges: .bottom)
