@@ -71,8 +71,7 @@ struct DoubleTEditView: View {
                         })
                         .padding(.all)
                         .font(.title3.bold())
-                        .background(.blue)
-                        .background(.blue)
+                        .background(.green)
                         .foregroundColor(.white)
                         .clipShape(Capsule())
                     }

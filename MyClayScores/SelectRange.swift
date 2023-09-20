@@ -45,7 +45,7 @@ struct SelectRange: View {
                             }, label: {
                                 Text("American").font(.title)
                             })
-                            .getRangeButtonStyle()
+                            .getBlueButtonStyle()
                             Spacer()
                             Button(action: {
                                 roundsData.selectedRange = "Continental Trap"
@@ -59,7 +59,7 @@ struct SelectRange: View {
                             }, label: {
                                 Text("Continental").font(.title)
                             })
-                            .getRangeButtonStyle()
+                            .getBlueButtonStyle()
                             Spacer()
                         }
                         HStack{
@@ -76,7 +76,7 @@ struct SelectRange: View {
                             }, label: {
                                 Text("ISSF/Olympic").font(.title)
                             })
-                            .getRangeButtonStyle()
+                            .getBlueButtonStyle()
                             Spacer()
                             Button(action: {
                                 roundsData.selectedRange = "Double Trap"
@@ -90,7 +90,7 @@ struct SelectRange: View {
                             }, label: {
                                 Text("Double").font(.title)
                             })
-                            .getRangeButtonStyle()
+                            .getBlueButtonStyle()
                             Spacer()
                         }
                         .padding()
@@ -114,7 +114,7 @@ struct SelectRange: View {
                             }, label: {
                                 Text("American").font(.title)
                             })
-                            .getRangeButtonStyle()
+                            .getCyanButtonStyle()
                             Spacer()
                             Button(action: {
                                 roundsData.selectedRange = "ISSF/Olympic Skeet"
@@ -128,7 +128,7 @@ struct SelectRange: View {
                             }, label: {
                                 Text("ISSF/Olympic").font(.title)
                             })
-                            .getRangeButtonStyle()
+                            .getCyanButtonStyle()
                             Spacer()
                         }
                         .padding(.bottom)
@@ -150,9 +150,17 @@ struct SelectRange: View {
                         }, label: {
                             Text("Compak/5-Stand").font(.title)
                         })
-                        .getRangeButtonStyle()
+                        .getTealButtonStyle()
                     }
-                    .padding()
+//                    .padding()
+//                    Spacer()
+                    HStack {
+                        Spacer()
+                        Text("v. 2.2.1")
+                            .font(.headline)
+                            .opacity(0.2)
+                            .padding()
+                    }
                     Spacer()
                 }
             }
@@ -180,11 +188,44 @@ struct CustomDivider: View {
 }
 
 extension Button {
-    func getRangeButtonStyle() -> some View {
+    func getBlueButtonStyle() -> some View {
         self
             .font(.headline)
             .padding(10)
             .background(Color.blue)
+            .foregroundColor(Color.white)
+            .clipShape(Capsule())
+    }
+}
+
+extension Button {
+    func getCyanButtonStyle() -> some View {
+        self
+            .font(.headline)
+            .padding(10)
+            .background(Color.cyan)
+            .foregroundColor(Color.white)
+            .clipShape(Capsule())
+    }
+}
+
+extension Button {
+    func getTealButtonStyle() -> some View {
+        self
+            .font(.headline)
+            .padding(10)
+            .background(Color.teal)
+            .foregroundColor(Color.white)
+            .clipShape(Capsule())
+    }
+}
+
+extension Button {
+    func getGreenButtonStyle() -> some View {
+        self
+            .font(.headline)
+            .padding(10)
+            .background(Color.green)
             .foregroundColor(Color.white)
             .clipShape(Capsule())
     }

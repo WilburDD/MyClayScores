@@ -16,7 +16,7 @@ struct AvgChart: View {
     @State private var offsetX = 0.0
     @State private var offsetY = 0.0
     @State private var selectedDay = ""
-    @State private var selectedScore = ""
+    @State private var selectedScore = 0
     @State private var selectedComment = ""
     
     var body: some View {
@@ -77,10 +77,10 @@ struct AvgChart: View {
                             offsetX = location.x
                             offsetY = location.y
                             
-                            let (seq, score) = pr.value(at: location, as: (String, Int).self) ?? ("-", 0)
+                            let (seq, _ ) = pr.value(at: location, as: (String, Int).self) ?? ("-", 0)
                             let x = Int(seq) ?? 0
                             selectedDay = roundsData.graphData[x].date
-                            selectedScore = String(score)
+                            selectedScore = roundsData.graphData[x].score
                             selectedComment = roundsData.graphData[x].comment
                         }
                         .onEnded({ _ in

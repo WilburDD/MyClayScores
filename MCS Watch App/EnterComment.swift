@@ -14,6 +14,7 @@ struct EnterComment: View {
     var body: some View {
         VStack {
             Text("\(roundData.range)")
+                .font(.title3)
                 .fontWeight(.bold)
                 .underline()
             Text("Comment")
@@ -27,6 +28,7 @@ struct EnterComment: View {
                 })
                 .multilineTextAlignment(.center)
                 .padding()
+            Text("(Tap to enter)")
         }
     }
 }

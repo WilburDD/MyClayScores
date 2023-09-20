@@ -77,10 +77,10 @@ struct StatsView: View {
 }
 
 
-struct StatsView_Previews: PreviewProvider {
-    static var previews: some View {
-        StatsView()
-            .environmentObject(RoundsDataStack())
-    }
-}
+//struct StatsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        StatsView()
+//            .environmentObject(RoundsDataStack())
+//    }
+//}
 
