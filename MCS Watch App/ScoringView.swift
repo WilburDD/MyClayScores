@@ -18,6 +18,35 @@ struct ScoringView: View {
     
     var body: some View {
         VStack {
+            HStack {
+                Button(action: {
+                    if roundData.roundTotal == 0 {
+                        roundData.clearData()
+                        dismiss()
+                    } else {
+                        showAlert = true
+                    }
+                }, label: {
+                        Text("<")
+                            .font(.title2)
+                            .foregroundColor(.white)
+                })
+                .frame(width: 40, height: 25)
+                .alert("WARNING", isPresented: $showAlert) {
+                    Button("DISCARD", role: .destructive) {
+                        roundData.clearData()
+                        dismiss()
+                    }
+                    Button("Continue Scoring", role: .cancel) {
+                        showAlert = false
+                    }
+                } message: {
+                    Text("Exiting without saving round will discard any scoring input.")
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.leading)
+            
             VStack {
                 Text("\(roundData.range)")
                     .fontWeight(.bold)
@@ -51,8 +80,6 @@ struct ScoringView: View {
                 NavigationLink(destination: EnterComment(),
                                label: {
                     Text("Comment")
-//                        .padding()
-
                 })
                 .foregroundColor(.white)
                 .frame(height: 50)
@@ -80,47 +107,17 @@ struct ScoringView: View {
                 }, label: {
                     Text("Save")
                 })
-                .frame(width: 60, height: 50)
+                .frame(width: 70, height: 50)
                 .foregroundColor(.white)
                 .background(.green, in: Capsule())
-                
             }
             .padding()
         }
         .listStyle(CarouselListStyle())
+        .ignoresSafeArea(edges: .top)
         .ignoresSafeArea(edges: .bottom)
         .navigationBarBackButtonHidden(true)
-        .navigationTitle {
-            HStack {
-                Button(action: {
-                    if roundData.roundTotal == 0 {
-                        roundData.clearData()
-                        dismiss()
-                    } else {
-                        showAlert = true
-                    }
-                }, label: {
-                    HStack {
-                        Text("<")
-                            .font(.title)
-                            .foregroundColor(.white)
-                    }
-                })
-                .alert("WARNING", isPresented: $showAlert) {
-                    Button("DISCARD", role: .destructive) {
-                        roundData.clearData()
-                        dismiss()
-                    }
-                    Button("Continue Scoring", role: .cancel) {
-                        showAlert = false
-                    }
-                } message: {
-                    Text("Exiting without saving round will discard any scoring input.")
-                }
-                Spacer()
-            }
-            .padding(.trailing)
-        }
+        //        Spacer()
         .environmentObject(roundData)
         .onAppear {
             roundData.range = roundData.ranges[item]

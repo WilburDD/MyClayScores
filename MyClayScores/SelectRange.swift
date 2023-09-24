@@ -156,7 +156,7 @@ struct SelectRange: View {
 //                    Spacer()
                     HStack {
                         Spacer()
-                        Text("v. 2.2.1")
+                        Text("v. 2.2.2")
                             .font(.headline)
                             .opacity(0.2)
                             .padding()
