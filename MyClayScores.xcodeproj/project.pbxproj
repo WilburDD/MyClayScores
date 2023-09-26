@@ -44,6 +44,16 @@
 		3EF5EDAF2817A0EB0087042D /* FivePosList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF5EDAE2817A0EB0087042D /* FivePosList.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		3EAF9BF12AC2883200E89E2F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E555BAA27CDEC8700F316B5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3E6522322AA6D7BE00787581;
+			remoteInfo = "MCS Watch App";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		3E062A2D28235559000B4E8D /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -257,6 +267,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3EAF9BF22AC2883200E89E2F /* PBXTargetDependency */,
 			);
 			name = MyClayScores;
 			productName = TrapTracker_v2;
@@ -383,6 +394,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3EAF9BF22AC2883200E89E2F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3E6522322AA6D7BE00787581 /* MCS Watch App */;
+			targetProxy = 3EAF9BF12AC2883200E89E2F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		3E555BC327CDEC8900F316B5 /* Debug */ = {
