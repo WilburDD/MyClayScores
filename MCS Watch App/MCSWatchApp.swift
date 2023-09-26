@@ -11,12 +11,14 @@ import WatchKit
 @main
 struct MCS_Watch_AppApp: App {
 
-    @EnvironmentObject var roundData: WatchData
+    @StateObject var roundData = WatchData()
 
     var body: some Scene {
         WindowGroup {
             ChooseRange()
-                .environmentObject(WatchData())
+                .environmentObject(roundData)
+                .environment(\.managedObjectContext,
+                              roundData.managedObjectContext)
         }
     }
 }

@@ -9,11 +9,12 @@ import SwiftUI
 import WatchKit
 
 struct ChooseRange: View {
+    
+    @EnvironmentObject var roundData: WatchData
+
     var body: some View {
-        
-        @StateObject var roundData = WatchData()
-        
-        NavigationStack (path: $roundData.path) {
+
+        NavigationStack {
             VStack {
                 Text("Select Range")
                     .font(.title3)
@@ -40,7 +41,6 @@ struct ChooseRange: View {
             }
         }
     }
-
 }
 
 struct ChooseRange_Previews: PreviewProvider {

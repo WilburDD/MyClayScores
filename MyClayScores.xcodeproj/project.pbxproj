@@ -38,7 +38,6 @@
 		3E6CB71A2A8CB78900ECB206 /* NinePosList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6CB7192A8CB78900ECB206 /* NinePosList.swift */; };
 		3E7BEB812AA969A300A9E901 /* EnterScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BEB802AA969A300A9E901 /* EnterScore.swift */; };
 		3E8470CD2AB587450099EA74 /* AvgChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8470CC2AB587450099EA74 /* AvgChart.swift */; };
-		3E891A362AB0669C00BB0604 /* RoundsDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E555BBE27CDEC8900F316B5 /* RoundsDataStack.swift */; };
 		3E891A382AB2969100BB0604 /* EnterComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E891A372AB2969100BB0604 /* EnterComment.swift */; };
 		3E9A615927FAB4BF0054EE30 /* FivePosNRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9A615827FAB4BF0054EE30 /* FivePosNRView.swift */; };
 		3EA29D682A987E2800AF2FE5 /* FourPosLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA29D672A987E2800AF2FE5 /* FourPosLabels.swift */; };
@@ -375,7 +374,6 @@
 				3E133BE82AABF8AC001C4ABA /* MyClayScoresModel.xcdatamodeld in Sources */,
 				3E6522382AA6D7BE00787581 /* ChooseRange.swift in Sources */,
 				3E3303472ABFB1CA00F04B90 /* ComplicationController.swift in Sources */,
-				3E891A362AB0669C00BB0604 /* RoundsDataStack.swift in Sources */,
 				3E6522362AA6D7BE00787581 /* MCSWatchApp.swift in Sources */,
 				3E7BEB812AA969A300A9E901 /* EnterScore.swift in Sources */,
 				3E6522462AA6DCDF00787581 /* WatchData.swift in Sources */,

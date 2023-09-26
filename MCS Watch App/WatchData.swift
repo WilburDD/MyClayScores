@@ -27,7 +27,6 @@ class WatchData: ObservableObject, Identifiable {
     @Published var roundTotal = 0
     @Published var roundDate = Date()
     @Published var comment = ""
-    @Published var path = NavigationPath()
         
     struct PersistenceController {
         static let shared = PersistenceController()
@@ -121,10 +120,10 @@ class WatchData: ObservableObject, Identifiable {
         roundTotal = posCount[0] + posCount[1] + posCount[2] + posCount[3] + posCount[4] + posCount[5] + posCount[6] + posCount[7] + posCount[8]
     }
 }
-
-class ComplicationController: NSObject, CLKComplicationDataSource {
-    func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void) {
-        // TODO: Finish implementing this required method.
-    }
-}
+//
+//class ComplicationController: NSObject, CLKComplicationDataSource {
+//    func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void) {
+//        // TODO: Finish implementing this required method.
+//    }
+//}
 
