@@ -156,7 +156,7 @@ struct SelectRange: View {
 //                    Spacer()
                     HStack {
                         Spacer()
-                        Text("v. 2.2.2")
+                        Text("v. 2.3.2")
                             .font(.headline)
                             .opacity(0.2)
                             .padding()
@@ -192,7 +192,7 @@ extension Button {
         self
             .font(.headline)
             .padding(10)
-            .background(Color.blue)
+            .background(Color.blue.gradient)
             .foregroundColor(Color.white)
             .clipShape(Capsule())
     }
@@ -203,7 +203,7 @@ extension Button {
         self
             .font(.headline)
             .padding(10)
-            .background(Color.cyan)
+            .background(Color.cyan.gradient)
             .foregroundColor(Color.white)
             .clipShape(Capsule())
     }
@@ -214,7 +214,7 @@ extension Button {
         self
             .font(.headline)
             .padding(10)
-            .background(Color.teal)
+            .background(Color.teal.gradient)
             .foregroundColor(Color.white)
             .clipShape(Capsule())
     }
@@ -225,7 +225,7 @@ extension Button {
         self
             .font(.headline)
             .padding(10)
-            .background(Color.green)
+            .background(Color.green.gradient)
             .foregroundColor(Color.white)
             .clipShape(Capsule())
     }
