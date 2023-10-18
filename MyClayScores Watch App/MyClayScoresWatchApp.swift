@@ -9,7 +9,7 @@ import SwiftUI
 import WatchKit
 
 @main
-struct MCS_Watch_AppApp: App {
+struct MyClayScores_Watch_AppApp: App {
 
     @StateObject var roundData = WatchData()
 
