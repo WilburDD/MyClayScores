@@ -76,42 +76,55 @@ struct ScoringView: View {
                     }
                 }
             }
+            
             HStack {
-                NavigationLink(destination: EnterComment(),
+                NavigationLink(destination: FinishRound(),
                                label: {
-                    Text("Comment")
+                    Text("Round Complete")
                 })
                 .foregroundColor(.white)
-                .frame(height: 50)
+                .frame(width: 170, height: 40)
                 .background(.teal, in: Capsule())
-                Spacer()
-                Button(action: {
-                    roundData.addRound(
-                        range: roundData.range,
-                        comment: roundData.comment,
-                        date: Date.now,
-                        pos1: Int64(roundData.posCount[0]),
-                        pos2: Int64(roundData.posCount[1]),
-                        pos3: Int64(roundData.posCount[2]),
-                        pos4: Int64(roundData.posCount[3]),
-                        pos5: Int64(roundData.posCount[4]),
-                        pos6: Int64(roundData.posCount[5]),
-                        pos7: Int64(roundData.posCount[6]),
-                        pos8: Int64(roundData.posCount[7]),
-                        pos9: Int64(roundData.posCount[8]),
-                        total: Int64(roundData.roundTotal))
-                    roundData.saveRounds()
-                    roundData.fetchRounds()
-                    roundData.clearData()
-                    dismiss()
-                }, label: {
-                    Text("Save")
-                })
-                .frame(width: 70, height: 50)
-                .foregroundColor(.white)
-                .background(.green, in: Capsule())
+                
             }
             .padding()
+            
+//            HStack {
+//                NavigationLink(destination: EnterComment(),
+//                               label: {
+//                    Text("Comment")
+//                })
+//                .foregroundColor(.white)
+//                .frame(height: 50)
+//                .background(.teal, in: Capsule())
+//                Spacer()
+//                Button(action: {
+//                    roundData.addRound(
+//                        range: roundData.range,
+//                        comment: roundData.comment,
+//                        date: Date.now,
+//                        pos1: Int64(roundData.posCount[0]),
+//                        pos2: Int64(roundData.posCount[1]),
+//                        pos3: Int64(roundData.posCount[2]),
+//                        pos4: Int64(roundData.posCount[3]),
+//                        pos5: Int64(roundData.posCount[4]),
+//                        pos6: Int64(roundData.posCount[5]),
+//                        pos7: Int64(roundData.posCount[6]),
+//                        pos8: Int64(roundData.posCount[7]),
+//                        pos9: Int64(roundData.posCount[8]),
+//                        total: Int64(roundData.roundTotal))
+//                    roundData.saveRounds()
+//                    roundData.fetchRounds()
+//                    roundData.clearData()
+//                    dismiss()
+//                }, label: {
+//                    Text("Save")
+//                })
+//                .frame(width: 70, height: 50)
+//                .foregroundColor(.white)
+//                .background(.green, in: Capsule())
+//            }
+//            .padding()
         }
         .listStyle(CarouselListStyle())
         .ignoresSafeArea(edges: .top)

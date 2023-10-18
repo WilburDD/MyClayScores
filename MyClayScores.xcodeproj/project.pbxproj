@@ -39,6 +39,7 @@
 		3E7BEB812AA969A300A9E901 /* EnterScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BEB802AA969A300A9E901 /* EnterScore.swift */; };
 		3E8470CD2AB587450099EA74 /* AvgChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8470CC2AB587450099EA74 /* AvgChart.swift */; };
 		3E891A382AB2969100BB0604 /* EnterComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E891A372AB2969100BB0604 /* EnterComment.swift */; };
+		3E973CEB2ADF775200E3AB46 /* FinishRound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E973CEA2ADF775200E3AB46 /* FinishRound.swift */; };
 		3E9A615927FAB4BF0054EE30 /* FivePosNRView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9A615827FAB4BF0054EE30 /* FivePosNRView.swift */; };
 		3EA29D682A987E2800AF2FE5 /* FourPosLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA29D672A987E2800AF2FE5 /* FourPosLabels.swift */; };
 		3EF5EDAF2817A0EB0087042D /* FivePosList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF5EDAE2817A0EB0087042D /* FivePosList.swift */; };
@@ -102,6 +103,7 @@
 		3E7BEB802AA969A300A9E901 /* EnterScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterScore.swift; sourceTree = "<group>"; };
 		3E8470CC2AB587450099EA74 /* AvgChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvgChart.swift; sourceTree = "<group>"; };
 		3E891A372AB2969100BB0604 /* EnterComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterComment.swift; sourceTree = "<group>"; };
+		3E973CEA2ADF775200E3AB46 /* FinishRound.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishRound.swift; sourceTree = "<group>"; };
 		3E9A615827FAB4BF0054EE30 /* FivePosNRView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FivePosNRView.swift; path = ../FivePosNRView.swift; sourceTree = "<group>"; };
 		3EA29D672A987E2800AF2FE5 /* FourPosLabels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FourPosLabels.swift; path = ../../FourPosLabels.swift; sourceTree = "<group>"; };
 		3EA808562AB3020300B1977D /* MCS Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "MCS Watch App.entitlements"; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 				3E5272E52AA6FB090066C2CB /* ScoringView.swift */,
 				3E7BEB802AA969A300A9E901 /* EnterScore.swift */,
 				3E891A372AB2969100BB0604 /* EnterComment.swift */,
+				3E973CEA2ADF775200E3AB46 /* FinishRound.swift */,
 				3E3303462ABFB1CA00F04B90 /* ComplicationController.swift */,
 				3E6522392AA6D7BF00787581 /* Assets.xcassets */,
 				3E65223B2AA6D7BF00787581 /* Preview Content */,
@@ -384,6 +387,7 @@
 			files = (
 				3E133BE82AABF8AC001C4ABA /* MyClayScoresModel.xcdatamodeld in Sources */,
 				3E6522382AA6D7BE00787581 /* ChooseRange.swift in Sources */,
+				3E973CEB2ADF775200E3AB46 /* FinishRound.swift in Sources */,
 				3E3303472ABFB1CA00F04B90 /* ComplicationController.swift in Sources */,
 				3E6522362AA6D7BE00787581 /* MCSWatchApp.swift in Sources */,
 				3E7BEB812AA969A300A9E901 /* EnterScore.swift in Sources */,
@@ -534,7 +538,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = MyClayScores/MyClayScores.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MyClayScores/Preview Content\"";
 				DEVELOPMENT_TEAM = CM53CRQF5E;
 				ENABLE_PREVIEWS = YES;
@@ -554,7 +558,7 @@
 				);
 				LOCALIZATION_EXPORT_SUPPORTED = YES;
 				LOCALIZED_STRING_SWIFTUI_SUPPORT = YES;
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.doxiedavis.MyClayScores;
 				PRODUCT_NAME = MyClayScores;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -574,7 +578,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = MyClayScores/MyClayScores.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MyClayScores/Preview Content\"";
 				DEVELOPMENT_TEAM = CM53CRQF5E;
 				ENABLE_PREVIEWS = YES;
@@ -594,7 +598,7 @@
 				);
 				LOCALIZATION_EXPORT_SUPPORTED = YES;
 				LOCALIZED_STRING_SWIFTUI_SUPPORT = YES;
-				MARKETING_VERSION = 2.3;
+				MARKETING_VERSION = 2.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.doxiedavis.MyClayScores;
 				PRODUCT_NAME = MyClayScores;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -627,7 +631,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.doxiedavis.MyClayScores.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -660,7 +664,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.doxiedavis.MyClayScores.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
