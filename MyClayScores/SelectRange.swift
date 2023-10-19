@@ -25,11 +25,10 @@ struct SelectRange: View {
                         .fontWeight(.bold)
                         .italic()
                         .underline()
-                        .padding(.top)
                     Spacer()
                     VStack{
                         Text("Trap")
-                            .font(.title)
+                            .font(.title2)
                             .fontWeight(.bold)
                         HStack {
                             Spacer()
@@ -98,7 +97,7 @@ struct SelectRange: View {
                     }
                     VStack {
                         Text("Skeet")
-                            .font(.title)
+                            .font(.title2)
                             .fontWeight(.bold)
                         HStack {
                             Spacer()
@@ -136,7 +135,7 @@ struct SelectRange: View {
                     }
                     VStack {
                         Text("Sporting")
-                            .font(.title)
+                            .font(.title2)
                             .fontWeight(.bold)
                         Button(action: {
                             roundsData.selectedRange = "Compak/5-Stand"
@@ -152,15 +151,11 @@ struct SelectRange: View {
                         })
                         .getTealButtonStyle()
                     }
-//                    .padding()
-//                    Spacer()
-                    HStack {
-                        Spacer()
-                        Text("v. 2.4.1")
-                            .font(.headline)
-                            .opacity(0.2)
-                            .padding()
-                    }
+                    Spacer()
+                    Text("v. 2.4.1\nSend me your comments & feedback:  myclayscores@gmail.com.  Enjoy!")
+                        .multilineTextAlignment(.center)
+                        .font(.headline)
+                        .opacity(0.3)
                     Spacer()
                 }
             }

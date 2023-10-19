@@ -12,7 +12,7 @@ import Charts
 
 class RoundsDataStack: ObservableObject, Identifiable {
     
-    @AppStorage ("storedRange") var storedRange = String("")
+    @AppStorage ("storedRange") var storedRange = String("No Range Selected")
     
     @Published var roundsData: [RoundEntity] = []
     
@@ -21,7 +21,7 @@ class RoundsDataStack: ObservableObject, Identifiable {
     @Published var positions = 0
     @Published var scoringPos = Int()
     @Published var showScoring = false
-    @Published var selectedRange = String("")
+    @Published var selectedRange = "No Range Selected"
     @Published var range = String()
     @Published var comment = ""
     @Published var posCount = [0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -30,6 +30,7 @@ class RoundsDataStack: ObservableObject, Identifiable {
     @Published var roundID = UUID()
     @Published var selection = Int()
     @Published var path = NavigationPath()
+    @Published var noRounds = false
     
     @Published var pos1Avg = Double (0.0)
     @Published var pos2Avg = Double (0.0)
@@ -122,6 +123,11 @@ class RoundsDataStack: ObservableObject, Identifiable {
         request.sortDescriptors = [sortDescriptor]
         do {
             roundsData = try managedObjectContext.fetch(request)
+            if roundsData.count == 0 {
+                self.noRounds = true
+            } else {
+                self.noRounds = false
+            }
         } catch let error {
             print ("Error fetching. \(error)")
         }
@@ -138,15 +144,20 @@ class RoundsDataStack: ObservableObject, Identifiable {
         } catch let error {
             print ("Error fetching. \(error)")
         }
-        for x in 0...roundsData.count - 1 {
-            //            let dateFormatter = DateFormatter()
-            //            dateFormatter.dateFormat = "M/dd/yyyy, h:mm a"
-            let seq = String(x)
-            let date = roundsData[x].date?.formatted(date: .numeric, time: .standard) ?? "Date error"
-            let score = Int(roundsData[x].total)
-            let comment = roundsData[x].comment ?? "no comment"
-            graphData.append(GraphData(seq: seq, date: date, score: score, comment: comment))
-        }
+//        if roundsData.count == 0 {
+//            self.noRounds = true
+//            if roundsData.count > 0 {
+//                self.noRounds = false
+//            }
+//        } else {
+            for x in 0...roundsData.count - 1 {
+                let seq = String(x)
+                let date = roundsData[x].date?.formatted(date: .numeric, time: .standard) ?? "Date error"
+                let score = Int(roundsData[x].total)
+                let comment = roundsData[x].comment ?? "no comment"
+                graphData.append(GraphData(seq: seq, date: date, score: score, comment: comment))
+            }
+//        }
     }
     
     func saveRounds() {

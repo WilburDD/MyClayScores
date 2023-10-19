@@ -12,6 +12,8 @@ struct StatsView: View {
     
     @EnvironmentObject var roundsData: RoundsDataStack
     
+    @State private var showAlert: Bool = false
+    
     var body: some View {
         
         VStack {
@@ -42,12 +44,6 @@ struct StatsView: View {
                     }
                 }
                 .chartXScale(domain: 0...roundsData.posMax[0])
-//                .chartXAxis(.hidden)
-//                .chartYAxis {
-//                    AxisMarks (position: .leading)
-//                }
-//                .font(.title)
-//                .fontWeight(.bold)
                 Spacer()
                 VStack {
                     Text("Rounds:   \(roundsData.totalRnds)")

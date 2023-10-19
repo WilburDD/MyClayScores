@@ -13,6 +13,7 @@ import MediaPlayer
 struct RoundsView: View {
     
     @EnvironmentObject var roundsData: RoundsDataStack
+    @State private var noRangeAlert: Bool = false
     
     var body: some View {
         NavigationStack (path: $roundsData.path) {
@@ -99,6 +100,18 @@ struct RoundsView: View {
                     .font(.title3)
                 }
                 .navigationDestination(for: Int.self) {_ in
+                    if roundsData.selectedRange == "No Range Selected" {
+                        Text("A Range must firstly be selected to start\na New Round.")
+                            .padding()
+                            .multilineTextAlignment(.center)
+                            .frame(width: 300, height: 200, alignment: .center)
+                            .background(.white)
+                            .foregroundColor(.black)
+                            .font(.title2)
+                            .fontWeight(.bold)
+                            .italic()
+                            .cornerRadius(40)
+                    }
                     if roundsData.selectedRange == "American Trap" || roundsData.selectedRange == "Continental Trap" || roundsData.selectedRange == "ISSF/Olympic Trap" || roundsData.selectedRange == "Compak/5-Stand" {
                         FivePosNRView()
                     } else if roundsData.selectedRange == "American Skeet" {
@@ -110,9 +123,21 @@ struct RoundsView: View {
                     }
                 }
                 Spacer()
-                
                 NavigationLink {
-                    StatsView()
+                    if roundsData.noRounds == true {
+                        Text("There are no saved Rounds to present\nStats on.")
+                            .padding()
+                            .multilineTextAlignment(.center)
+                            .frame(width: 300, height: 200, alignment: .center)
+                            .background(.white)
+                            .foregroundColor(.black)
+                            .font(.title2)
+                            .fontWeight(.bold)
+                            .italic()
+                            .cornerRadius(40)
+                    } else {
+                        StatsView()
+                    }
                 } label: {
                     VStack {
                         Image(systemName: "chart.dots.scatter")
@@ -127,22 +152,24 @@ struct RoundsView: View {
         .padding()
         .listStyle(.plain)
         .onAppear{
-            roundsData.selectedRange = roundsData.storedRange
-            if roundsData.selectedRange == "American Skeet" {
-                roundsData.positions = 8
-            } else if roundsData.selectedRange == "ISSF/Olympic Skeet" {
-                roundsData.positions = 9
-            } else {
-                roundsData.positions = 5
+                roundsData.selectedRange = roundsData.storedRange
+                if roundsData.selectedRange == "American Skeet" {
+                    roundsData.positions = 8
+                } else if roundsData.selectedRange == "ISSF/Olympic Skeet" {
+                    roundsData.positions = 9
+                } else {
+                    roundsData.positions = 5
+                }
+                roundsData.clearData()
+                roundsData.fetchRounds()
+                roundsData.calcAvgs()
             }
-            roundsData.clearData()
-            roundsData.fetchRounds()
-            roundsData.calcAvgs()
-        }
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
-        
         .environmentObject(roundsData)
+        .alert("A range must be selected to start a new round.", isPresented: $noRangeAlert) {
+            Button("OK", role: .cancel) { }
+        }
     }
 }
 
