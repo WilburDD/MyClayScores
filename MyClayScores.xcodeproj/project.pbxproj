@@ -1,0 +1,654 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3E0BA95B2AA1F10700AF63A6 /* RoundEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0BA95A2AA1F10700AF63A6 /* RoundEditView.swift */; };
+		3E0CA7372ABC0FF000800BD6 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E0DBF1128449D5B00DB1BEE /* CloudKit.framework */; };
+		3E133BE82AABF8AC001C4ABA /* MyClayScoresModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3E555BC027CDEC8900F316B5 /* MyClayScoresModel.xcdatamodeld */; };
+		3E1777F3287B5D2B00A9CE48 /* SelectRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1777F2287B5D2B00A9CE48 /* SelectRange.swift */; };
+		3E3CF8472E5D6B1B00398B01 /* FinishRound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3CF8462E5D6B1400398B01 /* FinishRound.swift */; };
+		3E42D281283483F5004DDEA9 /* RoundsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42D280283483F5004DDEA9 /* RoundsView.swift */; };
+		3E5109A427FEE03900C3C8DD /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5109A327FEE03900C3C8DD /* StatsView.swift */; };
+		3E5272E62AA6FB090066C2CB /* ScoringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5272E52AA6FB090066C2CB /* ScoringView.swift */; };
+		3E555BB627CDEC8700F316B5 /* MyClayScoresApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E555BB527CDEC8700F316B5 /* MyClayScoresApp.swift */; };
+		3E555BBA27CDEC8900F316B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E555BB927CDEC8900F316B5 /* Assets.xcassets */; };
+		3E555BBD27CDEC8900F316B5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E555BBC27CDEC8900F316B5 /* Preview Assets.xcassets */; };
+		3E555BBF27CDEC8900F316B5 /* RoundsDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E555BBE27CDEC8900F316B5 /* RoundsDataStack.swift */; };
+		3E555BC227CDEC8900F316B5 /* MyClayScoresModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3E555BC027CDEC8900F316B5 /* MyClayScoresModel.xcdatamodeld */; };
+		3E6522362AA6D7BE00787581 /* MyClayScoresWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6522352AA6D7BE00787581 /* MyClayScoresWatchApp.swift */; };
+		3E6522382AA6D7BE00787581 /* ChooseRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6522372AA6D7BE00787581 /* ChooseRange.swift */; };
+		3E65223A2AA6D7BF00787581 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E6522392AA6D7BF00787581 /* Assets.xcassets */; };
+		3E65223D2AA6D7BF00787581 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E65223C2AA6D7BF00787581 /* Preview Assets.xcassets */; };
+		3E6522402AA6D7BF00787581 /* MyClayScores Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 3E6522332AA6D7BE00787581 /* MyClayScores Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3E6522462AA6DCDF00787581 /* WatchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6522452AA6DCDF00787581 /* WatchData.swift */; };
+		3E7BEB812AA969A300A9E901 /* EnterScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BEB802AA969A300A9E901 /* EnterScore.swift */; };
+		3E8470CD2AB587450099EA74 /* AvgChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8470CC2AB587450099EA74 /* AvgChart.swift */; };
+		3E891A382AB2969100BB0604 /* EnterComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E891A372AB2969100BB0604 /* EnterComment.swift */; };
+		3E9A615927FAB4BF0054EE30 /* NewRoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9A615827FAB4BF0054EE30 /* NewRoundView.swift */; };
+		3EF5EDAF2817A0EB0087042D /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF5EDAE2817A0EB0087042D /* ListView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3EAF9BF12AC2883200E89E2F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E555BAA27CDEC8700F316B5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3E6522322AA6D7BE00787581;
+			remoteInfo = "MCS Watch App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3E062A2D28235559000B4E8D /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				3E6522402AA6D7BF00787581 /* MyClayScores Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		3E0BA95A2AA1F10700AF63A6 /* RoundEditView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundEditView.swift; sourceTree = "<group>"; };
+		3E0DBF1128449D5B00DB1BEE /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		3E0DBF132844A4FD00DB1BEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		3E1777F2287B5D2B00A9CE48 /* SelectRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRange.swift; sourceTree = "<group>"; };
+		3E3CF8462E5D6B1400398B01 /* FinishRound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishRound.swift; sourceTree = "<group>"; };
+		3E42D280283483F5004DDEA9 /* RoundsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundsView.swift; sourceTree = "<group>"; };
+		3E5109A327FEE03900C3C8DD /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		3E5272E52AA6FB090066C2CB /* ScoringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoringView.swift; sourceTree = "<group>"; };
+		3E555BB227CDEC8700F316B5 /* MyClayScores.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyClayScores.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E555BB527CDEC8700F316B5 /* MyClayScoresApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyClayScoresApp.swift; sourceTree = "<group>"; };
+		3E555BB927CDEC8900F316B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3E555BBC27CDEC8900F316B5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3E555BBE27CDEC8900F316B5 /* RoundsDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundsDataStack.swift; sourceTree = "<group>"; };
+		3E555BC127CDEC8900F316B5 /* MyClayScoresModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyClayScoresModel.xcdatamodel; sourceTree = "<group>"; };
+		3E6522332AA6D7BE00787581 /* MyClayScores Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MyClayScores Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E6522352AA6D7BE00787581 /* MyClayScoresWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyClayScoresWatchApp.swift; sourceTree = "<group>"; };
+		3E6522372AA6D7BE00787581 /* ChooseRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseRange.swift; sourceTree = "<group>"; };
+		3E6522392AA6D7BF00787581 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3E65223C2AA6D7BF00787581 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3E6522452AA6DCDF00787581 /* WatchData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchData.swift; sourceTree = "<group>"; };
+		3E7BEB802AA969A300A9E901 /* EnterScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterScore.swift; sourceTree = "<group>"; };
+		3E8470CC2AB587450099EA74 /* AvgChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvgChart.swift; sourceTree = "<group>"; };
+		3E891A372AB2969100BB0604 /* EnterComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterComment.swift; sourceTree = "<group>"; };
+		3E9A615827FAB4BF0054EE30 /* NewRoundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewRoundView.swift; sourceTree = "<group>"; };
+		3EA808562AB3020300B1977D /* MyClayScores Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "MyClayScores Watch App.entitlements"; sourceTree = "<group>"; };
+		3ED1D5782ADFAA11008CD48A /* MyClayScores-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "MyClayScores-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
+		3EF5EDAE2817A0EB0087042D /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3E555BAF27CDEC8700F316B5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E0CA7372ABC0FF000800BD6 /* CloudKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3E6522302AA6D7BE00787581 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3E0DBF1028449D5B00DB1BEE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3E0DBF1128449D5B00DB1BEE /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3E555BA927CDEC8700F316B5 = {
+			isa = PBXGroup;
+			children = (
+				3E555BB427CDEC8700F316B5 /* MyClayScores */,
+				3E6522342AA6D7BE00787581 /* MyClayScores Watch App */,
+				3E555BB327CDEC8700F316B5 /* Products */,
+				3E0DBF1028449D5B00DB1BEE /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		3E555BB327CDEC8700F316B5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3E555BB227CDEC8700F316B5 /* MyClayScores.app */,
+				3E6522332AA6D7BE00787581 /* MyClayScores Watch App.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3E555BB427CDEC8700F316B5 /* MyClayScores */ = {
+			isa = PBXGroup;
+			children = (
+				3E0DBF132844A4FD00DB1BEE /* Info.plist */,
+				3E555BC827CDEE9900F316B5 /* Model */,
+				3E555BB527CDEC8700F316B5 /* MyClayScoresApp.swift */,
+				3E42D280283483F5004DDEA9 /* RoundsView.swift */,
+				3E9A615827FAB4BF0054EE30 /* NewRoundView.swift */,
+				3E0BA95A2AA1F10700AF63A6 /* RoundEditView.swift */,
+				3EF5EDAE2817A0EB0087042D /* ListView.swift */,
+				3E1777F2287B5D2B00A9CE48 /* SelectRange.swift */,
+				3E5109A327FEE03900C3C8DD /* StatsView.swift */,
+				3E8470CC2AB587450099EA74 /* AvgChart.swift */,
+				3E555BB927CDEC8900F316B5 /* Assets.xcassets */,
+				3E555BBB27CDEC8900F316B5 /* Preview Content */,
+			);
+			name = MyClayScores;
+			path = /Users/doxiedavis/Desktop/MyClayScores/MyClayScores;
+			sourceTree = "<absolute>";
+		};
+		3E555BBB27CDEC8900F316B5 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				3E555BBC27CDEC8900F316B5 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		3E555BC827CDEE9900F316B5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3E555BBE27CDEC8900F316B5 /* RoundsDataStack.swift */,
+				3E555BC027CDEC8900F316B5 /* MyClayScoresModel.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3E6522342AA6D7BE00787581 /* MyClayScores Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				3ED1D5782ADFAA11008CD48A /* MyClayScores-Watch-App-Info.plist */,
+				3EA808562AB3020300B1977D /* MyClayScores Watch App.entitlements */,
+				3E6522452AA6DCDF00787581 /* WatchData.swift */,
+				3E6522352AA6D7BE00787581 /* MyClayScoresWatchApp.swift */,
+				3E6522372AA6D7BE00787581 /* ChooseRange.swift */,
+				3E5272E52AA6FB090066C2CB /* ScoringView.swift */,
+				3E7BEB802AA969A300A9E901 /* EnterScore.swift */,
+				3E891A372AB2969100BB0604 /* EnterComment.swift */,
+				3E3CF8462E5D6B1400398B01 /* FinishRound.swift */,
+				3E6522392AA6D7BF00787581 /* Assets.xcassets */,
+				3E65223B2AA6D7BF00787581 /* Preview Content */,
+			);
+			path = "MyClayScores Watch App";
+			sourceTree = "<group>";
+		};
+		3E65223B2AA6D7BF00787581 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				3E65223C2AA6D7BF00787581 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3E555BB127CDEC8700F316B5 /* MyClayScores */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3E555BC527CDEC8900F316B5 /* Build configuration list for PBXNativeTarget "MyClayScores" */;
+			buildPhases = (
+				3E555BAE27CDEC8700F316B5 /* Sources */,
+				3E555BAF27CDEC8700F316B5 /* Frameworks */,
+				3E555BB027CDEC8700F316B5 /* Resources */,
+				3E062A2D28235559000B4E8D /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3EAF9BF22AC2883200E89E2F /* PBXTargetDependency */,
+			);
+			name = MyClayScores;
+			productName = TrapTracker_v2;
+			productReference = 3E555BB227CDEC8700F316B5 /* MyClayScores.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3E6522322AA6D7BE00787581 /* MyClayScores Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3E6522412AA6D7BF00787581 /* Build configuration list for PBXNativeTarget "MyClayScores Watch App" */;
+			buildPhases = (
+				3E65222F2AA6D7BE00787581 /* Sources */,
+				3E6522302AA6D7BE00787581 /* Frameworks */,
+				3E6522312AA6D7BE00787581 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MyClayScores Watch App";
+			productName = "MCS Watch App";
+			productReference = 3E6522332AA6D7BE00787581 /* MyClayScores Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3E555BAA27CDEC8700F316B5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 2600;
+				TargetAttributes = {
+					3E555BB127CDEC8700F316B5 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					3E6522322AA6D7BE00787581 = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 3E555BAD27CDEC8700F316B5 /* Build configuration list for PBXProject "MyClayScores" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3E555BA927CDEC8700F316B5;
+			productRefGroup = 3E555BB327CDEC8700F316B5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3E555BB127CDEC8700F316B5 /* MyClayScores */,
+				3E6522322AA6D7BE00787581 /* MyClayScores Watch App */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3E555BB027CDEC8700F316B5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E555BBD27CDEC8900F316B5 /* Preview Assets.xcassets in Resources */,
+				3E555BBA27CDEC8900F316B5 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3E6522312AA6D7BE00787581 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E65223D2AA6D7BF00787581 /* Preview Assets.xcassets in Resources */,
+				3E65223A2AA6D7BF00787581 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3E555BAE27CDEC8700F316B5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E555BBF27CDEC8900F316B5 /* RoundsDataStack.swift in Sources */,
+				3E42D281283483F5004DDEA9 /* RoundsView.swift in Sources */,
+				3EF5EDAF2817A0EB0087042D /* ListView.swift in Sources */,
+				3E555BC227CDEC8900F316B5 /* MyClayScoresModel.xcdatamodeld in Sources */,
+				3E8470CD2AB587450099EA74 /* AvgChart.swift in Sources */,
+				3E1777F3287B5D2B00A9CE48 /* SelectRange.swift in Sources */,
+				3E5109A427FEE03900C3C8DD /* StatsView.swift in Sources */,
+				3E9A615927FAB4BF0054EE30 /* NewRoundView.swift in Sources */,
+				3E0BA95B2AA1F10700AF63A6 /* RoundEditView.swift in Sources */,
+				3E555BB627CDEC8700F316B5 /* MyClayScoresApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3E65222F2AA6D7BE00787581 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E133BE82AABF8AC001C4ABA /* MyClayScoresModel.xcdatamodeld in Sources */,
+				3E6522382AA6D7BE00787581 /* ChooseRange.swift in Sources */,
+				3E6522362AA6D7BE00787581 /* MyClayScoresWatchApp.swift in Sources */,
+				3E7BEB812AA969A300A9E901 /* EnterScore.swift in Sources */,
+				3E3CF8472E5D6B1B00398B01 /* FinishRound.swift in Sources */,
+				3E6522462AA6DCDF00787581 /* WatchData.swift in Sources */,
+				3E891A382AB2969100BB0604 /* EnterComment.swift in Sources */,
+				3E5272E62AA6FB090066C2CB /* ScoringView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3EAF9BF22AC2883200E89E2F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3E6522322AA6D7BE00787581 /* MyClayScores Watch App */;
+			targetProxy = 3EAF9BF12AC2883200E89E2F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		3E555BC327CDEC8900F316B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = CM53CRQF5E;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		3E555BC427CDEC8900F316B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = CM53CRQF5E;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
+		3E555BC627CDEC8900F316B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MyClayScores/MyClayScores.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MyClayScores/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MyClayScores/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MyClayScores;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
+				INFOPLIST_KEY_NSMainStoryboardFile = MyClayScores;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_EXPORT_SUPPORTED = YES;
+				LOCALIZED_STRING_SWIFTUI_SUPPORT = YES;
+				MARKETING_VERSION = 2.6;
+				PRODUCT_BUNDLE_IDENTIFIER = com.doxiedavis.MyClayScores;
+				PRODUCT_NAME = MyClayScores;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3E555BC727CDEC8900F316B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MyClayScores/MyClayScores.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MyClayScores/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MyClayScores/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MyClayScores;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
+				INFOPLIST_KEY_NSMainStoryboardFile = MyClayScores;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_EXPORT_SUPPORTED = YES;
+				LOCALIZED_STRING_SWIFTUI_SUPPORT = YES;
+				MARKETING_VERSION = 2.6;
+				PRODUCT_BUNDLE_IDENTIFIER = com.doxiedavis.MyClayScores;
+				PRODUCT_NAME = MyClayScores;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		3E6522422AA6D7BF00787581 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = "MyClayScores Watch App/MyClayScores Watch App.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MyClayScores Watch App/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "MyClayScores-Watch-App-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = MyClayScores;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.doxiedavis.MyClayScores;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 2.6;
+				PRODUCT_BUNDLE_IDENTIFIER = com.doxiedavis.MyClayScores.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.6;
+			};
+			name = Debug;
+		};
+		3E6522432AA6D7BF00787581 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = "MyClayScores Watch App/MyClayScores Watch App.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MyClayScores Watch App/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "MyClayScores-Watch-App-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = MyClayScores;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.doxiedavis.MyClayScores;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 2.6;
+				PRODUCT_BUNDLE_IDENTIFIER = com.doxiedavis.MyClayScores.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.6;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3E555BAD27CDEC8700F316B5 /* Build configuration list for PBXProject "MyClayScores" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E555BC327CDEC8900F316B5 /* Debug */,
+				3E555BC427CDEC8900F316B5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3E555BC527CDEC8900F316B5 /* Build configuration list for PBXNativeTarget "MyClayScores" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E555BC627CDEC8900F316B5 /* Debug */,
+				3E555BC727CDEC8900F316B5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3E6522412AA6D7BF00787581 /* Build configuration list for PBXNativeTarget "MyClayScores Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E6522422AA6D7BF00787581 /* Debug */,
+				3E6522432AA6D7BF00787581 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3E555BC027CDEC8900F316B5 /* MyClayScoresModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3E555BC127CDEC8900F316B5 /* MyClayScoresModel.xcdatamodel */,
+			);
+			currentVersion = 3E555BC127CDEC8900F316B5 /* MyClayScoresModel.xcdatamodel */;
+			path = MyClayScoresModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 3E555BAA27CDEC8700F316B5 /* Project object */;
+}
