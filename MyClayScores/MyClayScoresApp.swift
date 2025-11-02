@@ -20,7 +20,7 @@ struct MyClayScoresApp: App {
                 .environmentObject(roundsDataStack)
                 .environment(\.managedObjectContext,
                               roundsDataStack.managedObjectContext)
-                .onChange(of: scenePhase) { _ in
+                .onChange(of: scenePhase) {
                     roundsDataStack.saveRounds()
                 }
         }

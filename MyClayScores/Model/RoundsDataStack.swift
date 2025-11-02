@@ -12,8 +12,9 @@ import Charts
 
 class RoundsDataStack: ObservableObject, Identifiable {
     
-    @AppStorage ("storedRange") var storedRange = String("No Range Selected")
-    
+    @AppStorage("storedRange") var storedRange = String("No Range Selected")
+    @AppStorage("scoringSet") var scoringSet = 0
+
     @Published var roundsData: [RoundEntity] = []
     
     @Published var editedIndex = 0
@@ -22,6 +23,12 @@ class RoundsDataStack: ObservableObject, Identifiable {
     @Published var scoringPos = Int()
     @Published var showScoring = false
     @Published var selectedRange = "No Range Selected"
+    @Published var selectedScoring: [[Double]] = [
+        [5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0],
+        [10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0],
+        [4.0, 4.0, 2.0, 2.0, 2.0, 4.0, 4.0, 3.0, 1.0],
+        [3.0, 3.0, 3.0, 2.0, 3.0, 3.0, 2.0, 4.0, 2.0]
+    ]
     @Published var range = String()
     @Published var comment = ""
     @Published var posCount = [0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -31,6 +38,7 @@ class RoundsDataStack: ObservableObject, Identifiable {
     @Published var selection = Int()
     @Published var path = NavigationPath()
     @Published var noRounds = false
+    @Published var exclude = false
     
     @Published var pos1Avg = Double (0.0)
     @Published var pos2Avg = Double (0.0)
@@ -98,13 +106,52 @@ class RoundsDataStack: ObservableObject, Identifiable {
             if inMemory {
                 container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
             }
-            container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            // Capture a local reference to avoid capturing the mutating `self` in the escaping closure
+            let localContainer = container
+            localContainer.loadPersistentStores { _, error in
                 if let error = error as NSError? {
                     fatalError("Unresolved error \(error), \(error.userInfo)")
                 }
-            })
-            container.viewContext.automaticallyMergesChangesFromParent = true
-            container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+                // Kick off a one-time background normalization for legacy data without capturing `self`
+                PersistenceController.normalizeExcludesInBackground(using: localContainer)
+            }
+            localContainer.viewContext.automaticallyMergesChangesFromParent = true
+            localContainer.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        }
+        
+        private static let normalizationFlagKey = "didNormalizeExcludeOnce"
+
+        private static func normalizeExcludesInBackground(using container: NSPersistentContainer) {
+            let defaults = UserDefaults.standard
+            if defaults.bool(forKey: normalizationFlagKey) {
+                return
+            }
+            container.performBackgroundTask { context in
+                let fetch = NSFetchRequest<NSManagedObject>(entityName: "RoundEntity")
+                do {
+                    let results = try context.fetch(fetch)
+                    var didChange = false
+                    for obj in results {
+                        if let value = obj.value(forKey: "exclude") as? Bool {
+                            if value == false {
+                                obj.setValue(false, forKey: "exclude")
+                                didChange = true
+                            }
+                        } else {
+                            obj.setValue(false, forKey: "exclude")
+                            didChange = true
+                        }
+                    }
+                    if didChange && context.hasChanges {
+                        try context.save()
+                    }
+                    // Mark as done regardless of whether changes were needed
+                    defaults.set(true, forKey: normalizationFlagKey)
+                } catch {
+                    print("Background normalization failed: \(error)")
+                    // Even on failure, do not set the flag so it can retry next launch
+                }
+            }
         }
     }
     
@@ -115,6 +162,26 @@ class RoundsDataStack: ObservableObject, Identifiable {
         return PersistenceController.shared.container.viewContext
     }
     
+    // Normalize any legacy or nil excludes in fetched entities and persist the fix
+    private func normalizeRoundExcludes() {
+        var didChange = false
+        for entity in roundsData {
+            // Default to false unless explicitly true
+            if entity.exclude != true {
+                let previous = entity.exclude
+                entity.exclude = false
+                if previous != entity.exclude { didChange = true }
+            }
+        }
+        if didChange {
+            do {
+                try managedObjectContext.save()
+            } catch {
+                print("Error normalizing excludes: \(error)")
+            }
+        }
+    }
+    
     func fetchRounds() {
         let request = NSFetchRequest<RoundEntity>(entityName: "RoundEntity")
         let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
@@ -123,6 +190,7 @@ class RoundsDataStack: ObservableObject, Identifiable {
         request.sortDescriptors = [sortDescriptor]
         do {
             roundsData = try managedObjectContext.fetch(request)
+            normalizeRoundExcludes()
             if roundsData.count == 0 {
                 self.noRounds = true
             } else {
@@ -141,23 +209,17 @@ class RoundsDataStack: ObservableObject, Identifiable {
         request.sortDescriptors = [sortDescriptor]
         do {
             roundsData = try managedObjectContext.fetch(request)
+            normalizeRoundExcludes()
         } catch let error {
             print ("Error fetching. \(error)")
         }
-//        if roundsData.count == 0 {
-//            self.noRounds = true
-//            if roundsData.count > 0 {
-//                self.noRounds = false
-//            }
-//        } else {
-            for x in 0...roundsData.count - 1 {
-                let seq = String(x)
-                let date = roundsData[x].date?.formatted(date: .numeric, time: .standard) ?? "Date error"
-                let score = Int(roundsData[x].total)
-                let comment = roundsData[x].comment ?? "no comment"
-                graphData.append(GraphData(seq: seq, date: date, score: score, comment: comment))
-            }
-//        }
+        for x in 0...roundsData.count - 1 {
+            let seq = String(x)
+            let date = roundsData[x].date?.formatted(date: .numeric, time: .standard) ?? "Date error"
+            let score = Int(roundsData[x].total)
+            let comment = roundsData[x].comment ?? "no comment"
+            graphData.append(GraphData(seq: seq, date: date, score: score, comment: comment))
+        }
     }
     
     func saveRounds() {
@@ -170,7 +232,7 @@ class RoundsDataStack: ObservableObject, Identifiable {
         }
     }
     
-    func addRound(range: String, comment: String, date: Date, pos1: Int64, pos2: Int64, pos3: Int64, pos4: Int64, pos5: Int64, pos6: Int64, pos7: Int64, pos8: Int64, pos9: Int64, total: Int64 ) {
+    func addRound(range: String, comment: String, date: Date, pos1: Int64, pos2: Int64, pos3: Int64, pos4: Int64, pos5: Int64, pos6: Int64, pos7: Int64, pos8: Int64, pos9: Int64, total: Int64, exclude: Bool ) {
         let newRound = RoundEntity(context: managedObjectContext)
         newRound.range = range
         newRound.comment = comment
@@ -186,11 +248,12 @@ class RoundsDataStack: ObservableObject, Identifiable {
         newRound.pos8 = pos8
         newRound.pos9 = pos9
         newRound.total = total
+        newRound.exclude = exclude
         saveRounds()
         calcAvgs()
     }
     
-    func saveEdit(range: String, comment: String, date: Date, id: UUID, pos1: Int64, pos2: Int64, pos3: Int64, pos4: Int64, pos5: Int64, pos6: Int64, pos7: Int64, pos8: Int64, pos9: Int64,total: Int64 ) {
+    func saveEdit(range: String, comment: String, date: Date, id: UUID, pos1: Int64, pos2: Int64, pos3: Int64, pos4: Int64, pos5: Int64, pos6: Int64, pos7: Int64, pos8: Int64, pos9: Int64,total: Int64, exclude: Bool ) {
         let editedRound = RoundEntity(context: managedObjectContext)
         editedRound.range = range
         editedRound.comment = comment
@@ -206,6 +269,7 @@ class RoundsDataStack: ObservableObject, Identifiable {
         editedRound.pos8 = pos8
         editedRound.pos9 = pos9
         editedRound.total = total
+        editedRound.exclude = exclude
         saveRounds()
         calcAvgs()
     }
@@ -226,29 +290,57 @@ class RoundsDataStack: ObservableObject, Identifiable {
     }
     
     func calcAvgs () {
-        for _ in 0...roundsData.count {
-            pos1Avg = Double(roundsData.reduce(0, {$0 + $1.pos1}))/Double(roundsData.count)
-            pos2Avg = Double(roundsData.reduce(0, {$0 + $1.pos2}))/Double(roundsData.count)
-            pos3Avg = Double(roundsData.reduce(0, {$0 + $1.pos3}))/Double(roundsData.count)
-            pos4Avg = Double(roundsData.reduce(0, {$0 + $1.pos4}))/Double(roundsData.count)
-            pos5Avg = Double(roundsData.reduce(0, {$0 + $1.pos5}))/Double(roundsData.count)
-            pos6Avg = Double(roundsData.reduce(0, {$0 + $1.pos6}))/Double(roundsData.count)
-            pos7Avg = Double(roundsData.reduce(0, {$0 + $1.pos7}))/Double(roundsData.count)
-            pos8Avg = Double(roundsData.reduce(0, {$0 + $1.pos8}))/Double(roundsData.count)
-            pos9Avg = Double(roundsData.reduce(0, {$0 + $1.pos9}))/Double(roundsData.count)
-            totalAvg = Double(roundsData.reduce(0, {$0 + $1.total}))/Double(roundsData.count)
+        // Only include rounds not excluded
+        let included = roundsData.filter { ($0.exclude) == false }
+        let count = included.count
+        
+        // Reset collections used in charts/avgs
+        avgs.removeAll()
+        
+        guard count > 0 else {
+            pos1Avg = 0
+            pos2Avg = 0
+            pos3Avg = 0
+            pos4Avg = 0
+            pos5Avg = 0
+            pos6Avg = 0
+            pos7Avg = 0
+            pos8Avg = 0
+            pos9Avg = 0
+            totalAvg = 0
+            posAvgs = [pos1Avg, pos2Avg, pos3Avg, pos4Avg, pos5Avg, pos6Avg, pos7Avg, pos8Avg, pos9Avg, totalAvg]
+            for x in 1...positions {
+                avgs.append(AvgData(id: UUID(), pos: x, avg: posAvgs[x-1], pct: posMax[x-1] == 0 ? 0 : posAvgs[x-1]/posMax[x-1]))
+            }
+            totalPct = posMax[9] == 0 ? 0 : posAvgs[9]/posMax[9]
+            totalRnds = roundsData.count
+            graphMax = posMax[9] + 1
+            let allTotals = included.compactMap({ $0.total })
+            minTotal = Int(Int64(allTotals.min() ?? 0))
+            return
         }
+        
+        pos1Avg = Double(included.reduce(0, {$0 + $1.pos1}))/Double(count)
+        pos2Avg = Double(included.reduce(0, {$0 + $1.pos2}))/Double(count)
+        pos3Avg = Double(included.reduce(0, {$0 + $1.pos3}))/Double(count)
+        pos4Avg = Double(included.reduce(0, {$0 + $1.pos4}))/Double(count)
+        pos5Avg = Double(included.reduce(0, {$0 + $1.pos5}))/Double(count)
+        pos6Avg = Double(included.reduce(0, {$0 + $1.pos6}))/Double(count)
+        pos7Avg = Double(included.reduce(0, {$0 + $1.pos7}))/Double(count)
+        pos8Avg = Double(included.reduce(0, {$0 + $1.pos8}))/Double(count)
+        pos9Avg = Double(included.reduce(0, {$0 + $1.pos9}))/Double(count)
+        totalAvg = Double(included.reduce(0, {$0 + $1.total}))/Double(count)
         
         posAvgs = [pos1Avg, pos2Avg, pos3Avg, pos4Avg, pos5Avg, pos6Avg, pos7Avg, pos8Avg, pos9Avg, totalAvg]
         
         for x in 1...positions {
-            avgs.append(AvgData(id: UUID(), pos: x, avg: posAvgs[x-1], pct: posAvgs[x-1]/posMax[x-1]))
+            avgs.append(AvgData(id: UUID(), pos: x, avg: posAvgs[x-1], pct: posMax[x-1] == 0 ? 0 : posAvgs[x-1]/posMax[x-1]))
         }
         
-        totalPct = posAvgs[9]/posMax[9]
+        totalPct = posMax[9] == 0 ? 0 : posAvgs[9]/posMax[9]
         totalRnds = roundsData.count
         graphMax = posMax[9] + 1
-        let allTotals = roundsData.compactMap({ $0.total })
+        let allTotals = included.compactMap({ $0.total })
         minTotal = Int(Int64(allTotals.min() ?? 0))
         let minRounded = minTotal / 5
         let minRoundedInt = floor(Double(minRounded))
@@ -274,9 +366,11 @@ class RoundsDataStack: ObservableObject, Identifiable {
         posCount = [0, 0, 0, 0, 0, 0, 0, 0, 0]
         comment = ""
         roundTotal = 0
+        exclude = false
     }
     
     func addupScore () {
         roundTotal = posCount[0] + posCount[1] + posCount[2] + posCount[3] + posCount[4] + posCount[5] + posCount[6] + posCount[7] + posCount[8]
     }
 }
+

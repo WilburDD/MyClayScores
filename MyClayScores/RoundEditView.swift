@@ -10,7 +10,7 @@ import CoreData
 import MediaPlayer
 import AVFoundation
 
-struct EditView: View {
+struct RoundEditView: View {
     
     let item: RoundEntity
     
@@ -59,7 +59,8 @@ struct EditView: View {
                                 pos7: Int64(roundsData.posCount[6]),
                                 pos8: Int64(roundsData.posCount[7]),
                                 pos9: Int64(roundsData.posCount[8]),
-                                total: Int64(roundsData.roundTotal))
+                                total: Int64(roundsData.roundTotal),
+                                exclude: roundsData.exclude)
                             roundsData.saveRounds()
                             roundsData.fetchRounds()
                             roundsData.clearData()
@@ -165,16 +166,18 @@ struct EditView: View {
                         Text("Total Score:  \(roundsData.roundTotal)")
                             .font(.title.italic())
                             .fontWeight(.bold)
-                        VStack (alignment: .center, spacing: 0, content: {
+                        VStack (alignment: .center, spacing: 8, content: {
                             Text("Comment")
                                 .font(.title3)
                             TextField (roundsData.comment, text: $roundsData.comment)
                                 .focused($isFocused)
+                                .submitLabel(.done)
                                 .font(.title3)
                                 .textFieldStyle(.roundedBorder)
-                                .onChange(of: self.roundsData.comment) { value in
+                                .onChange(of: roundsData.comment) {
+                                    let value = roundsData.comment
                                     if value.count > 18 {
-                                        self.roundsData.comment = String(value.prefix(18))
+                                        roundsData.comment = String(value.prefix(18))
                                     }
                                 }
                                 .onSubmit {
@@ -183,149 +186,20 @@ struct EditView: View {
                                     }
                                 }
                                 .multilineTextAlignment(.center)
-                                .padding()
+//                                .padding()
+                            Toggle(isOn: $roundsData.exclude) {
+                                Text("Exclude from Averages:")
+                            }
+                            .toggleStyle(SwitchToggleStyle(tint: .red))
                         })
-                        //                        .padding()
-                        HStack {
-                            Text ("Tap on the  ")
-                            + Text("'0'").underline()
-                            + Text("  for a Position to enter score.")
-                        }
-                        .font(.title3)
-                        .italic()
-                        .multilineTextAlignment(.center)
-                        
-                        
-                        //                    VStack {
-                        //                        FivePosLabels()
-                        //                        HStack {
-                        //                            ZStack {
-                        //                                Text ("\(roundsData.posCount[0])")
-                        //                                    .font(.largeTitle).underline().fontWeight(.bold)
-                        //                                Picker("", selection: $roundsData.posCount[0]) {
-                        //                                    Text("0").tag(0)
-                        //                                    Text("1").tag(1)
-                        //                                    Text("2").tag(2)
-                        //                                    Text("3").tag(3)
-                        //                                    Text("4").tag(4)
-                        //                                    Text("5").tag(5)
-                        //                                }
-                        //                                .onChange(of: roundsData.posCount[0], perform: { (value) in
-                        //                                    roundsData.addupScore()
-                        //                                })
-                        //                                .pickerStyle(MenuPickerStyle())
-                        //                                .opacity(0.1)
-                        //                            }
-                        //                            Spacer()
-                        //                            ZStack {
-                        //                                Text ("\(roundsData.posCount[1])")
-                        //                                    .font(.largeTitle).underline().fontWeight(.bold)
-                        //                                Picker("", selection: $roundsData.posCount[1]) {
-                        //                                    Text("0").tag(0)
-                        //                                    Text("1").tag(1)
-                        //                                    Text("2").tag(2)
-                        //                                    Text("3").tag(3)
-                        //                                    Text("4").tag(4)
-                        //                                    Text("5").tag(5)
-                        //                                }
-                        //                                .onChange(of: roundsData.posCount[1], perform: { (value) in
-                        //                                    roundsData.addupScore()
-                        //                                })
-                        //                                .pickerStyle(MenuPickerStyle())
-                        //                                .opacity(0.1)
-                        //                            }
-                        //                            Spacer()
-                        //                            ZStack {
-                        //                                Text ("\(roundsData.posCount[2])")
-                        //                                    .font(.largeTitle).underline().fontWeight(.bold)
-                        //                                Picker("", selection: $roundsData.posCount[2]) {
-                        //                                    Text("0").tag(0)
-                        //                                    Text("1").tag(1)
-                        //                                    Text("2").tag(2)
-                        //                                    Text("3").tag(3)
-                        //                                    Text("4").tag(4)
-                        //                                    Text("5").tag(5)
-                        //                                }
-                        //                                .onChange(of: roundsData.posCount[2], perform: { (value) in
-                        //                                    roundsData.addupScore()
-                        //                                })
-                        //                                .pickerStyle(MenuPickerStyle())
-                        //                                .opacity(0.1)
-                        //                            }
-                        //                            Spacer()
-                        //                            ZStack {
-                        //                                Text ("\(roundsData.posCount[3])")
-                        //                                    .font(.largeTitle).underline().fontWeight(.bold)
-                        //                                Picker("", selection: $roundsData.posCount[3]) {
-                        //                                    Text("0").tag(0)
-                        //                                    Text("1").tag(1)
-                        //                                    Text("2").tag(2)
-                        //                                    Text("3").tag(3)
-                        //                                    Text("4").tag(4)
-                        //                                    Text("5").tag(5)
-                        //                                }
-                        //                                .onChange(of: roundsData.posCount[3], perform: { (value) in
-                        //                                    roundsData.addupScore()
-                        //                                })
-                        //                                .pickerStyle(MenuPickerStyle())
-                        //                                .opacity(0.1)
-                        //                            }
-                        //                            Spacer()
-                        //                            ZStack {
-                        //                                Text ("\(roundsData.posCount[4])")
-                        //                                    .font(.largeTitle).underline().fontWeight(.bold)
-                        //                                Picker("", selection: $roundsData.posCount[4]) {
-                        //                                    Text("0").tag(0)
-                        //                                    Text("1").tag(1)
-                        //                                    Text("2").tag(2)
-                        //                                    Text("3").tag(3)
-                        //                                    Text("4").tag(4)
-                        //                                    Text("5").tag(5)
-                        //                                }
-                        //                                .onChange(of: roundsData.posCount[4], perform: { (value) in
-                        //                                    roundsData.addupScore()
-                        //                                })
-                        //                                .pickerStyle(MenuPickerStyle())
-                        //                                .opacity(0.1)
-                        //                            }
-                        //                        }
-                        //                        Spacer()
-                        //                        Spacer()
-                        //                        Spacer()
-                        //                        Text("Total Score:  \(roundsData.roundTotal)")
-                        //                            .font(.title.italic())
-                        //                            .fontWeight(.bold)
-                        //                        VStack (alignment: .center, spacing: 0, content: {
-                        //                            Text("Comment")
-                        //                                .font(.title3)
-                        //                            TextField (roundsData.comment, text: $roundsData.comment)
-                        //                                .focused($isFocused)
-                        //                                .font(.title3)
-                        //                                .textFieldStyle(.roundedBorder)
-                        //                                .onChange(of: self.roundsData.comment, perform : { value in
-                        //                                    if value.count > 10 {
-                        //                                        self.roundsData.comment = String(value.prefix(18))
-                        //                                    }
-                        //                                })
-                        //                                .onSubmit {
-                        //                                    withAnimation {
-                        //                                        scrollProxy.scrollTo(0)
-                        //                                    }
-                        //                                }
-                        //                                .multilineTextAlignment(.center)
-                        //                                .padding()
-                        //                        })
-                        //                        .padding()
-                        //                        HStack {
-                        //                            Text ("Tap on the  ")
-                        //                            + Text("'0'").underline()
-                        //                            + Text("  for a Position to enter score.")
-                        //                        }
-                        //                        .font(.title3)
-                        //                        .italic()
-                        //                        .multilineTextAlignment(.center)
-                        //                        .padding()
-                        //                    }
+//                        HStack {
+//                            Text ("Tap on the  ")
+//                            + Text("'0'").underline()
+//                            + Text("  for a Position to enter score.")
+//                        }
+//                        .font(.title3)
+//                        .italic()
+//                        .multilineTextAlignment(.center)
                     }
                 }
             }
@@ -351,6 +225,7 @@ struct EditView: View {
                 roundsData.posCount[7] = Int(item.pos8)
                 roundsData.posCount[8] = Int(item.pos9)
                 roundsData.roundTotal = Int(item.total)
+                roundsData.exclude = item.exclude
                 for item in 0...8 {
                     scoring[item] = (roundsData.selectedScoring[roundsData.scoringSet][item])+1.0
                 }
@@ -366,6 +241,3 @@ struct EditView: View {
 //            .environmentObject(RoundsDataStack())
 //    }
 //}
-
-
-

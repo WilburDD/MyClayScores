@@ -13,8 +13,9 @@ struct SelectRange: View {
     
     @Environment(\.dismiss) var dismiss
     
-    @AppStorage ("storedRange") var storedRange = String()
-    
+    @AppStorage("storedRange") var storedRange = String()
+    @AppStorage("scoringSet") var scoringSet = Int()
+
     var body: some View {
         ScrollView {
             VStack {
@@ -35,6 +36,7 @@ struct SelectRange: View {
                             Button(action: {
                                 roundsData.selectedRange = "American Trap"
                                 storedRange = roundsData.selectedRange
+                                scoringSet = 0
                                 roundsData.positions = 5
                                 roundsData.posMax = [5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 25.0]
                                 roundsData.clearData()
@@ -49,6 +51,7 @@ struct SelectRange: View {
                             Button(action: {
                                 roundsData.selectedRange = "Continental Trap"
                                 storedRange = roundsData.selectedRange
+                                scoringSet = 0
                                 roundsData.positions = 5
                                 roundsData.posMax = [5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 25.0]
                                 roundsData.clearData()
@@ -66,6 +69,7 @@ struct SelectRange: View {
                             Button(action: {
                                 roundsData.selectedRange = "ISSF/Olympic Trap"
                                 storedRange = roundsData.selectedRange
+                                scoringSet = 0
                                 roundsData.positions = 5
                                 roundsData.posMax = [5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 25.0]
                                 roundsData.clearData()
@@ -80,6 +84,7 @@ struct SelectRange: View {
                             Button(action: {
                                 roundsData.selectedRange = "Double Trap"
                                 storedRange = roundsData.selectedRange
+                                scoringSet = 1
                                 roundsData.positions = 5
                                 roundsData.posMax = [10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 50.0]
                                 roundsData.clearData()
@@ -104,6 +109,7 @@ struct SelectRange: View {
                             Button(action: {
                                 roundsData.selectedRange = "American Skeet"
                                 storedRange = roundsData.selectedRange
+                                scoringSet = 2
                                 roundsData.positions = 8
                                 roundsData.posMax = [4.0, 4.0, 2.0, 2.0, 2.0, 4.0, 4.0, 3.0, 1.0, 25.0]
                                 roundsData.clearData()
@@ -118,6 +124,7 @@ struct SelectRange: View {
                             Button(action: {
                                 roundsData.selectedRange = "ISSF/Olympic Skeet"
                                 storedRange = roundsData.selectedRange
+                                scoringSet = 3
                                 roundsData.positions = 9
                                 roundsData.posMax = [3.0, 3.0, 3.0, 2.0, 3.0, 3.0, 2.0, 4.0, 2.0, 25.0]
                                 roundsData.clearData()
@@ -140,6 +147,7 @@ struct SelectRange: View {
                         Button(action: {
                             roundsData.selectedRange = "Compak/5-Stand"
                             storedRange = roundsData.selectedRange
+                            scoringSet = 0
                             roundsData.positions = 5
                             roundsData.posMax = [5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 5.0, 25.0]
                             roundsData.clearData()
@@ -152,7 +160,7 @@ struct SelectRange: View {
                         .getTealButtonStyle()
                     }
                     Spacer()
-                    Text("v. 2.4.1\nSend me your comments & feedback:  myclayscores@gmail.com.  Enjoy!")
+                    Text("ver. 2.6.2\nSend me your comments & feedback:  myclayscores@gmail.com.  Enjoy!")
                         .multilineTextAlignment(.center)
                         .font(.headline)
                         .opacity(0.3)

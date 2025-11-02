@@ -35,36 +35,10 @@ struct RoundsView: View {
                     .frame(height: 2)
                 List {
                     ForEach(roundsData.roundsData, id: \.self) { item in
-                        if roundsData.selectedRange == "American Trap" || roundsData.selectedRange == "Continental Trap" || roundsData.selectedRange == "ISSF/Olympic Trap" || roundsData.selectedRange == "Compak/5-Stand" {
-                            NavigationLink {
-                                FivePosEditView(item: item)
-                            } label: {
-                                FivePosList(item: item)
-                            }
-                        } else {
-                            if roundsData.selectedRange == "American Skeet" {
-                                NavigationLink {
-                                    EightPosEditView (item: item)
-                                } label: {
-                                    EightPosList(item: item)
-                                }
-                            } else {
-                                if roundsData.selectedRange == "ISSF/Olympic Skeet" {
-                                    NavigationLink {
-                                        NinePosEditView (item: item)
-                                    } label: {
-                                        NinePosList(item: item)
-                                    }
-                                } else {
-                                    if roundsData.selectedRange == "Double Trap" {
-                                        NavigationLink {
-                                            DoubleTEditView (item: item)
-                                        } label: {
-                                            FivePosList(item: item)
-                                        }
-                                    }
-                                }
-                            }
+                        NavigationLink {
+                            RoundEditView(item: item)
+                        } label: {
+                            ListView(item: item)
                         }
                     }
                     .onDelete(perform: { indexSet in
@@ -90,7 +64,6 @@ struct RoundsView: View {
                     .font(.title3)
                 }
                 Spacer()
-                
                 NavigationLink(value: roundsData.positions) {
                     VStack {
                         Image(systemName: "plus.square.fill")
@@ -111,15 +84,8 @@ struct RoundsView: View {
                             .fontWeight(.bold)
                             .italic()
                             .cornerRadius(40)
-                    }
-                    if roundsData.selectedRange == "American Trap" || roundsData.selectedRange == "Continental Trap" || roundsData.selectedRange == "ISSF/Olympic Trap" || roundsData.selectedRange == "Compak/5-Stand" {
-                        FivePosNRView()
-                    } else if roundsData.selectedRange == "American Skeet" {
-                        EightPosNRView()
-                    } else if roundsData.selectedRange == "ISSF/Olympic Skeet" {
-                        NinePosNRView()
-                    } else if roundsData.selectedRange == "Double Trap" {
-                        DoubleTNRView()
+                    } else {
+                        NewRoundView()
                     }
                 }
                 Spacer()
@@ -152,18 +118,18 @@ struct RoundsView: View {
         .padding()
         .listStyle(.plain)
         .onAppear{
-                roundsData.selectedRange = roundsData.storedRange
-                if roundsData.selectedRange == "American Skeet" {
-                    roundsData.positions = 8
-                } else if roundsData.selectedRange == "ISSF/Olympic Skeet" {
-                    roundsData.positions = 9
-                } else {
-                    roundsData.positions = 5
-                }
-                roundsData.clearData()
-                roundsData.fetchRounds()
-                roundsData.calcAvgs()
+            roundsData.selectedRange = roundsData.storedRange
+            if roundsData.selectedRange == "American Skeet" {
+                roundsData.positions = 8
+            } else if roundsData.selectedRange == "ISSF/Olympic Skeet" {
+                roundsData.positions = 9
+            } else {
+                roundsData.positions = 5
             }
+            roundsData.clearData()
+            roundsData.fetchRounds()
+            roundsData.calcAvgs()
+        }
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
         .environmentObject(roundsData)

@@ -64,7 +64,8 @@ struct NewRoundView: View {
                                 pos7: Int64(roundsData.posCount[6]),
                                 pos8: Int64(roundsData.posCount[7]),
                                 pos9: Int64(roundsData.posCount[8]),
-                                total: Int64(roundsData.roundTotal))
+                                total: Int64(roundsData.roundTotal),
+                                exclude: roundsData.exclude)
                             roundsData.saveRounds()
                             roundsData.fetchRounds()
                             roundsData.clearData()
@@ -93,7 +94,6 @@ struct NewRoundView: View {
                             .font(.title2.italic())
                             .fontWeight(.bold)
                     }
-                    //                    .padding()
                     
                     VStack {
                         Text("Position")
@@ -170,16 +170,18 @@ struct NewRoundView: View {
                         Text("Total Score:  \(roundsData.roundTotal)")
                             .font(.title.italic())
                             .fontWeight(.bold)
-                        VStack (alignment: .center, spacing: 0, content: {
+                        VStack (alignment: .center, spacing: 8, content: {
                             Text("Comment")
                                 .font(.title3)
                             TextField (roundsData.comment, text: $roundsData.comment)
                                 .focused($isFocused)
+                                .submitLabel(.done)
                                 .font(.title3)
                                 .textFieldStyle(.roundedBorder)
-                                .onChange(of: self.roundsData.comment) { value in
+                                .onChange(of: roundsData.comment) {
+                                    let value = roundsData.comment
                                     if value.count > 18 {
-                                        self.roundsData.comment = String(value.prefix(18))
+                                        roundsData.comment = String(value.prefix(18))
                                     }
                                 }
                                 .onSubmit {
@@ -188,9 +190,12 @@ struct NewRoundView: View {
                                     }
                                 }
                                 .multilineTextAlignment(.center)
-                                .padding()
+//                                .padding()
+                            Toggle(isOn: $roundsData.exclude) {
+                                Text("Exclude from Averages:")
+                            }
+                            .toggleStyle(SwitchToggleStyle(tint: .red))
                         })
-//                        .padding()
                         HStack {
                             Text ("Tap on the  ")
                             + Text("'0'").underline()
@@ -199,7 +204,6 @@ struct NewRoundView: View {
                         .font(.title3)
                         .italic()
                         .multilineTextAlignment(.center)
-//                        .padding()
                     }
                     .toolbar(.hidden, for: .tabBar)
                     .onTapGesture {
@@ -212,6 +216,10 @@ struct NewRoundView: View {
                 for item in 0...8 {
                     scoring[item] = (roundsData.selectedScoring[roundsData.scoringSet][item])+1.0
                 }
+                // default to included for a fresh new round
+                if roundsData.comment.isEmpty && roundsData.roundTotal == 0 {
+                    roundsData.exclude = false
+                }
             }
             .navigationBarHidden(true)
             .navigationBarBackButtonHidden(true)
@@ -223,7 +231,7 @@ struct NewRoundView: View {
 
 struct FivePosNRView_Previews: PreviewProvider {
     static var previews: some View {
-        FivePosNRView()
+        NewRoundView()
             .environmentObject(RoundsDataStack())
     }
 }
@@ -282,7 +290,8 @@ struct Header: View {
                     pos7: Int64(roundsData.posCount[6]),
                     pos8: Int64(roundsData.posCount[7]),
                     pos9: Int64(roundsData.posCount[8]),
-                    total: Int64(roundsData.roundTotal))
+                    total: Int64(roundsData.roundTotal),
+                    exclude: roundsData.exclude)
                 roundsData.saveRounds()
                 roundsData.fetchRounds()
                 roundsData.clearData()
@@ -301,4 +310,3 @@ struct Header: View {
         .id(0)
     }
 }
-

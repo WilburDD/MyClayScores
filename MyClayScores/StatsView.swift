@@ -12,7 +12,7 @@ struct StatsView: View {
     
     @EnvironmentObject var roundsData: RoundsDataStack
     
-    @State private var showAlert: Bool = false
+//    @State private var showAlert: Bool = false
     
     var body: some View {
         

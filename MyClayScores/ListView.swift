@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FivePosList: View {
+struct ListView: View {
     
     let item: RoundEntity
     @EnvironmentObject var roundsData: RoundsDataStack
@@ -28,88 +28,36 @@ struct FivePosList: View {
     }
     
     var body: some View {
-        
-                VStack {
-                    HStack {
-                        ForEach(1...roundsData.positions, id: \.self) { element in
-                            Text("\(score(at: element))")
-                            Spacer()
-                        }
-//                        HStack {
-//                            Text("\(item.pos1)")
-//                            Spacer()
-//                        }
-//                        HStack {
-//                            Text("\(item.pos2)")
-//                            Spacer()
-//                        }
-//                        HStack {
-//                            Text("\(item.pos3)")
-//                            Spacer()
-//                        }
-//                        HStack {
-//                            Text("\(item.pos4)")
-//                            Spacer()
-//                        }
-//                        HStack {
-//                            Text("\(item.pos5)")
-//                            Spacer()
-//                        }
-                        Text("\(item.total)")
-                            .fontWeight(.bold)
-                            .font(.title)
-                    }
-                    .font(.title2)
-                    .frame(
-                        minWidth: 0,
-                        maxWidth: .infinity,
-                        alignment: .leading)
-                    HStack {
-                        Text("\(item.date! .formatDate())")
-                        Spacer()
-                        Text("\(item.comment!)")
-                    }
-                    .font(.caption.italic())
+        VStack {
+            HStack(alignment: .center) {
+                ForEach(1...roundsData.positions, id: \.self) { element in
+                    Text("\(score(at: element))")
+                    Spacer()
                 }
-        
-        
-//        VStack {
-//            HStack {
-//                HStack {
-//                    Text("\(item.pos1)")
-//                    Spacer()
-//                }
-//                HStack {
-//                    Text("\(item.pos2)")
-//                    Spacer()
-//                }
-//                HStack {
-//                    Text("\(item.pos3)")
-//                    Spacer()
-//                }
-//                HStack {
-//                    Text("\(item.pos4)")
-//                    Spacer()
-//                }
-//                HStack {
-//                    Text("\(item.pos5)")
-//                    Spacer()
-//                }
-//                Text("\(item.total)")
-//                    .fontWeight(.bold)
-//            }
-//            .font(.title2)
-//            .frame(
-//                minWidth: 0,
-//                maxWidth: .infinity,
-//                alignment: .leading)
-//            HStack {
-//                Text("\(item.date! .formatDate())")
-//                Spacer()
-//                Text("\(item.comment!)")
-//            }
-//            .font(.caption.italic())
-//        }
+                HStack(spacing: 8) {
+                    Text("\(item.total)")
+                        .fontWeight(.bold)
+                        .font(.title)
+                    if item.exclude {
+                        Image(systemName: "nosign")
+                            .foregroundColor(.red)
+                            .accessibilityLabel("Excluded from averages")
+                    }
+                }
+            }
+            .font(.title2)
+            .frame(
+                minWidth: 0,
+                maxWidth: .infinity,
+                alignment: .leading)
+            HStack {
+                Text(item.date?.formatDate() ?? Date.now.formatDate())
+                Spacer()
+                Text(item.comment ?? "")
+            }
+            .font(.caption.italic())
+        }
+        .opacity(item.exclude ? 0.85 : 1.0)
     }
 }
 
@@ -127,4 +75,3 @@ extension Date {
 //    .environmentObject(RoundsDataStack())
 //    }
 //}
-

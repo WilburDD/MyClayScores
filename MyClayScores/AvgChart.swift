@@ -69,7 +69,7 @@ struct AvgChart: View {
                             if !showSelectionBar {
                                 showSelectionBar = true
                             }
-                            let origin = geoProxy[pr.plotAreaFrame].origin
+                            let origin = geoProxy[pr.plotFrame!].origin
                             let location = CGPoint(
                                 x: value.location.x - origin.x,
                                 y: value.location.y - origin.y
