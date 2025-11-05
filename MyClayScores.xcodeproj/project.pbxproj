@@ -31,7 +31,6 @@
 		3E9D88CE2AE4FA1800F8CA25 /* MyClayScores_Widgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9D88CD2AE4FA1800F8CA25 /* MyClayScores_Widgets.swift */; };
 		3E9D88D02AE4FA1800F8CA25 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9D88CF2AE4FA1800F8CA25 /* AppIntent.swift */; };
 		3E9D88D22AE4FA1A00F8CA25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E9D88D12AE4FA1A00F8CA25 /* Assets.xcassets */; };
-		3E9D88D62AE4FA1A00F8CA25 /* MyClayScores WidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3E9D88C72AE4FA1700F8CA25 /* MyClayScores WidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3E9D88DB2AE7C2D800F8CA25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E6522392AA6D7BF00787581 /* Assets.xcassets */; };
 		3EAD6A092EBAF3E4009EBD40 /* Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAD6A082EBAF3E4009EBD40 /* Round.swift */; };
 		3EAD6A0A2EBAF3E4009EBD40 /* Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAD6A082EBAF3E4009EBD40 /* Round.swift */; };
@@ -45,13 +44,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3E9D88D42AE4FA1A00F8CA25 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3E555BAA27CDEC8700F316B5 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3E9D88C62AE4FA1700F8CA25;
-			remoteInfo = "MyClayScores WidgetsExtension";
-		};
 		3EAF9BF12AC2883200E89E2F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3E555BAA27CDEC8700F316B5 /* Project object */;
@@ -79,7 +71,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				3E9D88D62AE4FA1A00F8CA25 /* MyClayScores WidgetsExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,7 +283,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				3E9D88D52AE4FA1A00F8CA25 /* PBXTargetDependency */,
 			);
 			name = "MyClayScores Watch App";
 			productName = "MCS Watch App";
@@ -436,11 +426,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3E9D88D52AE4FA1A00F8CA25 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3E9D88C62AE4FA1700F8CA25 /* MyClayScores WidgetsExtension */;
-			targetProxy = 3E9D88D42AE4FA1A00F8CA25 /* PBXContainerItemProxy */;
-		};
 		3EAF9BF22AC2883200E89E2F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3E6522322AA6D7BE00787581 /* MyClayScores Watch App */;
@@ -582,7 +567,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = MyClayScores/MyClayScores.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.6;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MyClayScores/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -601,7 +586,7 @@
 				);
 				LOCALIZATION_EXPORT_SUPPORTED = YES;
 				LOCALIZED_STRING_SWIFTUI_SUPPORT = YES;
-				MARKETING_VERSION = 2.6;
+				MARKETING_VERSION = 2.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.doxiedavis.MyClayScores;
 				PRODUCT_NAME = MyClayScores;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -620,7 +605,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = MyClayScores/MyClayScores.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.6;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MyClayScores/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -639,7 +624,7 @@
 				);
 				LOCALIZATION_EXPORT_SUPPORTED = YES;
 				LOCALIZED_STRING_SWIFTUI_SUPPORT = YES;
-				MARKETING_VERSION = 2.6;
+				MARKETING_VERSION = 2.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.doxiedavis.MyClayScores;
 				PRODUCT_NAME = MyClayScores;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -660,7 +645,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_ENTITLEMENTS = "MyClayScores Watch App/MyClayScores Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.6;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MyClayScores Watch App/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -672,7 +657,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.6;
+				MARKETING_VERSION = 2.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.doxiedavis.MyClayScores.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -693,7 +678,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_ENTITLEMENTS = "MyClayScores Watch App/MyClayScores Watch App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.6;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MyClayScores Watch App/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -705,7 +690,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.6;
+				MARKETING_VERSION = 2.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.doxiedavis.MyClayScores.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -724,7 +709,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.6;
+				CURRENT_PROJECT_VERSION = 1;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "MyClayScores Widgets/Info.plist";
@@ -737,7 +722,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2.6;
+				MARKETING_VERSION = 2.7;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.doxiedavis.MyClayScores.watchkitapp.MyClayScores-Widgets";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -757,7 +742,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2.6;
+				CURRENT_PROJECT_VERSION = 1;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "MyClayScores Widgets/Info.plist";
@@ -770,7 +755,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2.6;
+				MARKETING_VERSION = 2.7;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.doxiedavis.MyClayScores.watchkitapp.MyClayScores-Widgets";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
