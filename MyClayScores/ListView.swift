@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ListView: View {
     
-    let item: RoundEntity
+    let item: Round
     @EnvironmentObject var roundsData: RoundsDataStack
     
     private func score(at position: Int) -> Int {

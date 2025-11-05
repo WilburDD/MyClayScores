@@ -8,14 +8,16 @@
 
 import Foundation
 import SwiftUI
+import SwiftData
 import WatchKit
 import ClockKit
-import CoreData
 import CloudKit
 
 class WatchData: ObservableObject, Identifiable {
         
-    @Published var roundData: [RoundEntity] = []
+    @Published var roundData: [Round] = []
+    
+    var modelContext: ModelContext?
 
     @Published var positions = 0
     @Published var pos = Int()
@@ -28,62 +30,31 @@ class WatchData: ObservableObject, Identifiable {
     @Published var roundDate = Date()
     @Published var comment = ""
         
-    struct PersistenceController {
-        static let shared = PersistenceController()
-        
-        static var preview: PersistenceController = {
-            let result = PersistenceController(inMemory: true)
-            let viewContext = result.container.viewContext
-            do {
-                try viewContext.save()
-            } catch {
-                let nsError = error as NSError
-                fatalError("Error \(nsError), \(nsError.userInfo)")
-            }
-            return result
-        }()
-        
-        let container: NSPersistentContainer
-        
-        init(inMemory: Bool = false) {
-            container = NSPersistentCloudKitContainer(name: "MyClayScoresModel")
-            if inMemory {
-                container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
-            }
-            container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-                if let error = error as NSError? {
-                    fatalError("Unresolved error \(error), \(error.userInfo)")
-                }
-            })
-            container.viewContext.automaticallyMergesChangesFromParent = true
-            container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-        }
-    }
-    
-    var managedObjectContext: NSManagedObjectContext {
-        if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"{
-            return PersistenceController.preview.container.viewContext
-        }
-        return PersistenceController.shared.container.viewContext
+    func setModelContext(_ context: ModelContext) {
+        self.modelContext = context
     }
     
     func fetchRounds() {
-        let request = NSFetchRequest<RoundEntity>(entityName: "RoundEntity")
-        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
-        let predicate = NSPredicate(format: "range == %@", range)
-        request.predicate = predicate
-        request.sortDescriptors = [sortDescriptor]
+        guard let modelContext = modelContext else { return }
+        
+        let descriptor = FetchDescriptor<Round>(
+            predicate: #Predicate<Round> { round in
+                round.range == range
+            },
+            sortBy: [SortDescriptor(\.date, order: .reverse)]
+        )
+        
         do {
-            roundData = try managedObjectContext.fetch(request)
+            roundData = try modelContext.fetch(descriptor)
         } catch let error {
             print ("Error fetching. \(error)")
         }
     }
     
     func saveRounds() {
-        guard managedObjectContext.hasChanges else { return }
+        guard let modelContext = modelContext else { return }
         do {
-            try managedObjectContext.save()
+            try modelContext.save()
             fetchRounds()
         } catch let error {
             print("Error saving. \(error)")
@@ -91,21 +62,25 @@ class WatchData: ObservableObject, Identifiable {
     }
     
     func addRound(range: String, comment: String, date: Date, pos1: Int64, pos2: Int64, pos3: Int64, pos4: Int64, pos5: Int64, pos6: Int64, pos7: Int64, pos8: Int64, pos9: Int64, total: Int64 ) {
-        let newRound = RoundEntity(context: managedObjectContext)
-        newRound.range = range
-        newRound.comment = comment
-        newRound.date = date
-        newRound.id = UUID()
-        newRound.pos1 = pos1
-        newRound.pos2 = pos2
-        newRound.pos3 = pos3
-        newRound.pos4 = pos4
-        newRound.pos5 = pos5
-        newRound.pos6 = pos6
-        newRound.pos7 = pos7
-        newRound.pos8 = pos8
-        newRound.pos9 = pos9
-        newRound.total = total
+        guard let modelContext = modelContext else { return }
+        
+        let newRound = Round(
+            comment: comment,
+            date: date,
+            exclude: false,
+            pos1: pos1,
+            pos2: pos2,
+            pos3: pos3,
+            pos4: pos4,
+            pos5: pos5,
+            pos6: pos6,
+            pos7: pos7,
+            pos8: pos8,
+            pos9: pos9,
+            range: range,
+            total: total
+        )
+        modelContext.insert(newRound)
         saveRounds()
     }
     

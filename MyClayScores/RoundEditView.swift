@@ -6,13 +6,12 @@
 //
 
 import SwiftUI
-import CoreData
 import MediaPlayer
 import AVFoundation
 
 struct RoundEditView: View {
     
-    let item: RoundEntity
+    let item: Round
     
     @EnvironmentObject var roundsData: RoundsDataStack
     @Environment(\.dismiss) var dismiss
@@ -210,7 +209,7 @@ struct RoundEditView: View {
             .navigationBarHidden(true)
             .navigationBarBackButtonHidden(true)
             .onAppear {
-                roundsData.editedIndex = roundsData.roundsData.firstIndex(of: item) ?? 0
+                roundsData.editedIndex = roundsData.roundsData.firstIndex(where: { $0.id == item.id }) ?? 0
                 roundsData.selectedRange = item.range!
                 roundsData.comment = item.comment!
                 roundsData.roundDate = item.date!

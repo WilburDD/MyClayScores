@@ -5,7 +5,7 @@
 //  Created by Doxie Davis on 6/23/23.
 //
 
-import CoreData
+import SwiftData
 import SwiftUI
 import CloudKit
 import Charts
@@ -15,7 +15,9 @@ class RoundsDataStack: ObservableObject, Identifiable {
     @AppStorage("storedRange") var storedRange = String("No Range Selected")
     @AppStorage("scoringSet") var scoringSet = 0
 
-    @Published var roundsData: [RoundEntity] = []
+    @Published var roundsData: [Round] = []
+    
+    var modelContext: ModelContext?
     
     @Published var editedIndex = 0
     
@@ -84,115 +86,94 @@ class RoundsDataStack: ObservableObject, Identifiable {
         public var comment = String()
     }
     
-    struct PersistenceController {
-        static let shared = PersistenceController()
-        
-        static var preview: PersistenceController = {
-            let result = PersistenceController(inMemory: true)
-            let viewContext = result.container.viewContext
-            do {
-                try viewContext.save()
-            } catch {
-                let nsError = error as NSError
-                fatalError("Error \(nsError), \(nsError.userInfo)")
-            }
-            return result
-        }()
-        
-        let container: NSPersistentContainer
-        
-        init(inMemory: Bool = false) {
-            container = NSPersistentCloudKitContainer(name: "MyClayScoresModel")
-            if inMemory {
-                container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
-            }
-            // Capture a local reference to avoid capturing the mutating `self` in the escaping closure
-            let localContainer = container
-            localContainer.loadPersistentStores { _, error in
-                if let error = error as NSError? {
-                    fatalError("Unresolved error \(error), \(error.userInfo)")
-                }
-                // Kick off a one-time background normalization for legacy data without capturing `self`
-                PersistenceController.normalizeExcludesInBackground(using: localContainer)
-            }
-            localContainer.viewContext.automaticallyMergesChangesFromParent = true
-            localContainer.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-        }
-        
-        private static let normalizationFlagKey = "didNormalizeExcludeOnce"
-
-        private static func normalizeExcludesInBackground(using container: NSPersistentContainer) {
-            let defaults = UserDefaults.standard
-            if defaults.bool(forKey: normalizationFlagKey) {
-                return
-            }
-            container.performBackgroundTask { context in
-                let fetch = NSFetchRequest<NSManagedObject>(entityName: "RoundEntity")
-                do {
-                    let results = try context.fetch(fetch)
-                    var didChange = false
-                    for obj in results {
-                        if let value = obj.value(forKey: "exclude") as? Bool {
-                            if value == false {
-                                obj.setValue(false, forKey: "exclude")
-                                didChange = true
-                            }
-                        } else {
-                            obj.setValue(false, forKey: "exclude")
-                            didChange = true
-                        }
-                    }
-                    if didChange && context.hasChanges {
-                        try context.save()
-                    }
-                    // Mark as done regardless of whether changes were needed
-                    defaults.set(true, forKey: normalizationFlagKey)
-                } catch {
-                    print("Background normalization failed: \(error)")
-                    // Even on failure, do not set the flag so it can retry next launch
-                }
-            }
-        }
-    }
-    
-    var managedObjectContext: NSManagedObjectContext {
-        if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"{
-            return PersistenceController.preview.container.viewContext
-        }
-        return PersistenceController.shared.container.viewContext
-    }
-    
-    // Normalize any legacy or nil excludes in fetched entities and persist the fix
-    private func normalizeRoundExcludes() {
-        var didChange = false
-        for entity in roundsData {
-            // Default to false unless explicitly true
-            if entity.exclude != true {
-                let previous = entity.exclude
-                entity.exclude = false
-                if previous != entity.exclude { didChange = true }
-            }
-        }
-        if didChange {
-            do {
-                try managedObjectContext.save()
-            } catch {
-                print("Error normalizing excludes: \(error)")
-            }
-        }
+    func setModelContext(_ context: ModelContext) {
+        self.modelContext = context
     }
     
     func fetchRounds() {
-        let request = NSFetchRequest<RoundEntity>(entityName: "RoundEntity")
-        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
-        let predicate = NSPredicate(format: "range == %@", selectedRange)
-        request.predicate = predicate
-        request.sortDescriptors = [sortDescriptor]
+        guard let modelContext = modelContext else { return }
+        
+        // First, check if there's any data at all (for debugging)
+        let allRoundsDescriptor = FetchDescriptor<Round>(
+            sortBy: [SortDescriptor(\.date, order: .reverse)]
+        )
         do {
-            roundsData = try managedObjectContext.fetch(request)
-            normalizeRoundExcludes()
-            if roundsData.count == 0 {
+            let allRounds = try modelContext.fetch(allRoundsDescriptor)
+            
+            // Fix duplicate UUIDs if any exist
+            var seenUUIDs = Set<UUID>()
+            var duplicateCount = 0
+            for round in allRounds {
+                if let id = round.id {
+                    if seenUUIDs.contains(id) {
+                        // Duplicate UUID found - assign new UUID
+                        round.id = UUID()
+                        duplicateCount += 1
+                    }
+                    seenUUIDs.insert(id)
+                } else {
+                    // Missing UUID - assign new one
+                    round.id = UUID()
+                    duplicateCount += 1
+                }
+            }
+            
+            if duplicateCount > 0 {
+                try modelContext.save()
+                print("Fixed \(duplicateCount) rounds with duplicate or missing UUIDs")
+            }
+            
+            print("Total rounds in database: \(allRounds.count)")
+            if allRounds.count > 0 {
+                let nonNilRanges = allRounds.compactMap { $0.range }.filter { !$0.isEmpty }
+                let uniqueRanges = Set(nonNilRanges)
+                print("Unique ranges found (\(uniqueRanges.count)): \(Array(uniqueRanges).sorted())")
+                let nilCount = allRounds.filter { $0.range == nil || $0.range?.isEmpty == true }.count
+                if nilCount > 0 {
+                    print("WARNING: \(nilCount) rounds have nil or empty range")
+                }
+                // Show first few rounds as sample
+                let sampleRounds = Array(allRounds.prefix(5))
+                for (index, round) in sampleRounds.enumerated() {
+                    let rangeStr = round.range ?? "nil"
+                    let dateStr = round.date?.formatted(date: .abbreviated, time: .shortened) ?? "nil"
+                    print("Sample round \(index + 1): range='\(rangeStr)', date=\(dateStr), total=\(round.total)")
+                }
+            }
+        } catch {
+            print("Error fetching all rounds: \(error)")
+        }
+        
+        // Now fetch filtered by selected range
+        // Handle both exact match and potential nil/empty cases
+        let descriptor: FetchDescriptor<Round>
+        if selectedRange.isEmpty || selectedRange == "No Range Selected" {
+            // If no range selected, show all rounds
+            descriptor = FetchDescriptor<Round>(
+                sortBy: [SortDescriptor(\.date, order: .reverse)]
+            )
+            print("Fetching all rounds (no range selected)")
+        } else {
+            // Use optional chaining in predicate - SwiftData handles nil comparison
+            let rangeToMatch = selectedRange
+            descriptor = FetchDescriptor<Round>(
+                predicate: #Predicate<Round> { round in
+                    round.range == rangeToMatch
+                },
+                sortBy: [SortDescriptor(\.date, order: .reverse)]
+            )
+            print("Fetching rounds for range: '\(selectedRange)'")
+        }
+        
+        do {
+            roundsData = try modelContext.fetch(descriptor)
+            print("Fetched \(roundsData.count) rounds for range: '\(selectedRange)'")
+            if roundsData.count == 0 && !selectedRange.isEmpty && selectedRange != "No Range Selected" {
                 self.noRounds = true
+                // Try to find what ranges actually exist
+                let allRounds = try modelContext.fetch(FetchDescriptor<Round>())
+                let availableRanges = Set(allRounds.compactMap { $0.range }.filter { !$0.isEmpty })
+                print("Available ranges in database: \(availableRanges.sorted())")
             } else {
                 self.noRounds = false
             }
@@ -202,18 +183,24 @@ class RoundsDataStack: ObservableObject, Identifiable {
     }
     
     func fetchGraphs() {
-        let request = NSFetchRequest<RoundEntity>(entityName: "RoundEntity")
-        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
-        let predicate = NSPredicate(format: "range == %@", selectedRange)
-        request.predicate = predicate
-        request.sortDescriptors = [sortDescriptor]
+        guard let modelContext = modelContext else { return }
+        
+        graphData.removeAll()
+        
+        let descriptor = FetchDescriptor<Round>(
+            predicate: #Predicate<Round> { round in
+                round.range == selectedRange
+            },
+            sortBy: [SortDescriptor(\.date, order: .forward)]
+        )
+        
         do {
-            roundsData = try managedObjectContext.fetch(request)
-            normalizeRoundExcludes()
+            roundsData = try modelContext.fetch(descriptor)
         } catch let error {
             print ("Error fetching. \(error)")
         }
-        for x in 0...roundsData.count - 1 {
+        
+        for x in 0..<roundsData.count {
             let seq = String(x)
             let date = roundsData[x].date?.formatted(date: .numeric, time: .standard) ?? "Date error"
             let score = Int(roundsData[x].total)
@@ -223,9 +210,9 @@ class RoundsDataStack: ObservableObject, Identifiable {
     }
     
     func saveRounds() {
-        guard managedObjectContext.hasChanges else { return }
+        guard let modelContext = modelContext else { return }
         do {
-            try managedObjectContext.save()
+            try modelContext.save()
             fetchRounds()
         } catch let error {
             print("Error saving. \(error)")
@@ -233,58 +220,77 @@ class RoundsDataStack: ObservableObject, Identifiable {
     }
     
     func addRound(range: String, comment: String, date: Date, pos1: Int64, pos2: Int64, pos3: Int64, pos4: Int64, pos5: Int64, pos6: Int64, pos7: Int64, pos8: Int64, pos9: Int64, total: Int64, exclude: Bool ) {
-        let newRound = RoundEntity(context: managedObjectContext)
-        newRound.range = range
-        newRound.comment = comment
-        newRound.date = date
-        newRound.id = UUID()
-        newRound.pos1 = pos1
-        newRound.pos2 = pos2
-        newRound.pos3 = pos3
-        newRound.pos4 = pos4
-        newRound.pos5 = pos5
-        newRound.pos6 = pos6
-        newRound.pos7 = pos7
-        newRound.pos8 = pos8
-        newRound.pos9 = pos9
-        newRound.total = total
-        newRound.exclude = exclude
+        guard let modelContext = modelContext else { return }
+        
+        let newRound = Round(
+            comment: comment,
+            date: date,
+            exclude: exclude,
+            pos1: pos1,
+            pos2: pos2,
+            pos3: pos3,
+            pos4: pos4,
+            pos5: pos5,
+            pos6: pos6,
+            pos7: pos7,
+            pos8: pos8,
+            pos9: pos9,
+            range: range,
+            total: total
+        )
+        modelContext.insert(newRound)
         saveRounds()
         calcAvgs()
     }
     
     func saveEdit(range: String, comment: String, date: Date, id: UUID, pos1: Int64, pos2: Int64, pos3: Int64, pos4: Int64, pos5: Int64, pos6: Int64, pos7: Int64, pos8: Int64, pos9: Int64,total: Int64, exclude: Bool ) {
-        let editedRound = RoundEntity(context: managedObjectContext)
-        editedRound.range = range
-        editedRound.comment = comment
-        editedRound.date = date
-        editedRound.id = id
-        editedRound.pos1 = pos1
-        editedRound.pos2 = pos2
-        editedRound.pos3 = pos3
-        editedRound.pos4 = pos4
-        editedRound.pos5 = pos5
-        editedRound.pos6 = pos6
-        editedRound.pos7 = pos7
-        editedRound.pos8 = pos8
-        editedRound.pos9 = pos9
-        editedRound.total = total
-        editedRound.exclude = exclude
+        guard let modelContext = modelContext else { return }
+        
+        // Find the existing round by id
+        let descriptor = FetchDescriptor<Round>(
+            predicate: #Predicate<Round> { round in
+                round.id == id
+            }
+        )
+        
+        do {
+            if let existingRound = try modelContext.fetch(descriptor).first {
+                // Update existing round
+                existingRound.range = range
+                existingRound.comment = comment
+                existingRound.date = date
+                existingRound.pos1 = pos1
+                existingRound.pos2 = pos2
+                existingRound.pos3 = pos3
+                existingRound.pos4 = pos4
+                existingRound.pos5 = pos5
+                existingRound.pos6 = pos6
+                existingRound.pos7 = pos7
+                existingRound.pos8 = pos8
+                existingRound.pos9 = pos9
+                existingRound.total = total
+                existingRound.exclude = exclude
+            }
+        } catch {
+            print("Error finding round to edit: \(error)")
+        }
+        
         saveRounds()
         calcAvgs()
     }
     
     func deleteRound(indexSet: IndexSet) {
-        guard let index = indexSet.first else { return }
+        guard let index = indexSet.first, let modelContext = modelContext else { return }
         let entity = roundsData[index]
-        managedObjectContext.delete(entity)
+        modelContext.delete(entity)
         saveRounds()
         calcAvgs()
     }
     
     func deleteEditedRound(index: Int) {
+        guard let modelContext = modelContext else { return }
         let entity = roundsData[index]
-        managedObjectContext.delete(entity)
+        modelContext.delete(entity)
         saveRounds()
         calcAvgs()
     }

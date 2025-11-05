@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import CoreData
 
 struct SavedRoundEdit: View {
     
@@ -15,7 +14,7 @@ struct SavedRoundEdit: View {
     @State private var showAlert: Bool = false
 //    var editedIndex: IndexSet
     
-    let item: RoundEntity
+    let item: Round
     
     var body: some View {
         VStack {
@@ -169,7 +168,7 @@ struct SavedRoundEdit: View {
             //                .padding()
         }
         .onAppear {
-            roundsData.editedIndex = roundsData.roundsData.firstIndex(of: item) ?? 0
+            roundsData.editedIndex = roundsData.roundsData.firstIndex(where: { $0.id == item.id }) ?? 0
             roundsData.selectedRange = item.range!
             roundsData.comment = item.comment!
             roundsData.roundDate = item.date!

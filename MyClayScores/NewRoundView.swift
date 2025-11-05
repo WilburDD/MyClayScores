@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import CoreData
 //import MediaPlayer
 //import AVFoundation
 

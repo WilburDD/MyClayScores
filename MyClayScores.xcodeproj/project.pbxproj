@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3E0CA7372ABC0FF000800BD6 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E0DBF1128449D5B00DB1BEE /* CloudKit.framework */; };
-		3E133BE82AABF8AC001C4ABA /* MyClayScoresModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3E555BC027CDEC8900F316B5 /* MyClayScoresModel.xcdatamodeld */; };
 		3E1777F3287B5D2B00A9CE48 /* SelectRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1777F2287B5D2B00A9CE48 /* SelectRange.swift */; };
 		3E1C205E2AE8F0330042263D /* FinishRound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1C205D2AE8F0330042263D /* FinishRound.swift */; };
 		3E42D281283483F5004DDEA9 /* RoundsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E42D280283483F5004DDEA9 /* RoundsView.swift */; };
@@ -18,7 +17,6 @@
 		3E555BBA27CDEC8900F316B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E555BB927CDEC8900F316B5 /* Assets.xcassets */; };
 		3E555BBD27CDEC8900F316B5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E555BBC27CDEC8900F316B5 /* Preview Assets.xcassets */; };
 		3E555BBF27CDEC8900F316B5 /* RoundsDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E555BBE27CDEC8900F316B5 /* RoundsDataStack.swift */; };
-		3E555BC227CDEC8900F316B5 /* MyClayScoresModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3E555BC027CDEC8900F316B5 /* MyClayScoresModel.xcdatamodeld */; };
 		3E6522362AA6D7BE00787581 /* MyClayScoresWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6522352AA6D7BE00787581 /* MyClayScoresWatchApp.swift */; };
 		3E6522382AA6D7BE00787581 /* ChooseRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6522372AA6D7BE00787581 /* ChooseRange.swift */; };
 		3E65223A2AA6D7BF00787581 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E6522392AA6D7BF00787581 /* Assets.xcassets */; };
@@ -35,6 +33,12 @@
 		3E9D88D22AE4FA1A00F8CA25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E9D88D12AE4FA1A00F8CA25 /* Assets.xcassets */; };
 		3E9D88D62AE4FA1A00F8CA25 /* MyClayScores WidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3E9D88C72AE4FA1700F8CA25 /* MyClayScores WidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3E9D88DB2AE7C2D800F8CA25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E6522392AA6D7BF00787581 /* Assets.xcassets */; };
+		3EAD6A092EBAF3E4009EBD40 /* Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAD6A082EBAF3E4009EBD40 /* Round.swift */; };
+		3EAD6A0A2EBAF3E4009EBD40 /* Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAD6A082EBAF3E4009EBD40 /* Round.swift */; };
+		3EAD6A0B2EBAF3E4009EBD40 /* Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAD6A082EBAF3E4009EBD40 /* Round.swift */; };
+		3EAD6A0D2EBAF8CB009EBD40 /* CoreDataMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAD6A0C2EBAF8CB009EBD40 /* CoreDataMigration.swift */; };
+		3EAD6A0E2EBAF8CB009EBD40 /* CoreDataMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAD6A0C2EBAF8CB009EBD40 /* CoreDataMigration.swift */; };
+		3EAD6A0F2EBAF8CB009EBD40 /* CoreDataMigration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAD6A0C2EBAF8CB009EBD40 /* CoreDataMigration.swift */; };
 		3EADC8F12EB0867E00257D69 /* RoundEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EADC8F02EB0867E00257D69 /* RoundEditView.swift */; };
 		3EADC8F32EB0869900257D69 /* NewRoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EADC8F22EB0869900257D69 /* NewRoundView.swift */; };
 		3EADC8F52EB086AD00257D69 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EADC8F42EB086AD00257D69 /* ListView.swift */; };
@@ -95,7 +99,6 @@
 		3E555BB927CDEC8900F316B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3E555BBC27CDEC8900F316B5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3E555BBE27CDEC8900F316B5 /* RoundsDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundsDataStack.swift; sourceTree = "<group>"; };
-		3E555BC127CDEC8900F316B5 /* MyClayScoresModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyClayScoresModel.xcdatamodel; sourceTree = "<group>"; };
 		3E6522332AA6D7BE00787581 /* MyClayScores Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MyClayScores Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E6522352AA6D7BE00787581 /* MyClayScoresWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyClayScoresWatchApp.swift; sourceTree = "<group>"; };
 		3E6522372AA6D7BE00787581 /* ChooseRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseRange.swift; sourceTree = "<group>"; };
@@ -113,6 +116,8 @@
 		3E9D88D12AE4FA1A00F8CA25 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3E9D88D32AE4FA1A00F8CA25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3EA808562AB3020300B1977D /* MyClayScores Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "MyClayScores Watch App.entitlements"; sourceTree = "<group>"; };
+		3EAD6A082EBAF3E4009EBD40 /* Round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Round.swift; sourceTree = "<group>"; };
+		3EAD6A0C2EBAF8CB009EBD40 /* CoreDataMigration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataMigration.swift; sourceTree = "<group>"; };
 		3EADC8F02EB0867E00257D69 /* RoundEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundEditView.swift; sourceTree = "<group>"; };
 		3EADC8F22EB0869900257D69 /* NewRoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRoundView.swift; sourceTree = "<group>"; };
 		3EADC8F42EB086AD00257D69 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
@@ -195,7 +200,7 @@
 				3E555BBB27CDEC8900F316B5 /* Preview Content */,
 			);
 			name = MyClayScores;
-			path = "/Users/doxiedavis/Desktop/MyClayScores 2.6/MyClayScores";
+			path = "/Users/doxiedavis/Desktop/MyClayScores - Cursor/MyClayScores";
 			sourceTree = "<absolute>";
 		};
 		3E555BBB27CDEC8900F316B5 /* Preview Content */ = {
@@ -209,8 +214,9 @@
 		3E555BC827CDEE9900F316B5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3EAD6A0C2EBAF8CB009EBD40 /* CoreDataMigration.swift */,
 				3E555BBE27CDEC8900F316B5 /* RoundsDataStack.swift */,
-				3E555BC027CDEC8900F316B5 /* MyClayScoresModel.xcdatamodeld */,
+				3EAD6A082EBAF3E4009EBD40 /* Round.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -388,7 +394,8 @@
 			files = (
 				3E555BBF27CDEC8900F316B5 /* RoundsDataStack.swift in Sources */,
 				3E42D281283483F5004DDEA9 /* RoundsView.swift in Sources */,
-				3E555BC227CDEC8900F316B5 /* MyClayScoresModel.xcdatamodeld in Sources */,
+				3EAD6A0D2EBAF8CB009EBD40 /* CoreDataMigration.swift in Sources */,
+				3EAD6A092EBAF3E4009EBD40 /* Round.swift in Sources */,
 				3E8470CD2AB587450099EA74 /* AvgChart.swift in Sources */,
 				3E1777F3287B5D2B00A9CE48 /* SelectRange.swift in Sources */,
 				3E5109A427FEE03900C3C8DD /* StatsView.swift in Sources */,
@@ -403,7 +410,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E133BE82AABF8AC001C4ABA /* MyClayScoresModel.xcdatamodeld in Sources */,
+				3EAD6A0A2EBAF3E4009EBD40 /* Round.swift in Sources */,
+				3EAD6A0F2EBAF8CB009EBD40 /* CoreDataMigration.swift in Sources */,
 				3E6522382AA6D7BE00787581 /* ChooseRange.swift in Sources */,
 				3E6522362AA6D7BE00787581 /* MyClayScoresWatchApp.swift in Sources */,
 				3E7BEB812AA969A300A9E901 /* EnterScore.swift in Sources */,
@@ -419,7 +427,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E9D88CE2AE4FA1800F8CA25 /* MyClayScores_Widgets.swift in Sources */,
+				3EAD6A0B2EBAF3E4009EBD40 /* Round.swift in Sources */,
 				3E9D88D02AE4FA1800F8CA25 /* AppIntent.swift in Sources */,
+				3EAD6A0E2EBAF8CB009EBD40 /* CoreDataMigration.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -670,7 +680,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
 			};
 			name = Debug;
 		};
@@ -703,7 +713,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 9.4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
 			};
 			name = Release;
 		};
@@ -736,7 +746,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 26.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
 			};
 			name = Debug;
 		};
@@ -768,7 +778,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 26.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.6;
 			};
 			name = Release;
 		};
@@ -812,19 +822,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		3E555BC027CDEC8900F316B5 /* MyClayScoresModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				3E555BC127CDEC8900F316B5 /* MyClayScoresModel.xcdatamodel */,
-			);
-			currentVersion = 3E555BC127CDEC8900F316B5 /* MyClayScoresModel.xcdatamodel */;
-			path = MyClayScoresModel.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 3E555BAA27CDEC8700F316B5 /* Project object */;
 }

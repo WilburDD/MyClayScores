@@ -38,11 +38,11 @@ struct FinishRound: View {
             Text("(Tap to enter)")
             TextField (roundData.comment, text: $roundData.comment)
                 .font(.title3)
-                .onChange(of: self.roundData.comment, perform : { value in
-                    if value.count > 10 {
-                        self.roundData.comment = String(value.prefix(28))
+                .onChange(of: self.roundData.comment) {
+                    if self.roundData.comment.count > 10 {
+                        self.roundData.comment = String(self.roundData.comment.prefix(28))
                     }
-                })
+                }
                 .multilineTextAlignment(.center)
 //                .padding()
             //

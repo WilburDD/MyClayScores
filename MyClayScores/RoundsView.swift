@@ -7,7 +7,7 @@
 
 
 import SwiftUI
-import CoreData
+import SwiftData
 import MediaPlayer
 
 struct RoundsView: View {
@@ -34,7 +34,7 @@ struct RoundsView: View {
                 RoundedRectangle(cornerRadius: 1)
                     .frame(height: 2)
                 List {
-                    ForEach(roundsData.roundsData, id: \.self) { item in
+                    ForEach(roundsData.roundsData, id: \.id) { item in
                         NavigationLink {
                             RoundEditView(item: item)
                         } label: {
@@ -144,10 +144,14 @@ struct RoundsView: View {
 
 struct RoundsView_Previews: PreviewProvider {
     static var previews: some View {
-        RoundsView()
-            .environment(\.managedObjectContext,
-                          RoundsDataStack().managedObjectContext)
-            .environmentObject(RoundsDataStack())
+        let config = ModelConfiguration(isStoredInMemoryOnly: true)
+        let container = try! ModelContainer(for: Round.self, configurations: config)
+        let stack = RoundsDataStack()
+        stack.setModelContext(container.mainContext)
+        
+        return RoundsView()
+            .modelContainer(container)
+            .environmentObject(stack)
     }
 }
 
