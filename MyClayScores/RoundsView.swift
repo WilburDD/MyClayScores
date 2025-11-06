@@ -48,6 +48,12 @@ struct RoundsView: View {
                         roundsData.calcAvgs()
                     })
                 }
+                .refreshable {
+                    // Pull-to-refresh: sync from CloudKit and refresh data
+                    await roundsData.syncFromCloudKit()
+                    roundsData.fetchRounds()
+                    roundsData.calcAvgs()
+                }
             }
             RoundedRectangle(cornerRadius: 1)
                 .frame(height: 2)

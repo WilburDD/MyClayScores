@@ -90,6 +90,33 @@ class RoundsDataStack: ObservableObject, Identifiable {
         self.modelContext = context
     }
     
+    func syncFromCloudKit() async {
+        guard let modelContext = modelContext else { return }
+        
+        print("Starting CloudKit sync...")
+        
+        // Process any pending CloudKit changes
+        modelContext.processPendingChanges()
+        
+        // Trigger a fetch to pull latest data from CloudKit
+        // SwiftData will automatically sync with CloudKit when we fetch
+        let descriptor = FetchDescriptor<Round>()
+        do {
+            let _ = try modelContext.fetch(descriptor)
+            print("CloudKit sync fetch completed")
+        } catch {
+            print("Error during CloudKit sync fetch: \(error)")
+        }
+        
+        // Give CloudKit a moment to sync any pending changes
+        try? await Task.sleep(nanoseconds: 500_000_000) // 0.5 seconds
+        
+        // Process pending changes again after sync delay
+        modelContext.processPendingChanges()
+        
+        print("CloudKit sync completed")
+    }
+    
     func fetchRounds() {
         guard let modelContext = modelContext else { return }
         

@@ -16,7 +16,7 @@ struct StatsView: View {
     
     var body: some View {
         
-        VStack {
+        ScrollView {
             VStack {
                 HStack {
                     Text("\(roundsData.selectedRange)")
@@ -44,6 +44,7 @@ struct StatsView: View {
                     }
                 }
                 .chartXScale(domain: 0...roundsData.posMax[0])
+                .frame(height: 350)
                 Spacer()
                 VStack {
                     Text("Rounds:   \(roundsData.totalRnds)")
@@ -68,6 +69,12 @@ struct StatsView: View {
                 roundsData.clearData()
                 roundsData.fetchRounds()
             }
+        }
+        .refreshable {
+            // Pull-to-refresh: sync from CloudKit and refresh data
+            await roundsData.syncFromCloudKit()
+            roundsData.fetchGraphs()
+            roundsData.calcAvgs()
         }
     }
 }

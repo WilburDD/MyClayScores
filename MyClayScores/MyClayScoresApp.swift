@@ -51,11 +51,23 @@ struct MyClayScoresApp: App {
                 .onAppear {
                     let context = MyClayScoresApp.container.mainContext
                     roundsDataStack.setModelContext(context)
+                    
+                    // Trigger immediate CloudKit sync on app launch
+                    Task {
+                        await roundsDataStack.syncFromCloudKit()
+                        // After sync completes, fetch and display data
+                        roundsDataStack.fetchRounds()
+                        roundsDataStack.calcAvgs()
+                    }
+                    
                     // Attempt migration from Core Data on first launch
                     CoreDataMigration.migrateFromCoreData(to: context) {
                         // After migration completes, refresh the data
-                        roundsDataStack.fetchRounds()
-                        roundsDataStack.calcAvgs()
+                        Task {
+                            await roundsDataStack.syncFromCloudKit()
+                            roundsDataStack.fetchRounds()
+                            roundsDataStack.calcAvgs()
+                        }
                     }
                 }
                 .onChange(of: scenePhase) {
