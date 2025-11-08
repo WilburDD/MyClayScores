@@ -21,7 +21,7 @@ struct EnterScore: View {
                 .font(.title3)
                 .fontWeight(.bold)
                 .underline()
-            Text("Position \(roundData.pos)")
+            Text("Position \(item + 1)")
                 .font(.title3)
             Text("Scroll & Tap on Score:")
                 .font(.title3)

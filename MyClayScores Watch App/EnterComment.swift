@@ -21,11 +21,12 @@ struct EnterComment: View {
                 .font(.title3)
             TextField (roundData.comment, text: $roundData.comment)
                 .font(.title3)
-                .onChange(of: self.roundData.comment, perform : { value in
-                    if value.count > 10 {
+                .onChange(of: self.roundData.comment) {
+                    let value = self.roundData.comment
+                    if value.count > 28 {
                         self.roundData.comment = String(value.prefix(28))
                     }
-                })
+                }
                 .multilineTextAlignment(.center)
                 .padding()
             Text("(Tap to enter)")
