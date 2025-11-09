@@ -28,26 +28,12 @@
 		3E7BEB812AA969A300A9E901 /* EnterScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BEB802AA969A300A9E901 /* EnterScore.swift */; };
 		3E8470CD2AB587450099EA74 /* AvgChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8470CC2AB587450099EA74 /* AvgChart.swift */; };
 		3E891A382AB2969100BB0604 /* EnterComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E891A372AB2969100BB0604 /* EnterComment.swift */; };
-		3E9D88C92AE4FA1800F8CA25 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9D88C82AE4FA1800F8CA25 /* WidgetKit.framework */; };
-		3E9D88CB2AE4FA1800F8CA25 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9D88CA2AE4FA1800F8CA25 /* SwiftUI.framework */; };
-		3E9D88CE2AE4FA1800F8CA25 /* MyClayScores_Widgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9D88CD2AE4FA1800F8CA25 /* MyClayScores_Widgets.swift */; };
-		3E9D88D02AE4FA1800F8CA25 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9D88CF2AE4FA1800F8CA25 /* AppIntent.swift */; };
-		3E9D88D22AE4FA1A00F8CA25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E9D88D12AE4FA1A00F8CA25 /* Assets.xcassets */; };
-		3E9D88D62AE4FA1A00F8CA25 /* MyClayScores WidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3E9D88C72AE4FA1700F8CA25 /* MyClayScores WidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		3E9D88DB2AE7C2D800F8CA25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E6522392AA6D7BF00787581 /* Assets.xcassets */; };
 		3EADC8F12EB0867E00257D69 /* RoundEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EADC8F02EB0867E00257D69 /* RoundEditView.swift */; };
 		3EADC8F32EB0869900257D69 /* NewRoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EADC8F22EB0869900257D69 /* NewRoundView.swift */; };
 		3EADC8F52EB086AD00257D69 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EADC8F42EB086AD00257D69 /* ListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3E9D88D42AE4FA1A00F8CA25 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3E555BAA27CDEC8700F316B5 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3E9D88C62AE4FA1700F8CA25;
-			remoteInfo = "MyClayScores WidgetsExtension";
-		};
 		3EAF9BF12AC2883200E89E2F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3E555BAA27CDEC8700F316B5 /* Project object */;
@@ -75,7 +61,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				3E9D88D62AE4FA1A00F8CA25 /* MyClayScores WidgetsExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -105,7 +90,6 @@
 		3E7BEB802AA969A300A9E901 /* EnterScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterScore.swift; sourceTree = "<group>"; };
 		3E8470CC2AB587450099EA74 /* AvgChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvgChart.swift; sourceTree = "<group>"; };
 		3E891A372AB2969100BB0604 /* EnterComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterComment.swift; sourceTree = "<group>"; };
-		3E9D88C72AE4FA1700F8CA25 /* MyClayScores WidgetsExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "MyClayScores WidgetsExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E9D88C82AE4FA1800F8CA25 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		3E9D88CA2AE4FA1800F8CA25 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		3E9D88CD2AE4FA1800F8CA25 /* MyClayScores_Widgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyClayScores_Widgets.swift; sourceTree = "<group>"; };
@@ -132,15 +116,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3E9D88C42AE4FA1700F8CA25 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3E9D88CB2AE4FA1800F8CA25 /* SwiftUI.framework in Frameworks */,
-				3E9D88C92AE4FA1800F8CA25 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,7 +148,6 @@
 			children = (
 				3E555BB227CDEC8700F316B5 /* MyClayScores.app */,
 				3E6522332AA6D7BE00787581 /* MyClayScores Watch App.app */,
-				3E9D88C72AE4FA1700F8CA25 /* MyClayScores WidgetsExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -195,7 +169,7 @@
 				3E555BBB27CDEC8900F316B5 /* Preview Content */,
 			);
 			name = MyClayScores;
-			path = "/Users/doxiedavis/Desktop/MyClayScores 2.8/MyClayScores";
+			path = "/Users/doxiedavis/Desktop/MyClayScores 2.9/MyClayScores";
 			sourceTree = "<absolute>";
 		};
 		3E555BBB27CDEC8900F316B5 /* Preview Content */ = {
@@ -286,29 +260,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				3E9D88D52AE4FA1A00F8CA25 /* PBXTargetDependency */,
 			);
 			name = "MyClayScores Watch App";
 			productName = "MCS Watch App";
 			productReference = 3E6522332AA6D7BE00787581 /* MyClayScores Watch App.app */;
 			productType = "com.apple.product-type.application";
-		};
-		3E9D88C62AE4FA1700F8CA25 /* MyClayScores WidgetsExtension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3E9D88DA2AE4FA1A00F8CA25 /* Build configuration list for PBXNativeTarget "MyClayScores WidgetsExtension" */;
-			buildPhases = (
-				3E9D88C32AE4FA1700F8CA25 /* Sources */,
-				3E9D88C42AE4FA1700F8CA25 /* Frameworks */,
-				3E9D88C52AE4FA1700F8CA25 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "MyClayScores WidgetsExtension";
-			productName = "MyClayScores WidgetsExtension";
-			productReference = 3E9D88C72AE4FA1700F8CA25 /* MyClayScores WidgetsExtension.appex */;
-			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -325,9 +281,6 @@
 					};
 					3E6522322AA6D7BE00787581 = {
 						CreatedOnToolsVersion = 14.3.1;
-					};
-					3E9D88C62AE4FA1700F8CA25 = {
-						CreatedOnToolsVersion = 15.0.1;
 					};
 				};
 			};
@@ -346,7 +299,6 @@
 			targets = (
 				3E555BB127CDEC8700F316B5 /* MyClayScores */,
 				3E6522322AA6D7BE00787581 /* MyClayScores Watch App */,
-				3E9D88C62AE4FA1700F8CA25 /* MyClayScores WidgetsExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -367,15 +319,6 @@
 			files = (
 				3E65223D2AA6D7BF00787581 /* Preview Assets.xcassets in Resources */,
 				3E65223A2AA6D7BF00787581 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3E9D88C52AE4FA1700F8CA25 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3E9D88DB2AE7C2D800F8CA25 /* Assets.xcassets in Resources */,
-				3E9D88D22AE4FA1A00F8CA25 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,23 +357,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3E9D88C32AE4FA1700F8CA25 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3E9D88CE2AE4FA1800F8CA25 /* MyClayScores_Widgets.swift in Sources */,
-				3E9D88D02AE4FA1800F8CA25 /* AppIntent.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3E9D88D52AE4FA1A00F8CA25 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3E9D88C62AE4FA1700F8CA25 /* MyClayScores WidgetsExtension */;
-			targetProxy = 3E9D88D42AE4FA1A00F8CA25 /* PBXContainerItemProxy */;
-		};
 		3EAF9BF22AC2883200E89E2F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3E6522322AA6D7BE00787581 /* MyClayScores Watch App */;
@@ -578,6 +507,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyClayScores/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = MyClayScores;
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				INFOPLIST_KEY_NSMainStoryboardFile = MyClayScores;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -591,7 +521,7 @@
 				);
 				LOCALIZATION_EXPORT_SUPPORTED = YES;
 				LOCALIZED_STRING_SWIFTUI_SUPPORT = YES;
-				MARKETING_VERSION = 2.8;
+				MARKETING_VERSION = 2.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.doxiedavis.MyClayScores;
 				PRODUCT_NAME = MyClayScores;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -616,6 +546,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyClayScores/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = MyClayScores;
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				INFOPLIST_KEY_NSMainStoryboardFile = MyClayScores;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -629,7 +560,7 @@
 				);
 				LOCALIZATION_EXPORT_SUPPORTED = YES;
 				LOCALIZED_STRING_SWIFTUI_SUPPORT = YES;
-				MARKETING_VERSION = 2.8;
+				MARKETING_VERSION = 2.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.doxiedavis.MyClayScores;
 				PRODUCT_NAME = MyClayScores;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -662,7 +593,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.8;
+				MARKETING_VERSION = 2.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.doxiedavis.MyClayScores.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -695,7 +626,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.8;
+				MARKETING_VERSION = 2.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.doxiedavis.MyClayScores.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -704,71 +635,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 10.6;
-			};
-			name = Release;
-		};
-		3E9D88D82AE4FA1A00F8CA25 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "MyClayScores Widgets/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "MyClayScores Widgets";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-					"@executable_path/../../../../Frameworks",
-				);
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2.8;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.doxiedavis.MyClayScores.watchkitapp.MyClayScores-Widgets";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 26.0;
-			};
-			name = Debug;
-		};
-		3E9D88D92AE4FA1A00F8CA25 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "MyClayScores Widgets/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "MyClayScores Widgets";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-					"@executable_path/../../../../Frameworks",
-				);
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 2.8;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.doxiedavis.MyClayScores.watchkitapp.MyClayScores-Widgets";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 26.0;
 			};
 			name = Release;
 		};
@@ -798,15 +664,6 @@
 			buildConfigurations = (
 				3E6522422AA6D7BF00787581 /* Debug */,
 				3E6522432AA6D7BF00787581 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3E9D88DA2AE4FA1A00F8CA25 /* Build configuration list for PBXNativeTarget "MyClayScores WidgetsExtension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3E9D88D82AE4FA1A00F8CA25 /* Debug */,
-				3E9D88D92AE4FA1A00F8CA25 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

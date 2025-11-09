@@ -43,8 +43,6 @@ struct RoundEditView: View {
                         })
                         Spacer()
                         Button(action: {
-                            roundsData.deleteEditedRound(index: roundsData.editedIndex)
-                            
                             roundsData.saveEdit(
                                 range: roundsData.selectedRange,
                                 comment: roundsData.comment,
@@ -241,3 +239,4 @@ struct RoundEditView: View {
 //            .environmentObject(RoundsDataStack())
 //    }
 //}
+

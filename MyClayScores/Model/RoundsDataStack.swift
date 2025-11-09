@@ -254,24 +254,51 @@ class RoundsDataStack: ObservableObject, Identifiable {
     }
     
     func saveEdit(range: String, comment: String, date: Date, id: UUID, pos1: Int64, pos2: Int64, pos3: Int64, pos4: Int64, pos5: Int64, pos6: Int64, pos7: Int64, pos8: Int64, pos9: Int64,total: Int64, exclude: Bool ) {
-        let editedRound = RoundEntity(context: managedObjectContext)
-        editedRound.range = range
-        editedRound.comment = comment
-        editedRound.date = date
-        editedRound.id = id
-        editedRound.pos1 = pos1
-        editedRound.pos2 = pos2
-        editedRound.pos3 = pos3
-        editedRound.pos4 = pos4
-        editedRound.pos5 = pos5
-        editedRound.pos6 = pos6
-        editedRound.pos7 = pos7
-        editedRound.pos8 = pos8
-        editedRound.pos9 = pos9
-        editedRound.total = total
-        editedRound.exclude = exclude
-        saveRounds()
-        calcAvgs()
+        // Update existing round instead of creating a duplicate
+        let request = NSFetchRequest<RoundEntity>(entityName: "RoundEntity")
+        request.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        request.fetchLimit = 1
+        do {
+            if let existing = try managedObjectContext.fetch(request).first {
+                existing.range = range
+                existing.comment = comment
+                existing.date = date
+                existing.id = id
+                existing.pos1 = pos1
+                existing.pos2 = pos2
+                existing.pos3 = pos3
+                existing.pos4 = pos4
+                existing.pos5 = pos5
+                existing.pos6 = pos6
+                existing.pos7 = pos7
+                existing.pos8 = pos8
+                existing.pos9 = pos9
+                existing.total = total
+                existing.exclude = exclude
+            } else {
+                // Fallback: if not found, create it once (legacy data without id)
+                let newRound = RoundEntity(context: managedObjectContext)
+                newRound.range = range
+                newRound.comment = comment
+                newRound.date = date
+                newRound.id = id
+                newRound.pos1 = pos1
+                newRound.pos2 = pos2
+                newRound.pos3 = pos3
+                newRound.pos4 = pos4
+                newRound.pos5 = pos5
+                newRound.pos6 = pos6
+                newRound.pos7 = pos7
+                newRound.pos8 = pos8
+                newRound.pos9 = pos9
+                newRound.total = total
+                newRound.exclude = exclude
+            }
+            saveRounds()
+            calcAvgs()
+        } catch {
+            print("Error saving edit: \(error)")
+        }
     }
     
     func deleteRound(indexSet: IndexSet) {
