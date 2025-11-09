@@ -48,6 +48,9 @@ struct RoundsView: View {
                         roundsData.calcAvgs()
                     })
                 }
+                .refreshable {
+                    await roundsData.refreshFromCloud()
+                }
             }
             RoundedRectangle(cornerRadius: 1)
                 .frame(height: 2)

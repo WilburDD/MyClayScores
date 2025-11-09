@@ -399,5 +399,18 @@ class RoundsDataStack: ObservableObject, Identifiable {
     func addupScore () {
         roundTotal = posCount[0] + posCount[1] + posCount[2] + posCount[3] + posCount[4] + posCount[5] + posCount[6] + posCount[7] + posCount[8]
     }
+    
+    // Pull-to-refresh helper to clear local/transient state and refetch from CloudKit/Core Data
+    @MainActor
+    func refreshFromCloud() async {
+        // Clear transient UI/model caches
+        avgs.removeAll()
+        graphData.removeAll()
+        // Reset context to drop any cached faults; CloudKit merges will re-populate
+        managedObjectContext.reset()
+        // Re-fetch and rebuild derived data
+        fetchRounds()
+//        fetchGraphs()
+        calcAvgs()
+    }
 }
-

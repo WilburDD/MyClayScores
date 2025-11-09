@@ -68,6 +68,9 @@ struct StatsView: View {
                 roundsData.clearData()
                 roundsData.fetchRounds()
             }
+//            .refreshable {
+//                await roundsData.refreshFromCloud()
+//            }
         }
     }
 }
