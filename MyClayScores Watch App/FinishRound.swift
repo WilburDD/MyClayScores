@@ -54,6 +54,7 @@ struct FinishRound: View {
             //            .frame(height: 50)
             //            .background(.teal, in: Capsule())
             Button(action: {
+                // addRound creates the round, saves it (triggering CloudKit sync), and fetches rounds
                 roundData.addRound(
                     range: roundData.range,
                     comment: roundData.comment,
@@ -67,11 +68,17 @@ struct FinishRound: View {
                     pos7: Int64(roundData.posCount[6]),
                     pos8: Int64(roundData.posCount[7]),
                     pos9: Int64(roundData.posCount[8]),
-                    total: Int64(roundData.roundTotal))
-                roundData.saveRounds()
-                roundData.fetchRounds()
+                    total: Int64(roundData.roundTotal),
+                    exclude: false)
+                
+                // Clear local data
                 roundData.clearData()
-                dismiss()
+                
+                // Brief delay to ensure CloudKit sync initiates before dismissing
+                // This allows the background task to start processing CloudKit export
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    dismiss()
+                }
             }, label: {
                 Text("Save Round")
                     .font(.title3)

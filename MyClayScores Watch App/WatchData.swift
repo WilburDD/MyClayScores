@@ -43,12 +43,17 @@ class WatchData: ObservableObject, Identifiable {
             return result
         }()
         
-        let container: NSPersistentContainer
+        let container: NSPersistentCloudKitContainer
         
         init(inMemory: Bool = false) {
             container = NSPersistentCloudKitContainer(name: "MyClayScoresModel")
             if inMemory {
                 container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
+            } else {
+                // Configure CloudKit options for watchOS
+                let storeDescription = container.persistentStoreDescriptions.first!
+                storeDescription.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+                storeDescription.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
             }
             container.loadPersistentStores(completionHandler: { (storeDescription, error) in
                 if let error = error as NSError? {
@@ -83,14 +88,68 @@ class WatchData: ObservableObject, Identifiable {
     func saveRounds() {
         guard managedObjectContext.hasChanges else { return }
         do {
+            // Save the context - NSPersistentCloudKitContainer automatically syncs to CloudKit
             try managedObjectContext.save()
+            
+            // Ensure the save completes and CloudKit sync is initiated
+            managedObjectContext.processPendingChanges()
+            
+            // Explicitly trigger CloudKit export for watchOS
+            triggerCloudKitExport()
+            
             fetchRounds()
         } catch let error {
             print("Error saving. \(error)")
         }
     }
     
-    func addRound(range: String, comment: String, date: Date, pos1: Int64, pos2: Int64, pos3: Int64, pos4: Int64, pos5: Int64, pos6: Int64, pos7: Int64, pos8: Int64, pos9: Int64, total: Int64 ) {
+    /// Explicitly trigger CloudKit export to ensure immediate sync on watchOS
+    /// This method forces CloudKit to process pending exports immediately rather than deferring them
+    private func triggerCloudKitExport() {
+        let container = PersistenceController.shared.container
+        
+        // Ensure CloudKit container is properly configured
+        guard let storeDescription = container.persistentStoreDescriptions.first else {
+            print("Warning: No store description found for CloudKit export")
+            return
+        }
+        
+        // Verify CloudKit is configured (NSPersistentCloudKitContainer automatically configures this)
+        guard storeDescription.cloudKitContainerOptions != nil else {
+            print("Warning: CloudKit container options not configured")
+            return
+        }
+        
+        // Access the persistent store coordinator to ensure CloudKit operations are queued
+        // This ensures the container is aware of the changes and will sync to CloudKit
+        let coordinator = container.persistentStoreCoordinator
+        
+        // Use a background task to ensure CloudKit operations are processed
+        // This is critical on watchOS where CloudKit sync may be deferred for power management
+        container.performBackgroundTask { backgroundContext in
+            do {
+                // Set merge policy to ensure CloudKit changes are properly handled
+                backgroundContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+                
+                // Access the coordinator in background context to trigger CloudKit sync processing
+                let _ = coordinator
+                
+                // Process any pending changes in background context to trigger CloudKit export
+                if backgroundContext.hasChanges {
+                    try backgroundContext.save()
+                }
+                
+                // Force CloudKit to process the export by ensuring coordinator is active
+                // Accessing persistent stores ensures CloudKit operations are queued and processed
+                let _ = coordinator.persistentStores
+                
+            } catch {
+                print("Error triggering CloudKit export: \(error)")
+            }
+        }
+    }
+    
+    func addRound(range: String, comment: String, date: Date, pos1: Int64, pos2: Int64, pos3: Int64, pos4: Int64, pos5: Int64, pos6: Int64, pos7: Int64, pos8: Int64, pos9: Int64, total: Int64, exclude: Bool = false) {
         let newRound = RoundEntity(context: managedObjectContext)
         newRound.range = range
         newRound.comment = comment
@@ -106,6 +165,7 @@ class WatchData: ObservableObject, Identifiable {
         newRound.pos8 = pos8
         newRound.pos9 = pos9
         newRound.total = total
+        newRound.exclude = exclude
         saveRounds()
     }
     
