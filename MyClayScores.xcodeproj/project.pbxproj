@@ -169,7 +169,7 @@
 				3E555BBB27CDEC8900F316B5 /* Preview Content */,
 			);
 			name = MyClayScores;
-			path = "/Users/doxiedavis/Desktop/MyClayScores 2.9.2/MyClayScores";
+			path = "/Users/doxiedavis/Desktop/MyClayScores 3.0/MyClayScores";
 			sourceTree = "<absolute>";
 		};
 		3E555BBB27CDEC8900F316B5 /* Preview Content */ = {
@@ -521,7 +521,7 @@
 				);
 				LOCALIZATION_EXPORT_SUPPORTED = YES;
 				LOCALIZED_STRING_SWIFTUI_SUPPORT = YES;
-				MARKETING_VERSION = 2.9;
+				MARKETING_VERSION = 3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.doxiedavis.MyClayScores;
 				PRODUCT_NAME = MyClayScores;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -560,7 +560,7 @@
 				);
 				LOCALIZATION_EXPORT_SUPPORTED = YES;
 				LOCALIZED_STRING_SWIFTUI_SUPPORT = YES;
-				MARKETING_VERSION = 2.9;
+				MARKETING_VERSION = 3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.doxiedavis.MyClayScores;
 				PRODUCT_NAME = MyClayScores;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -593,7 +593,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.9.2;
+				MARKETING_VERSION = 3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.doxiedavis.MyClayScores.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -626,7 +626,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.9.2;
+				MARKETING_VERSION = 3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.doxiedavis.MyClayScores.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
