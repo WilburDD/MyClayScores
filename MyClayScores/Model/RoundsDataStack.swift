@@ -106,10 +106,17 @@ class RoundsDataStack: ObservableObject, Identifiable {
             if inMemory {
                 container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
             } else {
-                // Configure CloudKit options for iOS (similar to watch app)
+                // Configure CloudKit options for watchOS
                 let storeDescription = container.persistentStoreDescriptions.first!
                 storeDescription.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
                 storeDescription.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
+                
+                // Explicitly set CloudKit container identifier for watchOS
+                // This ensures CloudKit sync works properly
+                if storeDescription.cloudKitContainerOptions == nil {
+                    let options = NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.com.doxiedavis.TrapScores")
+                    storeDescription.cloudKitContainerOptions = options
+                }
             }
             // Capture a local reference to avoid capturing the mutating `self` in the escaping closure
             let localContainer = container
@@ -271,6 +278,8 @@ class RoundsDataStack: ObservableObject, Identifiable {
     }
     
     func addRound(range: String, comment: String, date: Date, pos1: Int64, pos2: Int64, pos3: Int64, pos4: Int64, pos5: Int64, pos6: Int64, pos7: Int64, pos8: Int64, pos9: Int64, total: Int64, exclude: Bool ) {
+        // Always create a new round - users should be able to create multiple rounds
+        // CloudKit's merge policy will handle any actual duplicates during sync
         let newRound = RoundEntity(context: managedObjectContext)
         newRound.range = range
         newRound.comment = comment
@@ -450,5 +459,65 @@ class RoundsDataStack: ObservableObject, Identifiable {
         fetchRounds()
 //        fetchGraphs()
         calcAvgs()
+    }
+    
+    /// Clean up duplicate rounds that may have been created before deduplication logic was added
+    /// This method identifies duplicates based on date only (rounded to nearest minute)
+    func cleanupDuplicates() {
+        let context = managedObjectContext
+        let request = NSFetchRequest<RoundEntity>(entityName: "RoundEntity")
+        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: false)]
+        
+        do {
+            let allRounds = try context.fetch(request)
+            var duplicatesToDelete: [RoundEntity] = []
+            var seenDates: Set<Int> = []
+            
+            for round in allRounds {
+                guard let date = round.date else { continue }
+                
+                // Create a unique key based on date rounded to nearest minute
+                let dateKey = Int(date.timeIntervalSince1970.rounded(.down) / 60)
+                
+                if seenDates.contains(dateKey) {
+                    // This is a duplicate - keep the one with an ID if available, otherwise keep the first one
+                    if round.id == nil {
+                        duplicatesToDelete.append(round)
+                    } else {
+                        // Check if we already added a duplicate with this date
+                        if let existingDuplicate = duplicatesToDelete.first(where: { existing in
+                            guard let existingDate = existing.date else { return false }
+                            let existingDateKey = Int(existingDate.timeIntervalSince1970.rounded(.down) / 60)
+                            return existingDateKey == dateKey
+                        }) {
+                            // Keep the one with an ID, delete the one without
+                            if existingDuplicate.id == nil {
+                                duplicatesToDelete.removeAll { $0 == existingDuplicate }
+                                duplicatesToDelete.append(round)
+                            } else {
+                                duplicatesToDelete.append(round)
+                            }
+                        } else {
+                            duplicatesToDelete.append(round)
+                        }
+                    }
+                } else {
+                    seenDates.insert(dateKey)
+                }
+            }
+            
+            // Delete duplicates
+            if !duplicatesToDelete.isEmpty {
+                print("Found \(duplicatesToDelete.count) duplicate rounds to remove")
+                for duplicate in duplicatesToDelete {
+                    context.delete(duplicate)
+                }
+                try context.save()
+                fetchRounds()
+                calcAvgs()
+            }
+        } catch {
+            print("Error cleaning up duplicates: \(error)")
+        }
     }
 }

@@ -66,8 +66,6 @@ struct NewRoundView: View {
                                 pos9: Int64(roundsData.posCount[8]),
                                 total: Int64(roundsData.roundTotal),
                                 exclude: roundsData.exclude)
-                            roundsData.saveRounds()
-                            roundsData.fetchRounds()
                             roundsData.clearData()
                             roundsData.calcAvgs()
                             roundsData.path.removeLast(roundsData.path.count)
@@ -292,8 +290,6 @@ struct Header: View {
                     pos9: Int64(roundsData.posCount[8]),
                     total: Int64(roundsData.roundTotal),
                     exclude: roundsData.exclude)
-                roundsData.saveRounds()
-                roundsData.fetchRounds()
                 roundsData.clearData()
                 roundsData.calcAvgs()
                 roundsData.path.removeLast(roundsData.path.count)

@@ -17,7 +17,7 @@ struct ChooseRange: View {
         NavigationStack {
             VStack {
                 HStack {
-                    Text(" v.3.0")
+                    Text(" v.3.1")
                         .font(.headline)
                         .opacity(0.3)
                         .padding()

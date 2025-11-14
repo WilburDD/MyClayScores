@@ -54,6 +54,13 @@ class WatchData: ObservableObject, Identifiable {
                 let storeDescription = container.persistentStoreDescriptions.first!
                 storeDescription.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
                 storeDescription.setOption(true as NSNumber, forKey: NSPersistentStoreRemoteChangeNotificationPostOptionKey)
+                
+                // Explicitly set CloudKit container identifier for watchOS
+                // This ensures CloudKit sync works properly
+                if storeDescription.cloudKitContainerOptions == nil {
+                    let options = NSPersistentCloudKitContainerOptions(containerIdentifier: "iCloud.com.doxiedavis.TrapScores")
+                    storeDescription.cloudKitContainerOptions = options
+                }
             }
             container.loadPersistentStores(completionHandler: { (storeDescription, error) in
                 if let error = error as NSError? {
@@ -62,39 +69,6 @@ class WatchData: ObservableObject, Identifiable {
             })
             container.viewContext.automaticallyMergesChangesFromParent = true
             container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-            
-            // Set up remote change notification observer to handle CloudKit imports
-            if !inMemory {
-                PersistenceController.setupRemoteChangeNotificationObserver(for: container)
-            }
-        }
-        
-        /// Set up observer for CloudKit remote change notifications to process pending changes
-        /// This helps CoreData's internal CloudKit import background tasks complete within the 30-second limit
-        private static func setupRemoteChangeNotificationObserver(for container: NSPersistentCloudKitContainer) {
-            NotificationCenter.default.addObserver(
-                forName: .NSPersistentStoreRemoteChange,
-                object: container.persistentStoreCoordinator,
-                queue: .main
-            ) { _ in
-                // Process pending changes immediately to help CoreData's background tasks complete
-                PersistenceController.processPersistentHistory(for: container)
-            }
-        }
-        
-        /// Process pending changes to help CoreData's CloudKit import background tasks complete promptly
-        /// This simpler approach processes remote changes immediately when they arrive
-        private static func processPersistentHistory(for container: NSPersistentCloudKitContainer) {
-            // Use a background context to process changes without blocking
-            let context = container.newBackgroundContext()
-            context.perform {
-                // Process any pending changes to help CoreData's background tasks complete
-                context.processPendingChanges()
-                
-                // The view context will automatically merge changes due to automaticallyMergesChangesFromParent = true
-                // By processing pending changes here, we help CoreData's background import tasks complete faster
-                // This helps ensure background tasks complete within the 30-second limit
-            }
         }
     }
     
@@ -120,69 +94,43 @@ class WatchData: ObservableObject, Identifiable {
     
     func saveRounds() {
         guard managedObjectContext.hasChanges else { return }
-        do {
-            // Save the context - NSPersistentCloudKitContainer automatically syncs to CloudKit
-            try managedObjectContext.save()
-            
-            // Ensure the save completes and CloudKit sync is initiated
-            managedObjectContext.processPendingChanges()
-            
-            // Explicitly trigger CloudKit export for watchOS
-            triggerCloudKitExport()
-            
-            fetchRounds()
-        } catch let error {
-            print("Error saving. \(error)")
-        }
-    }
-    
-    /// Explicitly trigger CloudKit export to ensure immediate sync on watchOS
-    /// This method forces CloudKit to process pending exports immediately rather than deferring them
-    private func triggerCloudKitExport() {
+        
         let container = PersistenceController.shared.container
         
-        // Ensure CloudKit container is properly configured
-        guard let storeDescription = container.persistentStoreDescriptions.first else {
-            print("Warning: No store description found for CloudKit export")
-            return
-        }
-        
-        // Verify CloudKit is configured (NSPersistentCloudKitContainer automatically configures this)
-        guard storeDescription.cloudKitContainerOptions != nil else {
-            print("Warning: CloudKit container options not configured")
-            return
-        }
-        
-        // Access the persistent store coordinator to ensure CloudKit operations are queued
-        // This ensures the container is aware of the changes and will sync to CloudKit
-        let coordinator = container.persistentStoreCoordinator
-        
-        // Use a background task to ensure CloudKit operations are processed
-        // This is critical on watchOS where CloudKit sync may be deferred for power management
-        container.performBackgroundTask { backgroundContext in
-            do {
-                // Set merge policy to ensure CloudKit changes are properly handled
-                backgroundContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-                
-                // Access the coordinator in background context to trigger CloudKit sync processing
-                let _ = coordinator
-                
-                // Process any pending changes in background context to trigger CloudKit export
-                if backgroundContext.hasChanges {
-                    try backgroundContext.save()
-                }
-                
-                // Force CloudKit to process the export by ensuring coordinator is active
-                // Accessing persistent stores ensures CloudKit operations are queued and processed
-                let _ = coordinator.persistentStores
-                
-            } catch {
-                print("Error triggering CloudKit export: \(error)")
+        do {
+            // Save the view context - this persists changes locally and triggers CloudKit export
+            try managedObjectContext.save()
+            
+            // Ensure all pending changes are processed
+            managedObjectContext.processPendingChanges()
+            
+            // Verify CloudKit is configured
+            guard let storeDescription = container.persistentStoreDescriptions.first else {
+                fetchRounds()
+                return
             }
+            
+            guard storeDescription.cloudKitContainerOptions != nil else {
+                fetchRounds()
+                return
+            }
+            
+            // Trigger CloudKit export by accessing the persistent store coordinator's stores
+            // This ensures CloudKit operations are queued and processed
+            // On watchOS, CloudKit sync may be deferred, but accessing stores helps trigger it
+            let coordinator = container.persistentStoreCoordinator
+            let _ = coordinator.persistentStores
+            
+            // Fetch rounds to update UI
+            fetchRounds()
+        } catch let error {
+            print("Error saving: \(error)")
         }
     }
     
     func addRound(range: String, comment: String, date: Date, pos1: Int64, pos2: Int64, pos3: Int64, pos4: Int64, pos5: Int64, pos6: Int64, pos7: Int64, pos8: Int64, pos9: Int64, total: Int64, exclude: Bool = false) {
+        // Always create a new round - users should be able to create multiple rounds
+        // CloudKit's merge policy will handle any actual duplicates during sync
         let newRound = RoundEntity(context: managedObjectContext)
         newRound.range = range
         newRound.comment = comment

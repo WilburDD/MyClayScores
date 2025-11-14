@@ -160,7 +160,7 @@ struct SelectRange: View {
                         .getTealButtonStyle()
                     }
                     Spacer()
-                    Text("ver. 3.0\nSend me your comments & feedback:  myclayscores@gmail.com.  Enjoy!")
+                    Text("ver. 3.1\nSend me your comments & feedback:  myclayscores@gmail.com.  Enjoy!")
                         .multilineTextAlignment(.center)
                         .font(.headline)
                         .opacity(0.3)
